@@ -9,7 +9,7 @@ This folder contains the definition of all problems. The format is also extended
 
 For example: car side impact problem definition.
 
-2                -->:  Solver Type (2 --> A^2 NSGA-III, 1 --> A NSGA-III, 0 --> NSGA-III)
+2                -->:  Solver Type (2 --> A^2 NSGA-III, 1 --> A NSGA-III, 0 --> NSGA-III)\n
 156              -->:  Population Size (a multiple of 4, because it is necessary for tournament selection routine)
 500              -->:  Number of generations
 3                -->:  Number of objectives
