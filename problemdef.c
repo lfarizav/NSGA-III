@@ -17,7 +17,7 @@
 /* # define zdt2 */
 /* # define zdt3 */
 /* # define zdt4*/
- # define dtlz1
+ # define idtlz1
 /*# define dtlz1*/
 /* # define zdt5 */
 /* # define zdt6  */
@@ -46,6 +46,7 @@
 #ifdef waterproblem
 void test_problem (double *xreal, double *xbin, int **gene, double *obj, double *constr, double *equality_constr, int normalized)
 {
+	dtlz=7;
 	obj[0]=106780.37*(xreal[1]+xreal[2])+61704.67;
 	obj[1]=3000*xreal[0];
 	obj[2]=305700*2289*xreal[1]/pow(0.06*2289,0.65);
@@ -70,7 +71,7 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
 #ifdef carsideimpact
 void test_problem (double *xreal, double *xbin, int **gene, double *obj, double *constr, double *equality_constr, int normalized)
 {
-
+	dtlz=8;
 	obj[0] = (1.98+4.9*xreal[0]+6.67*xreal[1]+6.98*xreal[2]+4.01*xreal[3]+1.78*xreal[4]+0.00001*xreal[5]+2.73*xreal[6]);
         obj[1] = (4.72-0.5*xreal[3]-0.19*xreal[1]*xreal[2]);
         obj[2] = (0.5*((10.58-0.674*xreal[0]*xreal[1]-0.67275*xreal[1])+(16.45-0.489*xreal[2]*xreal[6]-0.843*xreal[4]*xreal[5])));
@@ -879,6 +880,46 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
     return;
 }
 #endif
+/*  Test problem inverted DTLZ1
+    # of real variables = 5 + # of objectives -1
+    # of bin variables = 0
+    # of objectives = 3-4-5
+    # of constraints = 0
+    */
+#ifdef idtlz1
+void test_problem (double *xreal, double *xbin, int **gene, double *obj, double *constr, double *equality_constr, int normalized)
+{
+    int i,j,aux;
+    double g;
+    int n_var=5;
+    int k=n_var-nobj+1;
+    dtlz=5;
+    g=0.0;
+    for (i=n_var-k;i<n_var;i++)
+    {
+	g+=(xreal[i]-0.5)*(xreal[i]-0.5)-cos(20.0*PI*(xreal[i]-0.5));	
+    }
+    g = 100*(k+g);			
+
+
+    for (i=0;i<nobj;i++)
+    {
+	obj[i]=(1.0+g)*0.5;
+    }
+    for (i=0;i<nobj;i++)
+    {
+	for (j=0;j<nobj-(i+1);j++)
+		obj[i]*=xreal[j];
+		if (i!=0)
+		{
+			aux = nobj-(i+1);
+			obj[i] *= 1 - xreal[aux];
+		}
+		obj[i] = (1.0+g)*0.5-obj[i];
+    }
+    return;
+}
+#endif
 /*  Test problem DTLZ1-C
     # of real variables = 5 + # of objectives -1
     # of bin variables = 0
@@ -920,6 +961,50 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
     }
     constr[0]=1-obj[nobj-1]/0.6-temp_constr;
     /*printf("temp_constr is %e\n",constr[0]);*/
+    return;
+}
+#endif
+/*  Test problem Inverted DTLZ2
+    # of real variables = 10 + # of objectives -1 = 12-13-14
+    # of bin variables = 0
+    # of objectives = 3-4-5
+    # of constraints = 0
+    */
+#ifdef idtlz2
+void test_problem (double *xreal, double *xbin, int **gene, double *obj, double *constr, double *equality_constr, int normalized)
+{
+    int i,j,aux;
+    int n_var=10;
+    int k=n_var-nobj+1;
+    double g;
+    dtlz=6;
+    g=0.0;
+    for (i=n_var-k;i<n_var;i++)
+    {
+	g+=(xreal[i]-0.5)*(xreal[i]-0.5);	
+    }
+    for (i=0;i<nobj;i++)
+    {
+	obj[i]=1.0+g;	
+    }   
+    for (i=0;i<nobj;i++)
+    {
+	for (j=0;j<nobj-(i+1);j++)
+		obj[i]*=cos(xreal[j]*0.5*PI);	
+		if (i!=0)
+		{
+			aux = nobj-(i+1);
+			obj[i] *= sin(xreal[aux]*0.5*PI);
+		}	
+    } 
+    for (i=0;i<nobj;i++)
+    {
+	
+	if (i<nobj-1)
+		obj[i] = ((1.0+g)-(obj[i]*obj[i]*obj[i]*obj[i]));
+	else
+		obj[i] = ((1.0+g)-(obj[i]*obj[i]));
+    } 
     return;
 }
 #endif
@@ -991,6 +1076,7 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
 			aux = nobj-(i+1);
 			obj[i] *= sin(xreal[aux]*0.5*PI);
 		}
+		constr[i] = obj[i]-0.1;/*F_M>=0.1*/
     } 
     return;
 }
@@ -1184,10 +1270,10 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
 	g+=pow(xreal[i],0.1);	
     }
     int t = PI/(4.0*(1+g));
-    theta[0]=xreal[0]*0.5*PI;
+    tetha[0]=xreal[0]*0.5*PI;
     for (i=1;i<nobj-1;i++)
     {
-	tetha[i]=t*(1.0 2.0*g*xreal[i]);
+	tetha[i]=t*(2.0*g*xreal[i]);
     }
     for (i=0;i<nobj;i++)
     {

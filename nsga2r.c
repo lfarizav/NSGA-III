@@ -16,6 +16,7 @@ int ncon;
 int neqcon;
 int popsize;
 int adaptive_nsga;
+double *a_last_gen;
 double pcross_real;
 double pcross_bin;
 double pmut_real;
@@ -58,14 +59,14 @@ int numberpointperdim_inside;
 int *rho;
 int *rho_St;
 int *rho_Fl;
-int *rho_adaptive;
-int *rho_St_adaptive;
-int *rho_Fl_adaptive;
+int *last_rho_St;
+int *last_generation_associated_rho_St;
 int min_rho_St;
 int min_rho_Fl;
 int min_rho;
 int min_rho_Fl_count_index;
 int min_rho_count_index;
+int counter;
 int *associatedfromlastfront_St;
 int *associatedfromlastfront_Fl;
 int *membertoadd;
@@ -76,8 +77,13 @@ int first_front;
 int *fronts;
 int *dist_lf;
 double **ref_points;
+double **adaptive_ref_points_settled;
+int *adaptive_ref_points_settled_number;
+int elegible_adaptive_ref_points_to_be_fixed_number;
+double **DTLZ;
 double **ref_points_inside;
 double **temp_refpoints;
+int *temp_refpoints_pointer;
 double **minimum_amount_ref_points;
 double **ref_points_normalized;
 double *min_ref_points;
@@ -103,7 +109,10 @@ int useless_refpoint_number;
 int usefull_refpoint_number;
 int adaptive_refpoint_number;
 int last_gen_adaptive_refpoints_number;
+int adaptive_ref_points_inserted;
+int adaptive_ref_points_inserted_per_generation;
 double *num_div_den;
+int IGDfrontsize;
 int main (int argc, char **argv)
 {
     
@@ -119,6 +128,7 @@ int main (int argc, char **argv)
     FILE *gp_minus_zmin;
     FILE *gp_normalized;
     FILE *gp_a;
+    FILE *gp_dtlz;
     FILE *gp_real_front;
     population *parent_pop;
     population *child_pop;
@@ -148,13 +158,14 @@ int main (int argc, char **argv)
     fpt3 = fopen("best_pop.out","w");
     fpt4 = fopen("all_pop.out","w");
     fpt5 = fopen("params.out","w");
+    
     fprintf(fpt1,"# This file contains the data of initial population\n");
     fprintf(fpt2,"# This file contains the data of final population\n");
     fprintf(fpt3,"# This file contains the data of final feasible population (if found)\n");
     fprintf(fpt4,"# This file contains the data of all generations\n");
     fprintf(fpt5,"# This file contains information about inputs as read by the program\n");
     printf("\n Enter the problem relevant and algorithm relevant parameters ... ");
-    printf("\n Do you want an adaptive nsga-iii simulations? : (2 --> A^2 NSGA-III, 1 --> A NSGA-III, 0 --> NSGA-III) :");
+    printf("\n Do you want an adaptive NSGA-III simulations? : (2 --> A^2 NSGA-III, 1 --> A NSGA-III, 0 --> NSGA-III) :");
     scanf("%d",&adaptive_nsga);
     printf("\n Enter the population size (a multiple of 4) : ");
     scanf("%d",&popsize);
@@ -318,7 +329,8 @@ int main (int argc, char **argv)
     if (choice==1)
     {
         gp = popen(GNUPLOT_COMMAND,"w");
-	    gp_pc = popen(GNUPLOT_COMMAND,"w");
+	gp_pc = popen(GNUPLOT_COMMAND,"w");
+        gp_dtlz = popen(GNUPLOT_COMMAND,"w");
 
         if (gp==NULL)
         {
@@ -532,17 +544,20 @@ int main (int argc, char **argv)
     fprintf(fpt4,"# of objectives = %d, # of constraints = %d, # of real_var = %d, # of bits of bin_var = %d, constr_violation, rank\n",nobj,ncon,nreal,bitlength);
 
     /*Remember numberpointperdim_inside = numberpointperdim-1, if you want to use two layers of reference points*/
-    numberpointperdim=(nobj==3)?13:(nobj==4)?7:(nobj==5)?3:4;/*numberpointperdim=(nobj==3)?13:(nobj==4)?7:(nobj==5)?7:4;*/
+    numberpointperdim=(nobj==3)?13:(nobj==5)?7:(nobj==8)?4:(nobj==10)?4:(nobj==15)?3:4;/*numberpointperdim=(nobj==3)?13:(nobj==4)?7:(nobj==5)?7:4;*/
     numberpointperdim_inside=numberpointperdim-1;
-    /*popsize=92(3d),,210(5d)*/
+    /*popsize=nCn(3-1+12,12)=92(3d),nCn(3-1+6,6)=210(5d),nCn(3-1+8,8)=6435(8d)*/
     numberofdivisions=numberpointperdim-1;
     factorial=fact(numberofdivisions+nobj-1)/(fact(numberofdivisions)*fact(nobj-1));
     factorial_adaptive=fact(nobj)/(fact(1)*fact(nobj-1));
-    if (nobj>3)
-    	factorial_inside=fact(numberpointperdim_inside-1+nobj-1)/(fact(numberpointperdim_inside-1)*fact(nobj-1));
+    if (nobj>5)
+    	factorial_inside=fact(numberofdivisions+nobj-2)/(fact(numberofdivisions-1)*fact(nobj-1));
     else 	
     	factorial_inside=0;
-
+    last_gen_adaptive_refpoints_number=0;
+    elegible_adaptive_ref_points_to_be_fixed_number=0;
+    adaptive_ref_points_inserted=0;
+    /*printf("factorial %d, factorial_inside %d\n",factorial,factorial_inside);*/
     if (factorial>=popsize)
     {
 	printf("The reference points size must be less than the population size. Reduce the number of reference points per dimension! (%d)\n",factorial);
@@ -558,8 +573,8 @@ int main (int argc, char **argv)
     nbincross = 0;
     nrealcross = 0;
     first_front = 0;
-    last_gen_adaptive_refpoints_number=0;
- 
+  
+    a_last_gen=(double *)malloc(nobj*sizeof(double));
     scale_obj_min=(double *)malloc(nobj*sizeof(double));
     scale_obj_max=(double *)malloc(nobj*sizeof(double));
     scale_obj_min_ref=(double *)malloc(nobj*sizeof(int));
@@ -569,19 +584,20 @@ int main (int argc, char **argv)
     zmax=(double **)malloc(nobj*sizeof(double*));
     for (i=0;i<nobj;i++)
         zmax[i]=(double *)malloc(nobj*sizeof(double));
-    rho=(int *)malloc((factorial+factorial_inside)*sizeof(int));
-    rho_St=(int *)malloc((factorial+factorial_inside)*sizeof(int));
-    rho_Fl=(int *)malloc((factorial+factorial_inside)*sizeof(int));
-    rho_adaptive=(int *)malloc((nobj*popsize)*sizeof(int));
-    rho_St_adaptive=(int *)malloc((nobj*popsize)*sizeof(int));
-    rho_Fl_adaptive=(int *)malloc((nobj*popsize)*sizeof(int));
+    rho=(int *)malloc(nobj*(factorial+factorial_inside)*sizeof(int));
+    rho_St=(int *)malloc(nobj*(factorial+factorial_inside)*sizeof(int));
+    rho_Fl=(int *)malloc(nobj*(factorial+factorial_inside)*sizeof(int));
     membertoadd=(int *)malloc((2*popsize)*sizeof(int));
     index = (int *)malloc(nobj*sizeof(int));
     memset(index,0,nobj*sizeof(int));
     ref_points_min_rho=(int *)malloc(factorial*sizeof(int));
     ref_points_min_rho_Fl=(int *)malloc(factorial*sizeof(int));
-    associatedfromlastfront_St=(int *)malloc((2*popsize)*sizeof(int));
-    associatedfromlastfront_Fl=(int *)malloc((2*popsize)*sizeof(int));
+    last_rho_St=(int *)malloc((10*popsize)*sizeof(int));
+    last_generation_associated_rho_St=(int *)malloc((10*popsize)*sizeof(int));
+    for (i=0;i<nobj*popsize;i++)
+    {
+	last_rho_St[i]=2147483647;
+    }
     index_s=(int *)malloc(nobj*sizeof(int));
     parent_pop = (population *)malloc(sizeof(population));
     child_pop = (population *)malloc(sizeof(population));
@@ -612,17 +628,34 @@ int main (int argc, char **argv)
     {
 	temp_refpoints[i] = (double *)malloc(((nobj)*(factorial+factorial_inside))*sizeof(double));
     }
+    temp_refpoints_pointer=(int *)malloc(((nobj)*(factorial+factorial_inside))*sizeof(int));
 
     ref_points = (double **)malloc(nobj*sizeof(double *));
     for (i=0;i<nobj;i++)
     {
-		ref_points[i] = (double *)malloc((factorial+factorial_inside)*sizeof(double));
+		ref_points[i] = (double *)malloc(nobj*(factorial+factorial_inside)*sizeof(double));
+    }
+    adaptive_ref_points_settled = (double **)malloc(nobj*sizeof(double *));
+    for (i=0;i<nobj;i++)
+    {
+		adaptive_ref_points_settled[i] = (double *)malloc(nobj*(factorial+factorial_inside)*sizeof(double));
+    }
+    adaptive_ref_points_settled_number = (int *)malloc(((nobj)*(factorial+factorial_inside))*sizeof(int));
+    DTLZ = (double **)malloc(nobj*sizeof(double *));
+    for (i=0;i<nobj;i++)
+    {
+		DTLZ[i] = (double *)malloc((factorial+factorial_inside)*sizeof(double));
     }
 
     ref_points_normalized = (double **)malloc(nobj*sizeof(double *));
     for (i=0;i<nobj;i++)
     {
 		ref_points_normalized[i] = (double *)malloc((factorial+factorial_inside)*sizeof(double));
+    }
+    adaptive_refpoints = (double **)malloc(nobj*sizeof(double *));
+    for (i=0;i<nobj;i++)
+    {
+		adaptive_refpoints[i] = (double *)malloc((factorial+factorial_inside)*sizeof(double));
     }
     igb_real_front = (double **)malloc(nobj*sizeof(double *));
     for (i=0;i<nobj;i++)
@@ -663,17 +696,19 @@ int main (int argc, char **argv)
 
     /*dinamic generation of reference points*/
     generate_ref_points (nobj-1,1/(double)(numberpointperdim-1));
-    if (nobj>3)
+    generate_DTLZ1 (nobj-1,1/(double)(numberpointperdim-1));
+    /*display_DTLZ1 ();
+    onthefly_display_DTLZ1 (gp_dtlz);*/
+    if (nobj>5)
     	generate_ref_points_inside (nobj-1,1/(double)(numberpointperdim_inside-1));
     display_refpoints ();
-    if (nobj<=3)
-    	onthefly_display_refpoints (parent_pop, gp_a);
+    onthefly_display_refpoints (parent_pop, gp_a);
+    onthefly_display_one (parent_pop, gp_a);
     /*generation of adaptive refpoints cluster*/
     generate_adaptive_ref_points (nobj-1,1.0);
 
     decode_pop(parent_pop);
     evaluate_pop (parent_pop);
-
     report_pop (parent_pop, fpt1);
     fprintf(fpt4,"# gen = 1\n");
     report_pop(parent_pop,fpt4);
@@ -694,16 +729,24 @@ int main (int argc, char **argv)
     fflush(fpt4);
     fflush(fpt5);
     sleep(3);
-    
+    double temp_IGD=DBL_MAX;
+    int temp_gen=0;
+    for (i=0;i<nobj*(factorial+factorial_inside);i++)
+	for (k=0;k<nobj;k++)
+    		adaptive_ref_points_settled[k][i]=0;
     for (i=2; i<=ngen; i++)
     {
+   	 /*if (i==50)
+   	 {
+		exit(-1);
+    	 }*/
 
         selection (parent_pop, child_pop);/*ok*/
         mutation_pop (child_pop);/*ok*/
         decode_pop(child_pop);/*ok*/
         evaluate_pop(child_pop);/*ok*/
         merge (parent_pop, child_pop, mixed_pop);/*ok*/
-        fill_nondominated_sort (selection_pop, mixed_pop, parent_pop);
+        fill_nondominated_sort (selection_pop, mixed_pop, parent_pop,i);
 
         fprintf(fpt4,"# gen = %d\n",i);
         report_pop(parent_pop,fpt4);
@@ -712,11 +755,13 @@ int main (int argc, char **argv)
 	    if (nobj>3)
 	    {
 	    	onthefly_display_parallel_coordinates(parent_pop,gp_pc,i);
+		onthefly_display_refpoints (parent_pop, gp_a);
 	    }
 	    else
 	    {
 	   	onthefly_display (parent_pop,gp,i,1);
 		onthefly_display_parallel_coordinates(parent_pop,gp_pc,i);
+		onthefly_display_refpoints (parent_pop, gp_a);
 	    }
 
             
@@ -730,9 +775,17 @@ int main (int argc, char **argv)
 	if (adaptive_nsga==1 || adaptive_nsga==2)
 	{
 		/*Reload refpoints changed by adaptive_refpoints and its visualization*/
+		printf("Visualization of adaptive reference points\n");
 		onthefly_display_refpoints (parent_pop, gp_a);
-		load_useless_refpoints (adaptive_refpoint_number,useless_refpoint_number);
-		display_refpoints ();
+		/*load_useless_refpoints (adaptive_refpoint_number,useless_refpoint_number);*/
+	}
+	if (dtlz<7)
+	{
+		/*if (IGD(parent_pop)<temp_IGD)
+		{
+			temp_IGD=IGD(parent_pop);
+			temp_gen=i;
+		}*/
 	}
         printf("\n gen = %d\n",i);
     }
@@ -744,8 +797,14 @@ int main (int argc, char **argv)
 	printf("\nGenerations finished, now reporting solutions (A^2-NSGA-III)\n");
     else
     	printf("\nGenerations finished, now reporting solutions (NSGA-III)\n");
+
     report_pop(parent_pop,fpt2);
     report_feasible(parent_pop,fpt3);
+    if (dtlz<7)
+    {
+    	printf("The DTLZ%d Inverted Generational Distance (IGD) for %d dimensions is %e\n",dtlz,nobj,IGD(parent_pop));
+    	printf("The best IGD is %e in generation %d\n",temp_IGD,temp_gen);
+    }
     if (nreal!=0)
     {
         fprintf(fpt5,"\n Number of crossover of real variable = %d",nrealcross);
@@ -770,6 +829,9 @@ int main (int argc, char **argv)
     if (choice!=0)
     {
         pclose(gp);
+        pclose(gp_dtlz);
+        pclose(gp_pc);
+
     }
     if (nreal!=0)
     {
@@ -790,8 +852,6 @@ int main (int argc, char **argv)
     free (child_pop);
     free (mixed_pop);
     free (selection_pop);
-    get_fronts_from_file (dtlz);
-    IGD();
     /*display_fronts ();*/
     printf("\n Routine successfully exited \n");
     return (0);

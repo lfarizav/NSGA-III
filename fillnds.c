@@ -9,7 +9,7 @@
 # include "rand.h"
 
 /* Routine to perform non-dominated sorting */
-void fill_nondominated_sort (population *selection_pop, population *mixed_pop, population *new_pop)
+void fill_nondominated_sort (population *selection_pop, population *mixed_pop, population *new_pop, int generation)
 {
     int flag;
     int i, j, k;
@@ -197,8 +197,8 @@ void fill_nondominated_sort (population *selection_pop, population *mixed_pop, p
 		    }
 		    while (temp2 != NULL);
 		    fronts[rank-1]=archieve_size;
-		    printf("front %d has %d individuals\n",rank,fronts[rank-1]);
-		    printf("archieve_size %d, front_size %d\n",archieve_size,front_size);
+		    /*printf("front %d has %d individuals\n",rank,fronts[rank-1]);
+		    printf("archieve_size %d, front_size %d\n",archieve_size,front_size);*/
 		    if (j==0)
 		    {
 			first_front=archieve_size;
@@ -210,13 +210,13 @@ void fill_nondominated_sort (population *selection_pop, population *mixed_pop, p
 		{
 		    /*check 1*/
 		    /*visualization of the selection_pop without the last front*/
-		    printf("1. visualization of the selection_pop without the last front in the fillnds.c file\n");
-		    for (k=0;k<archieve_size; k++)
+		    /*printf("1. visualization of the selection_pop without the last front in the fillnds.c file\n");*/
+		    /*for (k=0;k<archieve_size; k++)
 	    	    {
 			display_pop_ind_obj(&(selection_pop->ind[k]),k);
-	   	    }
-		    associated_reference_points_fill (selection_pop, mixed_pop, new_pop, front_size,archieve_size, elite);
-		    printf("archieve_size is %d, front_size is %d, i or count is %d, j is %d\n",archieve_size,front_size,i,j);
+	   	    }*/
+		    associated_reference_points_fill (selection_pop, mixed_pop, new_pop, front_size,archieve_size, elite, generation);
+		    /*printf("archieve_size is %d, front_size is %d, i or count is %d, j is %d\n",archieve_size,front_size,i,j);*/
 
 		    archieve_size = popsize;
 		    for (j=i; j<popsize; j++)
@@ -251,12 +251,14 @@ void fill_nondominated_sort (population *selection_pop, population *mixed_pop, p
 }
 
 /* Routine to fill a population with individuals associated with reference points (Das and Dennis's) and (Deb and Jain)*/
-void associated_reference_points_fill (population *selection_pop, population *mixed_pop, population *new_pop, int front_size, int archieve_size, list *elite)
+void associated_reference_points_fill (population *selection_pop, population *mixed_pop, population *new_pop, int front_size, int archieve_size, list *elite, int generation)
 {
-
     int j,k,l;
     int archieve_and_front_sizes;
     int pop_size;
+    int member_number;
+    int temp_rho_St_total;
+    int temp_rho_Fl_total;
 
     /*initialization of selection variables*/
     archieve_and_front_sizes=variables_initialization(selection_pop, mixed_pop, new_pop, front_size, archieve_size, elite);/*ok*/
@@ -290,12 +292,12 @@ void associated_reference_points_fill (population *selection_pop, population *mi
         obj_minus_zmin(&(selection_pop->ind[k]));/*ok*/
     }
 
-    /*Visualization of the selection_pop minus zmin in the fillnds.c file*/
+    /*Visualization of the selection_pop minus zmin in the fillnds.c file
     printf("5. visualization of the whole selection_pop minus zmin in the fillnds.c file\n");
     for (j=0;j<archieve_and_front_sizes; j++)
     {
 	display_pop_ind_obj_minus_zmin(&(selection_pop->ind[j]),j);
-    }
+    }*/
 
     find_extreme_points(selection_pop, pop_size);/*only consider the individuals in the first front*/
 
@@ -305,67 +307,93 @@ void associated_reference_points_fill (population *selection_pop, population *mi
         normalized_objective_function(&(selection_pop->ind[l]));/*ok*/
     }
 
-    /*7. visualization of the selection_pop normalized in the fillnds.c file*/
+    /*7. visualization of the selection_pop normalized in the fillnds.c file
     printf("7. visualization of the whole selection_pop normalized in the fillnds.c file\n");
     for (l=0; l<archieve_and_front_sizes; l++)
     {
  	display_pop_ind_obj_normalized (&(selection_pop->ind[l]),l);
-    }
+    }*/
 
     /*Associate normalized solutions with reference points*/
     for (l=0; l<archieve_and_front_sizes; l++)
     {
-        associate(&(selection_pop->ind[l]),&(new_pop->ind[l]),l, archieve_size);
+        associate(&selection_pop->ind[l],&new_pop->ind[l],l, archieve_size,0,factorial+factorial_inside+last_gen_adaptive_refpoints_number);
     }
+    printf("Printing rho after asociation refpoints ((factorial %d-adaptive_ref_points_inserted %d=%d)+factorial_inside %d +last_gen_adaptive_refpoints_number %d)\n",factorial,adaptive_ref_points_inserted,factorial-adaptive_ref_points_inserted,factorial_inside,last_gen_adaptive_refpoints_number);
+    temp_rho_St_total=0;
+    temp_rho_Fl_total=0;
+    for (l=0; l<factorial+factorial_inside+last_gen_adaptive_refpoints_number; l++)
+    {
+	temp_rho_St_total+=rho_St[l];
+	temp_rho_Fl_total+=rho_Fl[l];
+	printf("rho_St[%d] %d, rho_Fl[%d] %d\n",l,rho_St[l],l,rho_Fl[l]);
+    }
+    printf("After association: temp_rho_St_total %d, temp_rho_Fl_total %d\n",temp_rho_St_total,temp_rho_Fl_total);
     
-    /*Visualization of associated and distance reference*/
+    /*Visualization of associated and distance reference
     for (l=0; l<archieve_and_front_sizes; l++)
     {
  	printf("%d\tassociatedref %d, distancetoassociatedref %e\n",l,
 	selection_pop->ind[l].associatedref,selection_pop->ind[l].distancetoassociatedref);
+    }*/
+
+    /*Visualization of associated and distance reference
+    for (l=0; l<archieve_and_front_sizes; l++)
+    {
+ 	printf("%d\tassociatedref %d, distancetoassociatedref %e\n",l,
+	selection_pop->ind[l].associatedref,selection_pop->ind[l].distancetoassociatedref);
+    }*/
+
+    /*Select solutions from last_front to complete new_pop*/
+    member_number=niching(selection_pop, new_pop, front_size,archieve_size,0,factorial+factorial_inside+last_gen_adaptive_refpoints_number);
+    printf("After niching\n");
+    temp_rho_St_total=0;
+    temp_rho_Fl_total=0;
+    for (l=0; l<factorial+factorial_inside+last_gen_adaptive_refpoints_number; l++)
+    {
+	temp_rho_St_total+=rho_St[l];
+	temp_rho_Fl_total+=rho_Fl[l];
+	printf("rho_St[%d] %d, rho_Fl[%d] %d\n",l,rho_St[l],l,rho_Fl[l]);
     }
+    printf("After niching: temp_rho_St_total %d, temp_rho_Fl_total %d\n",temp_rho_St_total,temp_rho_Fl_total);
+    printf("member_number %d, archieve_size %d,total %d, popsize %d\n",member_number,archieve_size,member_number+archieve_size,popsize);
     /*If adaptive nsga-iii is enabled, then,*/
     if (adaptive_nsga==1 || adaptive_nsga==2)
     {
 	/*Add adaptive refpoints to improve Pareto Front distribution*/
 	add_adaptive_refpoints_to_ref_points();
-
+	last_gen_adaptive_refpoints_number=delete_adaptive_refpoints(archieve_size,front_size,selection_pop,new_pop,generation);
+	display_refpoints ();
 	/*initialization of rho's for next association*/
-        for (j=0;j<factorial+factorial_inside;j++)
+        /*for (j=0;j<factorial+factorial_inside;j++)
         {
 		rho_St[j]=0;
 		rho_Fl[j]=0;
 		rho[j]=0;
-        }
+        }*/
 
 	/*Associate normalized solutions with reference and adaptive points*/
-	for (l=0; l<archieve_and_front_sizes; l++)
+	/*for (l=0; l<archieve_and_front_sizes; l++)
 	{
 		associate(&(selection_pop->ind[l]),&(new_pop->ind[l]),l, archieve_size);
-	}
+	}*/
 	/*Preserve the rho, before niching change its values*/
-        for (j=0;j<factorial+factorial_inside;j++)
+        /*for (j=0;j<factorial+factorial_inside;j++)
         {
-		rho_adaptive[j]=rho[j];
-        }
+		if (archieve_size==0)
+			rho_St_adaptive[j]=rho_Fl[j];
+		else
+			rho_St_adaptive[j]=rho_St[j];
+        }*/
 
     }
-    /*Visualization of associated and distance reference*/
-    for (l=0; l<archieve_and_front_sizes; l++)
-    {
- 	printf("%d\tassociatedref %d, distancetoassociatedref %e\n",l,
-	selection_pop->ind[l].associatedref,selection_pop->ind[l].distancetoassociatedref);
-    }
-
-    /*Select solutions from last_front to complete new_pop*/
-    niching(selection_pop, new_pop, front_size,archieve_size);
     /*If adaptive nsga-iii is enabled, then,*/
-    if (adaptive_nsga==1 || adaptive_nsga==2)
-    {
+    /*if (adaptive_nsga==1 || adaptive_nsga==2)
+    {*/
     	/*Delete useless adaptive refpoints*/
-    	last_gen_adaptive_refpoints_number=delete_adaptive_refpoints();
+    	/*last_gen_adaptive_refpoints_number=delete_adaptive_refpoints();
 
-    }
+    }*/
 }
 int bubble_sorting_infeasible_population_index(population *poputation_sorted)
 {

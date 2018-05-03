@@ -73,11 +73,7 @@ void onthefly_display_real_front (population *pop,FILE *gp)
     if (dtlz==4)
     fprintf(gp,"set title 'Real front'\n set view %d,%d\nunset key\nsplot '/home/lfarizav/Dropbox/EURECOM/nsga2-gnuplot-v1.1.6/real_front/DTLZ4-3-PF.txt' w points pointtype 6 pointsize 1, 'plot.out' w points pointtype 6 pointsize 1\n",angle1,angle2);
     if (dtlz==5)
-    fprintf(gp,"set title 'Real front'\n set view %d,%d\nunset key\nsplot '/home/lfarizav/Dropbox/EURECOM/nsga2-gnuplot-v1.1.6/real_front/DTLZ5-3-PF.txt' w points pointtype 6 pointsize 1, 'plot.out' w points pointtype 6 pointsize 1\n",angle1,angle2);
-    if (dtlz==6)
-    fprintf(gp,"set title 'Real front'\n set view %d,%d\nunset key\nsplot '/home/lfarizav/Dropbox/EURECOM/nsga2-gnuplot-v1.1.6/real_front/DTLZ6-3-PF.txt' w points pointtype 6 pointsize 1, 'plot.out' w points pointtype 6 pointsize 1\n",angle1,angle2);
-    if (dtlz==7)
-    fprintf(gp,"set title 'Real front'\n set view %d,%d\nunset key\nsplot '/home/lfarizav/Dropbox/EURECOM/nsga2-gnuplot-v1.1.6/real_front/DTLZ7-3-PF.txt' w points pointtype 6 pointsize 1, 'plot.out' w points pointtype 6 pointsize 1\n",angle1,angle2);
+    fprintf(gp,"set title 'Real front'\n set view %d,%d\nunset key\nsplot '/home/lfarizav/Dropbox/EURECOM/nsga2-gnuplot-v1.1.6/real_front/IDTLZ1-3-PF.txt' w points pointtype 6 pointsize 1, 'plot.out' w points pointtype 6 pointsize 1\n",angle1,angle2);
     fflush(gp);
     fflush(fpt);
     fclose(fpt);
@@ -150,18 +146,52 @@ void onthefly_display_a (population *pop, FILE *gp)
 /* Function to display the current population for the subsequent generation */
 void onthefly_display_one (population *pop, FILE *gp)
 {
-    int i;
+    int i,j;
     int flag;
     FILE *fpt;
     fpt = fopen("plot_one.out","w");
-    
+
     fprintf(fpt,"%d\t%d\t%d\n",1,0,0);
     fprintf(fpt,"%d\t%d\t%d\n",0,1,0);
     fprintf(fpt,"%d\t%d\t%d\n",0,0,1);
     fprintf(fpt,"%d\t%d\t%d\n",1,0,0);
+    /*for (i=factorial; i<factorial+factorial_inside; i++)
+    {
+	for (j=0;j<nobj;j++)
+	{
+        	fprintf(fpt,"%e\t",ref_points[j][i]);
+	}
+	fprintf(fpt,"\n");
+    }
+    fprintf(fpt,"%e\t%e\t%e\n",ref_points[0][factorial],ref_points[0][factorial],ref_points[0][factorial]);*/
+
     fflush(fpt);
     flag = 1;
-    fprintf(gp,"set view %d,%d\n unset key\n replot 'plot_one.out' w lines pointtype 6 pointsize 1\n",angle1,angle2);
+    fprintf(gp,"replot 'plot_one.out' w lines pointtype 6 pointsize 1\n");
+    fflush(gp);
+    fclose(fpt);
+    return;
+}
+/* Function to display the current population for the subsequent generation */
+void onthefly_display_inside (population *pop, FILE *gp)
+{
+    int i,j;
+    int flag;
+    FILE *fpt;
+    fpt = fopen("plot_inside.out","w");
+
+    for (i=factorial; i<factorial+factorial_inside+last_gen_adaptive_refpoints_number; i++)
+    {
+	for (j=0;j<nobj;j++)
+	{
+        	fprintf(fpt,"%e\t",ref_points[j][i]);
+	}
+	fprintf(fpt,"\n");
+    }
+    fprintf(fpt,"%e\t%e\t%e\t",ref_points[j][i]);
+    fflush(fpt);
+    flag = 1;
+    fprintf(gp,"set view %d,%d\n unset key\n replot 'plot_inside.out' w lines pointtype 6 pointsize 1\n",angle1,angle2);
     fflush(gp);
     fclose(fpt);
     return;
@@ -173,7 +203,7 @@ void onthefly_display_refpoints (population *pop, FILE *gp)
     int flag;
     FILE *fpt;
     fpt = fopen("plot_rf.out","w");
-    for (i=0; i<factorial+factorial_inside; i++)
+    for (i=0; i<factorial+factorial_inside+last_gen_adaptive_refpoints_number; i++)
     {
 	for (j=0;j<nobj;j++)
 	{
@@ -182,9 +212,48 @@ void onthefly_display_refpoints (population *pop, FILE *gp)
 	fprintf(fpt,"\n");
     }
     fflush(fpt);
-    flag = 1;
-    fprintf(gp,"set title 'Generation #'\n set view %d,%d\n unset key\n splot 'plot_rf.out' w points pointtype 6 pointsize 1\n",angle1,angle2);
+
+    if (adaptive_nsga==1)
+    {
+ 	   fprintf(gp,"set title 'Adaptive Reference Points'\n set view %d,%d\n unset key\n splot 'plot_rf.out' w points pointtype 6 pointsize 1\n",angle1,angle2);
+
+    }
+    if (adaptive_nsga==2)
+ 	   fprintf(gp,"set title 'Effective Adaptive Reference Points'\n set view %d,%d\n unset key\n splot 'plot_rf.out' w points pointtype 6 pointsize 1\n",angle1,angle2);
+    if (adaptive_nsga==0)
+ 	   fprintf(gp,"set title 'Reference Points (Das and Dennis approach)'\n set view %d,%d\n unset key\n splot 'plot_rf.out' w points pointtype 6 pointsize 1\n",angle1,angle2);
+
+    printf("adaptive_nsga = %d\n",adaptive_nsga);
     fflush(gp);
+    fclose(fpt);
+    /*onthefly_display_one (pop,gp);*/
+    return;
+}
+void onthefly_display_DTLZ1 (FILE *gp_dtlz)
+{
+    int i,j;
+    int flag;
+    FILE *fpt;
+    fpt = fopen("plot_dtlz.out","w");
+    for (i=0; i<factorial+factorial_inside; i++)
+    {
+	for (j=0;j<nobj;j++)
+	{
+        	fprintf(fpt,"%e\t",DTLZ[j][i]);
+	}
+	fprintf(fpt,"\n");
+    }
+    fflush(fpt);
+    if (adaptive_nsga==1)
+    {
+ 	   fprintf(gp_dtlz,"set title 'DTLZ1'\n set view %d,%d\n unset key\n splot 'plot_dtlz.out' w points pointtype 6 pointsize 1\n",angle1,angle2);
+
+    }
+    if (adaptive_nsga==2)
+ 	   fprintf(gp_dtlz,"set title 'DTLZ2'\n set view %d,%d\n unset key\n splot 'plot_dtlz.out' w points pointtype 6 pointsize 1\n",angle1,angle2);
+    if (adaptive_nsga==0)
+ 	   fprintf(gp_dtlz,"set title 'DTLZ0'\n set view %d,%d\n unset key\n splot 'plot_dtlz.out' w points pointtype 6 pointsize 1\n",angle1,angle2);
+    fflush(gp_dtlz);
     fclose(fpt);
     return;
 }
@@ -240,6 +309,7 @@ void onthefly_display_association (population *pop, FILE *gp)
 	}
 	fprintf(fpt,"\n");
 	printf("\n\n");
+
 	for (k=0;k<nobj;k++)
 	{
         fprintf(fpt,"%e\t",pop->ind[i].obj_normalized[k]);
@@ -290,8 +360,9 @@ void onthefly_display_parallel_coordinates (population *pop, FILE *gp_pc, int ii
 	scale_obj_min[i]=DBL_MAX;
     }
     memset(scale_obj_max,0,nobj*sizeof(double));
-    FILE *fpt;
-    fpt = fopen("plot_pc.out","w");
+    FILE *fpt, *fpt_pc;
+    fpt_pc = fopen("plot_pc.out","w");
+    fpt = fopen("plot.out","w");
     for (j=0; j<popsize; j++)
     {
        	/*display_pop_ind_obj(&(selection_pop->ind[j]),j); /*Display selection population = St+last front*/
@@ -302,13 +373,26 @@ void onthefly_display_parallel_coordinates (population *pop, FILE *gp_pc, int ii
     {
 		for (j=0;j<nobj;j++)
 		{
-                	fprintf(fpt,"%d\t%e\n",j+1,(pop->ind[i].obj[j]-scale_obj_min[j])/(scale_obj_max[j]-scale_obj_min[j]));
+                	fprintf(fpt_pc,"%d\t%e\n",j+1,(pop->ind[i].obj[j]-scale_obj_min[j])/(scale_obj_max[j]-scale_obj_min[j]));
 		}
 		for (j=0;j<=nobj;j++)
 		{
-			fprintf(fpt,"\n");
+			fprintf(fpt_pc,"\n");
 		}
-                fflush(fpt);
+                fflush(fpt_pc);
+    }
+
+    for (i=0; i<popsize; i++)
+    {
+        /*if (pop->ind[i].constr_violation==0)
+        {*/
+	    for (j=0;j<nobj;j++)
+	    {
+			fprintf(fpt,"%e\t",pop->ind[i].obj[j]);
+	    }
+	    fprintf(fpt,"\n");
+            fflush(fpt);
+        /*}*/
     }
     fprintf(gp_pc,"set title 'Parallel Coordinates'\n unset key\n unset xtics\n set tmargin 6\n");
     fprintf(gp_pc,"set x2tics rotate by 90 offset 0 mirror ( ");
@@ -319,6 +403,7 @@ void onthefly_display_parallel_coordinates (population *pop, FILE *gp_pc, int ii
     fprintf(gp_pc,"'objective %d' %d)\n plot for [i=0:%d] 'plot_pc.out' i i u 1:2 w linesp notitle\n",k,k,popsize);
 
     fflush(gp_pc);
+    fclose(fpt_pc);
     fclose(fpt);
     return;
 }
@@ -353,10 +438,11 @@ void display_pop_ind_obj (individual *ind, int popsizeline)
         printf("%e\t",ind->obj[i]);
 	temp=temp+ind->obj[i];	
     }
-    if (dtlz)
+    printf("\n");
+    /*if (dtlz)
     	printf("--->sumation %e\n",temp);
     else
-	printf("\n");	
+	printf("\n");	*/
     return;
 }
 void display_pop_ind_obj_minus_zmin (individual *ind, int popsizeline)
@@ -397,9 +483,13 @@ void display_refpoints ()
     int i,j;
     printf("Visualization of reference points:\n");
     printf("factorial: %d\n",factorial);
+    if (nobj>1)
+    {
     printf("factorial_inside: %d\n",factorial_inside);
-    printf("factorial_adaptive: %d\n",factorial_adaptive);
-    for (i=0; i<factorial+factorial_inside; i++)
+    printf("last_gen_adaptive_refpoints_number: %d\n",last_gen_adaptive_refpoints_number);
+    printf("adaptive_refpoint_number: %d\n",adaptive_refpoint_number);
+    }
+    for (i=0; i<factorial+factorial_inside+last_gen_adaptive_refpoints_number+adaptive_refpoint_number; i++)
     {
 	printf("%d\t",i);
 	for (j=0;j<nobj;j++)
@@ -409,14 +499,33 @@ void display_refpoints ()
 	printf("\n");
     }
 }
+void display_DTLZ1 ()
+{
+    int i,j;
+    printf("Visualization of DTLZ:\n");
+
+    for (i=0; i<factorial+factorial_inside; i++)
+    {
+	/*printf("%d\t",i);*/
+	for (j=0;j<nobj;j++)
+	{
+		printf("%e\t",DTLZ[j][i]);
+	}
+	printf("\n");
+    }
+}
 void display_refpoints_normalized ()
 {
     int i,j;
     printf("Visualization of reference points normalized:\n");
     printf("factorial: %d\n",factorial);
-    printf("factorial_inside: %d\n",factorial_inside);
-    printf("factorial_adaptive: %d\n",factorial_adaptive);
-    for (i=0; i<factorial+factorial_inside; i++)
+    if (nobj>5)
+    {
+    	printf("factorial_inside: %d\n",factorial_inside);
+    	printf("factorial_adaptive: %d\n",factorial_adaptive);
+    	printf("last_gen_adaptive_refpoints_number: %d\n",last_gen_adaptive_refpoints_number);
+    }
+    for (i=0; i<factorial+factorial_inside+last_gen_adaptive_refpoints_number; i++)
     {
 	printf("%d\t",i);
 	for (j=0;j<nobj;j++)
