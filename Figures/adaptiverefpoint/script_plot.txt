@@ -1,0 +1,13 @@
+set title 'Adaptive Reference Points'
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'adaptiverefpoints.eps'
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 120,15
+splot 'plot_rf.out' w points pointtype 6 pointsize 1 notitle
+replot 'plot_one.out' w lines pointtype 6 pointsize 1 notitle
+replot 'plot_adaptive_1.out' w points pointtype 6 pointsize 1 notitle
+replot 'plot_adaptive_2.out' w points pointtype 6 pointsize 1 notitle
+replot 'plot_adaptive_1.out' w lines pointtype 6 pointsize 1 notitle
+replot 'plot_adaptive_2.out' w lines pointtype 6 pointsize 1 notitle

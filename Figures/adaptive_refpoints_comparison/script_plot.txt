@@ -1,0 +1,24 @@
+set terminal postscript eps enhanced color font 'Helvetica,16'
+set output 'nsgaversions.eps'
+set multiplot layout 1,2 title "Reference Points" font ",14"
+set title 'Adaptive Reference Points'
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'adaptive_refpoints_comp.eps'
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 80,135
+splot 'plot_rf1.out' w points pointtype 6 pointsize 1 notitle, \
+'plot_line.out' w lines pointtype 6 pointsize 1 notitle
+
+set title 'Effectively Adaptive Reference Points'
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'idtlz1_0p6-a2refpoints.eps'
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 80,135
+splot 'plot_rf2.out' w points pointtype 6 pointsize 1 notitle, \
+'plot_line.out' w lines pointtype 6 pointsize 1 notitle
+unset multiplot
+

@@ -1,0 +1,12 @@
+set title 'Two layers of Reference Points'
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output '2layerrefpoints.eps'
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 120,15
+splot '/home/lfarizav/Dropbox/EURECOM/nsga2-gnuplot-v1.1.6/plot_rf.out' w points pointtype 6 pointsize 1 notitle
+replot 'plot_one.out' w lines pointtype 6 pointsize 1 notitle
+replot 'plot_one_scale.out' w lines pointtype 6 pointsize 1 notitle
+
+splot 'plot_rf.out' using 1:2:3:(sprintf("(%e, %e, %e)", $1, $2, $3)) with labels point notitle-->print point labels

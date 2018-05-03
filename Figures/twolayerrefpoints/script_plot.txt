@@ -1,0 +1,19 @@
+set title 'Two layers of Reference Points'
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output '2layerrefpoints.eps'
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 120,15
+splot 'plot_rf.out' w points pointtype 6 pointsize 1 notitle
+replot 'plot_one.out' w lines pointtype 6 pointsize 1 notitle
+replot 'plot_one_scale.out' w lines pointtype 6 pointsize 1 notitle
+
+set title 'Two layers of Reference Points'
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 120,15
+splot 'plot_rf.out' w points pointtype 6 pointsize 1 notitle
+replot 'plot_one.out' w lines pointtype 6 pointsize 1 notitle
+replot 'plot_one_scale.out' w lines pointtype 6 pointsize 1 notitle
