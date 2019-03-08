@@ -1,5 +1,5 @@
 ## Copyright
-> The Copyright belongs to Luis Felipe Ariza Vesga. You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for **research purposes**. All publications which use this code should **acknowledge the author**. Luis Felipe Ariza Vesga. A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. 2019.
+> The NSGA-III Copyright belongs to Luis Felipe Ariza Vesga and the NSGA-II to Kanpur Genetic Algorithms Laboratory. You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for **research purposes**. All publications which use this code should **acknowledge the author**. Luis Felipe Ariza Vesga. A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. 2019.
 
 # NSGA-III: A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems (Non-Official)
 This work provides a third evolution fast Nondominated Sorting Genetic Algorithm (NSGA-III) implementation in C, extending the official NSGA-II algorithm stored in the repository of the Kanpur Genetic Algorithms Laboratory (KanGAL) (https://www.iitk.ac.in/kangal/codes.shtml). The algorithm resolves binary and real, constrained and non-constrained Evolutionary Multi-Objective and Many-objective Optimization problems. 
