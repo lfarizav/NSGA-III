@@ -22,13 +22,16 @@ I will expect this paper contribute to many researchers to solve many questions 
 [1] K. Deb, “An introduction to genetic algorithms,” Sadhana, vol. 24,
 no. 4, pp. 293–315, Aug 1999. [Online]. Available: https://doi.org/10.
 1007/BF02823145
+
 [2] J. Kacprzyk and W. Pedrycz, Springer Handbook of Computational
 Intelligence. Springer Publishing Company, Incorporated, 2015.
+
 [3] A. Konak, D. W. Coit, and A. E. Smith, “Multi-objective optimization
 using genetic algorithms: A tutorial,” Reliability Engineering &
 System Safety, vol. 91, no. 9, pp. 992 – 1007, 2006, special
 Issue - Genetic Algorithms and Reliability. [Online]. Available:
 http://www.sciencedirect.com/science/article/pii/S0951832005002012
+
 [4] J. D. Schaffer, “Multiple objective optimization with vector evaluated
 genetic algorithms,” in Proceedings of the 1st International Conference
 on Genetic Algorithms. Hillsdale, NJ, USA: L. Erlbaum Associates
