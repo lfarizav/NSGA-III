@@ -124,3 +124,6 @@ For example: car side impact problem definition.
 
 ### real_front:
 This folder has as much as possible dtlz fronts.
+
+## Copyright
+> The Copyright belongs to Luis Felipe Ariza Vesga. You are free to this algorithm (https://github.com/lfarizav/NSGA-III) for **research purposes**. All publications which use this platform or any code in the platform should **acknowledge the author**. Luis Felipe Ariza Vesga. A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. 2019.
