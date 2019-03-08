@@ -180,7 +180,7 @@ void onthefly_display_inside (population *pop, FILE *gp)
     FILE *fpt;
     fpt = fopen("plot_inside.out","w");
 
-    for (i=factorial; i<factorial+factorial_inside+last_gen_adaptive_refpoints_number; i++)
+    for (i=factorial; i<factorial+factorial_inside; i++)
     {
 	for (j=0;j<nobj;j++)
 	{
@@ -203,7 +203,7 @@ void onthefly_display_refpoints (population *pop, FILE *gp)
     int flag;
     FILE *fpt;
     fpt = fopen("plot_rf.out","w");
-    for (i=0; i<factorial+factorial_inside+last_gen_adaptive_refpoints_number; i++)
+    for (i=0; i<factorial+factorial_inside; i++)
     {
 	for (j=0;j<nobj;j++)
 	{
@@ -489,7 +489,7 @@ void display_refpoints ()
     printf("last_gen_adaptive_refpoints_number: %d\n",last_gen_adaptive_refpoints_number);
     printf("adaptive_refpoint_number: %d\n",adaptive_refpoint_number);
     }
-    for (i=0; i<factorial+factorial_inside+last_gen_adaptive_refpoints_number+adaptive_refpoint_number; i++)
+    for (i=0; i<factorial+factorial_inside+adaptive_refpoint_number; i++)
     {
 	printf("%d\t",i);
 	for (j=0;j<nobj;j++)
@@ -525,7 +525,7 @@ void display_refpoints_normalized ()
     	printf("factorial_adaptive: %d\n",factorial_adaptive);
     	printf("last_gen_adaptive_refpoints_number: %d\n",last_gen_adaptive_refpoints_number);
     }
-    for (i=0; i<factorial+factorial_inside+last_gen_adaptive_refpoints_number; i++)
+    for (i=0; i<factorial+factorial_inside; i++)
     {
 	printf("%d\t",i);
 	for (j=0;j<nobj;j++)

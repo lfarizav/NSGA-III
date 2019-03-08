@@ -1,7 +1,7 @@
 # This file contains information about inputs as read by the program
 
  Population size = 92
- Number of generations = 1000
+ Number of generations = 500
  Number of objective functions = 3
  Number of constraints = 0
  Number of equality constraints = 0
@@ -25,6 +25,6 @@
  Distribution index for crossover = 3.000000e+01
  Distribution index for mutation = 2.000000e+01
  Number of binary variables = 0
- Seed for random number generator = 6.000000e-01
- Number of crossover of real variable = 45954
- Number of mutation of real variable = 92083
+ Seed for random number generator = 5.000000e-01
+ Number of crossover of real variable = 22954
+ Number of mutation of real variable = 46311

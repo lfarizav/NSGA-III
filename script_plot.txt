@@ -125,3 +125,11 @@ set view 120,15
 splot 'plot_rf.out' w points pointtype 6 pointsize 1 notitle, \
 'plot_line.out' w lines pointtype 6 pointsize 1 notitle
 
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'dasdennisrefpoints.eps'
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 120,15
+splot 'plot_rf.out' w points pointtype 6 pointsize 1 notitle
+
