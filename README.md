@@ -1,3 +1,6 @@
+## Copyright
+> The Copyright belongs to Luis Felipe Ariza Vesga. You are free to this algorithm (https://github.com/lfarizav/NSGA-III) for **research purposes**. All publications which use this platform or any code in the platform should **acknowledge the author**. Luis Felipe Ariza Vesga. A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. 2019.
+
 # NSGA-III: A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems (Non-Official)
 This work provides a third evolution fast Nondominated Sorting Genetic Algorithm (NSGA-III) implementation in C, extending the official NSGA-II algorithm stored in the repository of the Kanpur Genetic Algorithms Laboratory (KanGAL). The algorithm resolves binary and real, constrained and non-constrained Evolutionary Multi-Objective and Many-objective Optimization problems. 
 Efficiently Adaptive (A^2-NSGA-III) and adaptive (A-NSGA-III) third evolution Nondominated Sorting Genetic Algorithms are extended as well. They solve the non-uniform random Pareto-optimal distribution inconvenient of some standardized tests and probably most of real problems, for which some useless reference points distributed on the M dimensional hyperplane, are not associated to any population member. Ideally, we desire the niche count of all reference points to be equal to 1, obtaining a uniform Pareto-optimal Front. Also, the adaptive Reference points generation for A-NSGA-III and A^2-NSGA-III algorithms is expanded. My NSGA-III algorithm outperforms most of results for standardized DTLZ problems in terms of the Inverted Generational Distance measure. In addition, real problems such as the Car-Side Impact and Water problems find a better Pareto-optimal distribution, not only visually but also in terms of the hypervolume measure, when adaptive and efficiently adaptive reference points are employed.
@@ -125,5 +128,3 @@ For example: car side impact problem definition.
 ### real_front:
 This folder has as much as possible dtlz fronts.
 
-## Copyright
-> The Copyright belongs to Luis Felipe Ariza Vesga. You are free to this algorithm (https://github.com/lfarizav/NSGA-III) for **research purposes**. All publications which use this platform or any code in the platform should **acknowledge the author**. Luis Felipe Ariza Vesga. A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. 2019.
