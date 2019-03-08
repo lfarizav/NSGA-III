@@ -77,7 +77,8 @@ For example: car side impact problem definition.
 ### real_front:
 This folder has as much as possible dtlz fronts.
 ### Use:
-> make nsga2r.c
+> make nsga2r
+
 > ./nsga2r 0.5 <input_data/dtlz1.in ----> for the dtlz1 problem.
 
 ## References
