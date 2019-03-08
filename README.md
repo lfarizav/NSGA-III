@@ -19,7 +19,7 @@ The NSGA-III is a MaOP algorithm that uses well-distributed reference points, ex
 
 However, the official code is proprietary (https://www.iitk.ac.in/kangal/codes/nsga2/nsga2-gnuplot-v1.1.6.tar.gz) and it is not shared with the research community. It is hard and inconvenient for people who want to either apply or extend MaOP algorithms to real problems.
 
-I decided to use the official NSGA-II KanGAL code to build the NSGA-III, A-NSGA-III and A^2-NSGA-III versions, because I think it is the smoothest way and it is implemented in C. Other shared implementations in Matlab are not fast, so the C solution is prefered.
+I decided to use the official NSGA-II KanGAL code to build the NSGA-III, A-NSGA-III and A^2-NSGA-III versions, because I think it is the smoothest way and it is implemented in C. Other shared implementations in Matlab are not fast, so the C solution is preferred.
 
 The intention of this paper is to build the most similar NSGA-III code compared with the official and share the code to the research community. I would like to apply it to resolve Cloud Radio Access Network (C-RAN) planning problems to reduce the power consumption in cellular networks. 
 
