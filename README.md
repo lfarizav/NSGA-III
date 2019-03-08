@@ -16,11 +16,15 @@ Typically, the performance evaluation for evolutionary MaOPs is measured using m
 A wide range of real-world constrained and unconstrained problems involve more than 3 dimensions. MOOPs well-established algorithms are not suited when dealing with this kind of problems, basically because of the dimensionality curse, therefore it behaves similarly to a random walk. Nevertheless, there is a MaOP formulation that tackles such high-dimensional optimization issues.
 
 The NSGA-III is a MaOP algorithm that uses well-distributed reference points, extending the NSGA-II selection method. It tries to overcome the increase of nondominated solutions with the number of objectives functions, ineffective mutation and crossover operations, the diversity measure estimation problem and the high-dimensional visualization \cite{Springer:RAEMOptimization}. It has the ability to find a well-converged and well-diversified set of solutions in high-dimensional scenarios. Additionally, it reduces the computational complexity, and increases the efficiency up to 15 objective functions.
-However, the official code is proprietary \cite{nsga3proprietary} and it is not shared with the research community. It is hard and inconvenient for people who want to either apply or extend MaOP algorithms to real problems.
 
-I decided to use the official NSGA-II KanGAL code to build the NSGA-III, A-NSGA-III and A^2-NSGA-III versions, because I think it is the smoothest way. Other implementations shared on the Internet start from scratch which increase the complexity level. Only the reference \cite{nsga3cpp} shows validation results for DTLZ problems. Furthermore, I determine to complement the explanation about adaptive reference points generation.
+However, the official code is proprietary (https://www.iitk.ac.in/kangal/codes/nsga2/nsga2-gnuplot-v1.1.6.tar.gz) and it is not shared with the research community. It is hard and inconvenient for people who want to either apply or extend MaOP algorithms to real problems.
+
+I decided to use the official NSGA-II KanGAL code to build the NSGA-III, A-NSGA-III and A^2-NSGA-III versions, because I think it is the smoothest way and it is implemented in C. Other shared implementations in Matlab are not fast, so the C solution is prefered.
+
 The intention of this paper is to build the most similar NSGA-III code compared with the official and share the code to the research community. I would like to apply it to resolve Cloud Radio Access Network (C-RAN) planning problems to reduce the power consumption in cellular networks. 
-I will expect this paper contribute to many researchers to solve many questions with regard to the implementation of the original NSGA-III. 
+
+I will expect this paper contributes to many researchers to solve many questions with regard to the implementation of the original NSGA-III. 
+
 ## Instructions
 ### input_data:
 
