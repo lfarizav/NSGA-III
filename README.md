@@ -18,6 +18,96 @@ However, the official code is proprietary \cite{nsga3proprietary} and it is not 
 I decided to use the official NSGA-II KanGAL code to build the NSGA-III, A-NSGA-III and A^2-NSGA-III versions, because I think it is the smoothest way. Other implementations shared on the Internet start from scratch which increase the complexity level. Only the reference \cite{nsga3cpp} shows validation results for DTLZ problems. Furthermore, I determine to complement the explanation about adaptive reference points generation.
 The intention of this paper is to build the most similar NSGA-III code compared with the official and share the code to the research community. I would like to apply it to resolve Cloud Radio Access Network (C-RAN) planning problems to reduce the power consumption in cellular networks. 
 I will expect this paper contribute to many researchers to solve many questions with regard to the implementation of the original NSGA-III. 
+## References
+[1] K. Deb, “An introduction to genetic algorithms,” Sadhana, vol. 24,
+no. 4, pp. 293–315, Aug 1999. [Online]. Available: https://doi.org/10.
+1007/BF02823145
+[2] J. Kacprzyk and W. Pedrycz, Springer Handbook of Computational
+Intelligence. Springer Publishing Company, Incorporated, 2015.
+[3] A. Konak, D. W. Coit, and A. E. Smith, “Multi-objective optimization
+using genetic algorithms: A tutorial,” Reliability Engineering &
+System Safety, vol. 91, no. 9, pp. 992 – 1007, 2006, special
+Issue - Genetic Algorithms and Reliability. [Online]. Available:
+http://www.sciencedirect.com/science/article/pii/S0951832005002012
+[4] J. D. Schaffer, “Multiple objective optimization with vector evaluated
+genetic algorithms,” in Proceedings of the 1st International Conference
+on Genetic Algorithms. Hillsdale, NJ, USA: L. Erlbaum Associates
+Inc., 1985, pp. 93–100. [Online]. Available: http://dl.acm.org/citation.
+cfm?id=645511.657079
+[5] N. Srinivas and K. Deb, “Muiltiobjective optimization using nondominated
+sorting in genetic algorithms,” Evolutionary Computation, vol. 2,
+no. 3, pp. 221–248, Sept 1994.
+[6] M. Kim, T. Hiroyasu, M. Miki, and S. Watanabe, “Spea2+: Improving
+the performance of the strength pareto evolutionary algorithm 2,” in
+Parallel Problem Solving from Nature - PPSN VIII, X. Yao, E. K. Burke,
+J. A. Lozano, J. Smith, J. J. Merelo-Guervos, J. A. Bullinaria, J. E. ´
+Rowe, P. Tino, A. Kab ˇ an, and H.-P. Schwefel, Eds. Berlin, Heidelberg: ´
+Springer Berlin Heidelberg, 2004, pp. 742–751.
+[7] D. W. Corne, N. R. Jerram, J. D. Knowles, and M. J. Oates, “Pesa-ii:
+Region-based selection in evolutionary multiobjective optimization,” in
+Proceedings of the 3rd Annual Conference on Genetic and Evolutionary
+Computation, ser. GECCO’01. San Francisco, CA, USA: Morgan
+Kaufmann Publishers Inc., 2001, pp. 283–290. [Online]. Available:
+http://dl.acm.org/citation.cfm?id=2955239.2955289
+[8] N. Srinivas and K. Deb, “Muiltiobjective optimization using nondominated
+sorting in genetic algorithms,” Evolutionary Computation, vol. 2,
+no. 3, pp. 221–248, Sept 1994.
+[9] K. Deb and H. Jain, “An evolutionary many-objective optimization
+algorithm using reference-point-based nondominated sorting approach,
+part i: Solving problems with box constraints,” IEEE Transactions on
+Evolutionary Computation, vol. 18, no. 4, pp. 577–601, Aug 2014.
+[10] H. Jain and K. Deb, “An evolutionary many-objective optimization
+algorithm using reference-point based nondominated sorting approach,
+part ii: Handling constraints and extending to an adaptive approach,”
+IEEE Transactions on Evolutionary Computation, vol. 18, no. 4, pp.
+602–622, Aug 2014.
+[11] Yarpiz. (2018) Nsga-iii: Non-dominated sorting genetic algorithm, the
+third version. [Online]. Available: http://yarpiz.com/456/ypea126-nsga3
+[12] jMetal. (2018) Metaheuristic algorithms in java. [Online]. Available:
+http://jmetal.sourceforge.net/
+[13] T.-C. Chiang and Collaborators. (2014) nsga3cpp: A c++ implementation
+of nsga-iii. [Online]. Available: http://web.ntnu.edu.tw/∼tcchiang/
+publications/nsga3cpp/nsga3cpp.htm
+[14] L. Marti. (2016) nsga3cpp: A c++ implementation of nsga-iii. [Online].
+Available: https://github.com/lmarti/nsgaiii
+[15] L. B. S. Slim Bechikh, Maha Elarbi, A Survey in Recent Advances
+in Evolutionary Multi-objective Optimization, ser. Many-objective
+Optimization Using Evolutionary Algorithms:. New York, NY:
+Springer, 2017, vol. 20. [Online]. Available: http://dx.doi.org/8843/10.
+1007/978-3-319-42978-6
+[16] R. C. T. (Siemens). (2018) Heeds smashes barriers on multi-objective
+design studies. [Online]. Available: https://www.redcedartech.com/
+newsletters/HEEDS News-Mar15.htm
+[17] Y. Yusoff, M. S. Ngadiman, and A. M. Zain, “Overview of nsga-ii
+for optimizing machining process parameters,” Procedia Engineering,
+vol. 15, pp. 3978 – 3983, 2011, cEIS 2011. [Online]. Available:
+http://www.sciencedirect.com/science/article/pii/S1877705811022466
+[18] I. Das and J. E. Dennis, “Normal-boundary intersection: A new
+method for generating the pareto surface in nonlinear multicriteria
+optimization problems,” SIAM J. on Optimization, vol. 8, no. 3, pp.
+631–657, Mar. 1998. [Online]. Available: http://dx.doi.org/10.1137/
+S1052623496307510
+[19] H. Jain and K. Deb, “An improved adaptive approach for elitist nondominated
+sorting genetic algorithm for many-objective optimization,”
+in Evolutionary Multi-Criterion Optimization, R. C. Purshouse, P. J.
+Fleming, C. M. Fonseca, S. Greco, and J. Shaw, Eds. Berlin,
+Heidelberg: Springer Berlin Heidelberg, 2013, pp. 307–321.
+[20] S. Jiang and S. Yang, “A strength pareto evolutionary algorithm based on
+reference direction for multiobjective and many-objective optimization,”
+IEEE Transactions on Evolutionary Computation, vol. 21, no. 3, pp.
+329–346, June 2017.
+[21] K. Deb, L. Thiele, M. Laumanns, and E. Zitzler, Scalable Test
+Problems for Evolutionary Multiobjective Optimization. London:
+Springer London, 2005, pp. 105–145. [Online]. Available: https:
+//doi.org/10.1007/1-84628-137-7 6
+[22] S. Z. P. S. W. L. Q.Zhang, A. Zhou and S. Tiwari, “Multiobjective
+optimization test instances for the cec-2009 special session and
+competition,” Nanyang Technol. Univ., Singapore, Tech, 2008. [Online].
+Available: http://www.nyu.edu.sg/home/epnsugan
+[23] C. M. Fonseca, L. Paquete, and M. Lopez-Ib ´ a´nez, “An improved ˜
+dimension-sweep algorithm for the hypervolume indicator,” in Proceedings
+of the 2006 Congress on EvolutionaryComputation (CEC 2006).
+Piscataway, NJ: IEEE Press, July 2006, pp. 1157–1163.
 ## Instructions
 ### input_data folder:
 
