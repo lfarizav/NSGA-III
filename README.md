@@ -136,7 +136,7 @@ for evolutionary multi-objective optimization [educational forum],” IEEE
 Compu
 
 ## Instructions
-### input_data folder:
+### input_data:
 
 This folder contains the definition of all problems. The Kanpur Genetic Algorithms Laboratory format form is slighly modified.
 
@@ -188,4 +188,5 @@ For example: car side impact problem definition.
 
 60               -->:  Enter the first angle (an integer in the range 0-360)
 
-real_front folder:
+### real_front:
+This folder has as much as possible dtlz fronts.
