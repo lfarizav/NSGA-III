@@ -83,7 +83,7 @@ This folder has as much as possible dtlz fronts.
 ### Hou to use:
 > make nsga2r
 
-> ./nsga2r 0.5 <input_data/dtlz1.in ----> for the dtlz1 problem.
+> ./nsga2r seed <input_data/dtlz1.in ----> for the dtlz1 problem.
 
 ## References
 [1] K. Deb, “An introduction to genetic algorithms,” Sadhana, vol. 24, no. 4, pp. 293–315, Aug 1999. [Online]. Available: https://doi.org/10. 1007/BF02823145
