@@ -11,7 +11,7 @@ Multi-Objective Genetic Algorithms, use a modified single objective GA to find m
 Typically, the performance evaluation for evolutionary MaOPs is measured using metrics like the Generational Distance (GD), the Inverted Generational Distance (IGD), or the hypervolume to provide a comprehensive comparison among algorithms.
 
 ## Instructions
-input_data folder:
+### input_data folder:
 
 This folder contains the definition of all problems. The Kanpur Genetic Algorithms Laboratory format form is slighly modified.
 
