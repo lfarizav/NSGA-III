@@ -17,7 +17,7 @@ A wide range of real-world constrained and unconstrained problems involve more t
 
 The NSGA-III is a MaOP algorithm that uses well-distributed reference points, extending the NSGA-II selection method. It tries to overcome the increase of nondominated solutions with the number of objectives functions, ineffective mutation and crossover operations, the diversity measure estimation problem and the high-dimensional visualization \cite{Springer:RAEMOptimization}. It has the ability to find a well-converged and well-diversified set of solutions in high-dimensional scenarios. Additionally, it reduces the computational complexity, and increases the efficiency up to 15 objective functions.
 
-However, the official code is proprietary (https://www.iitk.ac.in/kangal/codes/nsga2/nsga2-gnuplot-v1.1.6.tar.gz) and it is not shared with the research community. It is hard and inconvenient for people who want to either apply or extend MaOP algorithms to real problems.
+However, the official code is proprietary and it is not shared with the research community. It is hard and inconvenient for people who want to either apply or extend MaOP algorithms to real problems.
 
 I decided to use the official NSGA-II KanGAL code to build the NSGA-III, A-NSGA-III and A^2-NSGA-III versions, because I think it is the smoothest way and it is implemented in C. Other shared implementations in Matlab are not fast, so the C solution is preferred.
 
