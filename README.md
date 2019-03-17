@@ -7,6 +7,7 @@
   url = {https://github.com/lfarizav/NSGA-III}
   month = March,
   year={2019},
+  lastaccessed = "March 17, 2019",
 }
 ```
 # NSGA-III: A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems (Non-Official)
