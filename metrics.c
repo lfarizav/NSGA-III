@@ -1,4 +1,8 @@
 /* Data Metrics routines */
+/* NSGA-III and NSGA-II Copyrights belong to Luis Felipe Ariza Vesga and the Kanpur Genetic Algorithms Laboratory,
+respectively. You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. 
+All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
+A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. March, 2019. */
 
 # include <stdio.h>
 # include <stdlib.h>
