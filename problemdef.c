@@ -1,8 +1,4 @@
 /* Test problem definitions */
-/* NSGA-III and NSGA-II Copyrights belong to Luis Felipe Ariza Vesga and the Kanpur Genetic Algorithms Laboratory,
-respectively. You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. 
-All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
-A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. March, 2019. */
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -21,7 +17,7 @@ A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Ma
 /* # define zdt2 */
 /* # define zdt3 */
 /* # define zdt4*/
- # define dtlz1
+ # define dtlz5
 /*# define dtlz1*/
 /* # define zdt5 */
 /* # define zdt6  */
@@ -1255,7 +1251,6 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
     double g;
     int n_var=10;
     int k=n_var-nobj+1;
-    int alpha=100;
     double tetha[nobj-1];
     dtlz=5;
     g=0.0;
@@ -1263,11 +1258,11 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
     {
 	g+=(xreal[i]-0.5)*(xreal[i]-0.5);	
     }
-    int t = PI/(4.0*(1+g));
-    theta[0]=xreal[0]*0.5*PI;
+    double t = PI/(4.0*(1+g));
+    tetha[0]=xreal[0]*0.5*PI;
     for (i=1;i<nobj-1;i++)
     {
-	tetha[i]=t*(1.0 2.0*g*xreal[i]);
+	tetha[i]=t*(1.0+2.0*g*xreal[i]);
     }
     for (i=0;i<nobj;i++)
     {
@@ -1331,7 +1326,7 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
 }
 #endif
 /*  Test problem DTLZ7
-    # of real variables = 10+ # of objectives -1
+    # of real variables = 20+ # of objectives -1
     # of bin variables = 0
     # of objectives = 3-4-5
     # of constraints = 0
@@ -1349,13 +1344,13 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
     {
 	g+=xreal[i];	
     }
-    g=1.0+(9.0*g)/k
+    g=1.0+(9.0*g)/k;
     double h=0;
 
 
     for (i=0;i<nobj-1;i++)
     {
-	h+=obj[i]/(1.0+g)*(1.0+sin(3.0*PI*obj[i]));
+	h+=(obj[i]/(1.0+g))*(1.0+sin(3.0*PI*obj[i]));
     }
     h=nobj-h;
     obj[nobj-1]=(1.0+g)*h;
