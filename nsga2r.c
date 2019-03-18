@@ -1,8 +1,4 @@
 /* NSGA-II routine (implementation of the 'main' function) */
-/* NSGA-III and NSGA-II Copyrights belong to Luis Felipe Ariza Vesga and the Kanpur Genetic Algorithms Laboratory,
-respectively. You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. 
-All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
-A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. March, 2019. */
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -716,7 +712,7 @@ int main (int argc, char **argv)
     report_pop (parent_pop, fpt1);
     fprintf(fpt4,"# gen = 1\n");
     report_pop(parent_pop,fpt4);
-    printf("\n gen = 1\n");
+    printf("\n gen = 1, nobj=%d\n",nobj);
     fflush(stdout);
 
     if (choice!=0)    {
@@ -751,7 +747,6 @@ int main (int argc, char **argv)
         merge (parent_pop, child_pop, mixed_pop);/*ok*/
         fill_nondominated_sort (selection_pop, mixed_pop, parent_pop,i);
 
-        fprintf(fpt4,"# gen = %d\n",i);
         report_pop(parent_pop,fpt4);
         fflush(fpt4);
         if (choice!=0){
@@ -762,8 +757,8 @@ int main (int argc, char **argv)
 	    }
 	    else
 	    {
+		printf("3D: # gen = %d, nobj=%d\n",i,nobj);
 	   	onthefly_display (parent_pop,gp,i,1);
-		onthefly_display_parallel_coordinates(parent_pop,gp_pc,i);
 		onthefly_display_refpoints (parent_pop, gp_a);
 	    }
 
@@ -782,7 +777,7 @@ int main (int argc, char **argv)
 		onthefly_display_refpoints (parent_pop, gp_a);
 		/*load_useless_refpoints (adaptive_refpoint_number,useless_refpoint_number);*/
 	}
-	if (dtlz<7)
+	if (dtlz<8)
 	{
 		if (IGD(parent_pop)<temp_IGD)
 		{
@@ -791,7 +786,7 @@ int main (int argc, char **argv)
 		}
 	}
         printf("\n gen = %d, IGD %e\n",i,temp_IGD);
-	/*sleep(1);*/
+	sleep(1);
     }
     if (nobj<=3)
     	onthefly_display_real_front (parent_pop,gp_real_front);
@@ -804,7 +799,7 @@ int main (int argc, char **argv)
 
     report_pop(parent_pop,fpt2);
     report_feasible(parent_pop,fpt3);
-    if (dtlz<7)
+    if (dtlz<8)
     {
     	printf("The DTLZ%d Inverted Generational Distance (IGD) for %d dimensions is %e\n",dtlz,nobj,IGD(parent_pop));
     	printf("The best IGD is %e in generation %d\n",temp_IGD,temp_gen);
