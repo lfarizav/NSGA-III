@@ -17,7 +17,7 @@
 /* # define zdt2 */
 /* # define zdt3 */
 /* # define zdt4*/
- # define dtlz5
+ # define dtlz7
 /*# define dtlz1*/
 /* # define zdt5 */
 /* # define zdt6  */
@@ -1345,6 +1345,10 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
 	g+=xreal[i];	
     }
     g=1.0+(9.0*g)/k;
+    for (i=0;i<n_var-1;i++)
+    {
+	obj[i]=xreal[i];	
+    }
     double h=0;
 
 
