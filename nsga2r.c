@@ -777,16 +777,16 @@ int main (int argc, char **argv)
 		onthefly_display_refpoints (parent_pop, gp_a);
 		/*load_useless_refpoints (adaptive_refpoint_number,useless_refpoint_number);*/
 	}
-	if (dtlz<8)
+	/*if (dtlz<8)
 	{
 		if (IGD(parent_pop)<temp_IGD)
 		{
 			temp_IGD=IGD(parent_pop);
 			temp_gen=i;
 		}
-	}
+	}*/
         printf("\n gen = %d, IGD %e\n",i,temp_IGD);
-	sleep(1);
+	/*sleep(1);*/
     }
     if (nobj<=3)
     	onthefly_display_real_front (parent_pop,gp_real_front);
