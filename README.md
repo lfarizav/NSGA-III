@@ -90,6 +90,8 @@ For example: car side impact problem definition.
 ### real_front:
 This folder has as much as possible dtlz fronts.
 ### Hou to use:
+> Edit problemdef.c and define any problem. For example: # define dtlz1
+
 > make nsga2r
 
 > ./nsga2r seed <input_data/dtlz1.in ----> for the dtlz1 problem.
