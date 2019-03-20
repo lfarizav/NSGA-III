@@ -1,4 +1,6 @@
 /* Test problem definitions */
+/* The Copyright belongs to Luis Felipe Ariza Vesga (lfarizav@unal.edu.co). You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
+A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. March, 2019. */
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -33,6 +35,8 @@
 /* # define ctp6 */
 /* # define ctp7 */
 /* # define ctp8 */
+/*  # define pipe*/
+/*# define pipe4d*/
 
 /*  Test problem crashworthiness
     # of real variables = 5
@@ -103,6 +107,46 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
 	constr[7] = 4-(4.72-0.5*xreal[3]-0.19*xreal[1]*xreal[2]);
 	constr[8] = 9.9-(10.58-0.674*xreal[0]*xreal[1]-0.67275*xreal[1]);
 	constr[9] = 15.7-(16.45-0.489*xreal[2]*xreal[6]-0.843*xreal[4]*xreal[5]);   
+    return;
+}
+#endif
+/*  Test problem pipe
+    # of real variables = 2
+    # of bin variables = 0
+    # of objectives = 4
+    # of constraints = 0
+    */
+#ifdef pipe4d
+void test_problem (double *xreal, double *xbin, int **gene, double *obj, double *constr, double *equality_constr, int normalized)
+{
+    if (!normalized){
+        obj[0] = cos(xreal[0])*cos(xreal[1]+PI/4);
+        obj[1] = cos(xreal[0])*sin(xreal[1]+PI/4);
+        obj[2] = sin(xreal[0]);
+	obj[3] = -sin(xreal[0]);
+    }
+    else{
+        obj[0] = cos(xreal[0])*cos(xreal[1]+PI/4);
+        obj[1] = cos(xreal[0])*sin(xreal[1]+PI/4);
+        obj[2] = sin(xreal[0]);
+	obj[3] = -sin(xreal[0]);
+    }
+    return;
+}
+#endif
+#ifdef pipe
+void test_problem (double *xreal, double *xbin, int **gene, double *obj, double *constr, double *equality_constr, int normalized)
+{
+    if (!normalized){
+        obj[0] = cos(xreal[0])*cos(xreal[1]+PI/4);
+        obj[1] = cos(xreal[0])*sin(xreal[1]+PI/4);
+        obj[2] = sin(xreal[0]);
+    }
+    else{
+        obj[0] = cos(xreal[0])*cos(xreal[1]+PI/4);
+        obj[1] = cos(xreal[0])*sin(xreal[1]+PI/4);
+        obj[2] = sin(xreal[0])/2;
+    }
     return;
 }
 #endif

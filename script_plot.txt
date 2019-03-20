@@ -1,0 +1,135 @@
+set title 'DTLZ1 Problem'
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'dtlz1_0p97.eps'
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 120,15
+splot 'plot.out' w points pointtype 6 pointsize 1 title "NSGA-III front", \
+'real_front/DTLZ1-3-PF.txt' w points pointtype 6 pointsize 1 title "Real Front"
+
+set title 'DTLZ2 Problem'
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'dtlz2_0p97.eps'
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 120,15
+splot 'plot.out' w points pointtype 6 pointsize 1 title "NSGA-III front", \
+'real_front/DTLZ2-3-PF.txt' w points pointtype 6 pointsize 1 title "Real Front"
+
+set title 'C-DTLZ2 Problem'
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'cdtlz2_0p6.eps'
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 30,60
+splot 'plot.out' w points pointtype 6 pointsize 1 title "NSGA-III front", \
+'real_front/DTLZ2-3-PF.txt' w points pointtype 6 pointsize 1 title "Real Front"
+
+set title 'DTLZ3 Problem'
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'dtlz3_0p97.eps'
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 120,15
+splot 'plot.out' w p pointtype 6 pointsize 1 title "NSGA-III front", \
+'real_front/DTLZ3-3-PF.txt' w p pointtype 6 pointsize 1 title "Real Front"
+
+set title 'DTLZ4 Problem'
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'dtlz4_0p97.eps'
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 120,15
+splot 'plot.out' w points pointtype 6 pointsize 1 title "NSGA-III front", \
+'real_front/DTLZ4-3-PF.txt' w points pointtype 6 pointsize 1 title "Real Front"
+
+set title 'Inverted DTLZ1 Problem'
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'idtlz1_0p6.eps'
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 60,135
+splot 'plot.out' w points pointtype 6 pointsize 1 title "NSGA-III front", \
+'real_front/IDTLZ1-3-PF.txt' w points pointtype 6 pointsize 1 title "Real Front"
+
+set title 'Parallel Coordinates for DTLZ4 Problem'
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'dtlz4_0p05.eps'
+set ylabel "Normalized Objective Value"
+set xlabel "Objective Number"
+set zlabel "f3"
+set view 120,15
+plot for [i=0:276] 'plot_pc.out' i i u 1:2 w linesp notitle
+
+set title 'Parallel Coordinates for Water Problem'
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'water_0p5.eps'
+set ylabel "Normalized Objective Value"
+set xlabel "Objective Number"
+set zlabel "f3"
+set view 120,15
+plot for [i=0:276] 'plot_pc.out' i i u 1:2 w linesp notitle
+
+set title 'Car-Side Impact Problem'
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'car_0p8.eps'
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 60,120
+splot 'plot.out' w points pointtype 6 pointsize 1 notitle
+
+set title 'Effectively Adaptive NSGA-III'
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'idtlz1_0p05-a2nsga3.eps'
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 120,15
+splot 'plot.out' w points pointtype 6 pointsize 1 title "NSGA-III Front", \
+'real_front/IDTLZ1-3-PF.txt' w points pointtype 6 pointsize 1 title "Real front"
+
+set title 'IDTLZ1 Problem'
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'idtlz1_0p05-nsga3.eps'
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 120,15
+splot 'plot.out' w points pointtype 6 pointsize 1 title "NSGA-III Front", \
+'real_front/IDTLZ1-3-PF.txt' w points pointtype 6 pointsize 1 title "Real front"
+
+set title 'Adaptive Reference Points'
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'idtlz1_0p6-arefpoints.eps'
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 120,15
+splot 'plot_rf.out' w points pointtype 6 pointsize 1 notitle, \
+'plot_line.out' w lines pointtype 6 pointsize 1 notitle
+
+set title 'Effectively Adaptive Reference Points'
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'idtlz1_0p6-a2refpoints.eps'
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 120,15
+splot 'plot_rf.out' w points pointtype 6 pointsize 1 notitle, \
+'plot_line.out' w lines pointtype 6 pointsize 1 notitle
+
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'dasdennisrefpoints.eps'
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 120,15
+splot 'plot_rf.out' w points pointtype 6 pointsize 1 notitle
+

@@ -1,4 +1,6 @@
 /* Routines to display the population information using gnuplot */
+/* The Copyright belongs to Luis Felipe Ariza Vesga (lfarizav@unal.edu.co). You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
+A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. March, 2019. */
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -21,8 +23,6 @@ void onthefly_display (population *pop, FILE *gp, int ii, int normalization)
 
     for (i=0; i<popsize; i++)
     {
-        /*if (pop->ind[i].constr_violation==0)
-        {*/
             if (choice!=3)
                 fprintf(fpt,"%e\t%e\n",pop->ind[i].obj[obj1-1],pop->ind[i].obj[obj2-1]);
             else
@@ -46,14 +46,9 @@ void onthefly_display (population *pop, FILE *gp, int ii, int normalization)
         fflush(gp);
     }
     fclose(fpt);
-    /*onthefly_display_a (pop,gp);*/
-    /*onthefly_display_association(pop,gp);*/
-    /*onthefly_display_one (pop,gp);*/
-    /*onthefly_display_refpoints (pop,gp);*/
-    /*onthefly_display_reflines(pop,gp);*/
     return;
 }
-/* Function to display the current population for the subsequent generation */
+/* Function to display the real front */
 void onthefly_display_real_front (population *pop,FILE *gp)
 {
     int i,j;
@@ -79,7 +74,7 @@ void onthefly_display_real_front (population *pop,FILE *gp)
     fclose(fpt);
     return;
 }
-/* Function to display the current population for the subsequent generation */
+/* Function to display the current population after substract zmin */
 void onthefly_display_minus_zmin (population *pop, FILE *gp)
 {
     int i;
@@ -96,13 +91,10 @@ void onthefly_display_minus_zmin (population *pop, FILE *gp)
     fclose(fpt);
 
     onthefly_display_zmax (pop,gp);
-    /*onthefly_display_refpoints (pop,gp);*/
-    /*onthefly_display_reflines(pop,gp);*/
-    /*onthefly_display_a (pop,gp);*/
     return;
 }
 
-/* Function to display the current population for the subsequent generation */
+/* Function to display the current population normalized */
 void onthefly_display_normalized (population *pop, FILE *gp, int archieve_and_front_sizes)
 {
     int i;
@@ -120,11 +112,9 @@ void onthefly_display_normalized (population *pop, FILE *gp, int archieve_and_fr
             fprintf(gp,"set title 'Generation normalized'\n set view %d,%d\n unset key\n splot 'plot_normalized.out' w points pointtype 6 pointsize 1\n",angle1,angle2);
     fflush(gp);
     fclose(fpt);
-    /*onthefly_display_one (pop,gp);
-    onthefly_display_refpoints (pop,gp);*/
     return;
 }
-/* Function to display the current population for the subsequent generation */
+/* Function to display the a matrix */
 void onthefly_display_a (population *pop, FILE *gp)
 {
     int i;
@@ -143,7 +133,7 @@ void onthefly_display_a (population *pop, FILE *gp)
     fclose(fpt);
     return;
 }
-/* Function to display the current population for the subsequent generation */
+/* Function to display the plane x+y+z=1 */
 void onthefly_display_one (population *pop, FILE *gp)
 {
     int i,j;
@@ -155,15 +145,6 @@ void onthefly_display_one (population *pop, FILE *gp)
     fprintf(fpt,"%d\t%d\t%d\n",0,1,0);
     fprintf(fpt,"%d\t%d\t%d\n",0,0,1);
     fprintf(fpt,"%d\t%d\t%d\n",1,0,0);
-    /*for (i=factorial; i<factorial+factorial_inside; i++)
-    {
-	for (j=0;j<nobj;j++)
-	{
-        	fprintf(fpt,"%e\t",ref_points[j][i]);
-	}
-	fprintf(fpt,"\n");
-    }
-    fprintf(fpt,"%e\t%e\t%e\n",ref_points[0][factorial],ref_points[0][factorial],ref_points[0][factorial]);*/
 
     fflush(fpt);
     flag = 1;
@@ -172,7 +153,7 @@ void onthefly_display_one (population *pop, FILE *gp)
     fclose(fpt);
     return;
 }
-/* Function to display the current population for the subsequent generation */
+/* Function to display the reference points of the inside layer */
 void onthefly_display_inside (population *pop, FILE *gp)
 {
     int i,j;
@@ -196,7 +177,7 @@ void onthefly_display_inside (population *pop, FILE *gp)
     fclose(fpt);
     return;
 }
-/* Function to display the current population for the subsequent generation */
+/* Function to display the reference points */
 void onthefly_display_refpoints (population *pop, FILE *gp)
 {
     int i,j;
@@ -226,9 +207,9 @@ void onthefly_display_refpoints (population *pop, FILE *gp)
     printf("adaptive_nsga = %d\n",adaptive_nsga);
     fflush(gp);
     fclose(fpt);
-    /*onthefly_display_one (pop,gp);*/
     return;
 }
+/* Function to display the true pareto of the DTLZ1 problem */
 void onthefly_display_DTLZ1 (FILE *gp_dtlz)
 {
     int i,j;
@@ -258,7 +239,7 @@ void onthefly_display_DTLZ1 (FILE *gp_dtlz)
     return;
 }
 
-/* Function to display the current population for the subsequent generation */
+/* Function to display reference lines */
 void onthefly_display_reflines (population *pop, FILE *gp)
 {
     int i,j,k;
@@ -332,7 +313,7 @@ void onthefly_display_association (population *pop, FILE *gp)
     fclose(fpt);
     return;
 }
-/* Function to display the current population for the subsequent generation */
+/* Function to display the zmax matrix */
 void onthefly_display_zmax (population *pop, FILE *gp)
 {
     int i;
@@ -365,7 +346,6 @@ void onthefly_display_parallel_coordinates (population *pop, FILE *gp_pc, int ii
     fpt = fopen("plot.out","w");
     for (j=0; j<popsize; j++)
     {
-       	/*display_pop_ind_obj(&(selection_pop->ind[j]),j); /*Display selection population = St+last front*/
        	find_min_from_functions(&(pop->ind[j]),j,1);
         find_max_from_functions(&(pop->ind[j]),j,1);
     }
@@ -384,15 +364,12 @@ void onthefly_display_parallel_coordinates (population *pop, FILE *gp_pc, int ii
 
     for (i=0; i<popsize; i++)
     {
-        /*if (pop->ind[i].constr_violation==0)
-        {*/
 	    for (j=0;j<nobj;j++)
 	    {
 			fprintf(fpt,"%e\t",pop->ind[i].obj[j]);
 	    }
 	    fprintf(fpt,"\n");
             fflush(fpt);
-        /*}*/
     }
     fprintf(gp_pc,"set title 'Parallel Coordinates'\n unset key\n unset xtics\n set tmargin 6\n");
     fprintf(gp_pc,"set x2tics rotate by 90 offset 0 mirror ( ");
@@ -439,10 +416,6 @@ void display_pop_ind_obj (individual *ind, int popsizeline)
 	temp=temp+ind->obj[i];	
     }
     printf("\n");
-    /*if (dtlz)
-    	printf("--->sumation %e\n",temp);
-    else
-	printf("\n");	*/
     return;
 }
 void display_pop_ind_obj_minus_zmin (individual *ind, int popsizeline)
@@ -506,7 +479,6 @@ void display_DTLZ1 ()
 
     for (i=0; i<factorial+factorial_inside; i++)
     {
-	/*printf("%d\t",i);*/
 	for (j=0;j<nobj;j++)
 	{
 		printf("%e\t",DTLZ[j][i]);

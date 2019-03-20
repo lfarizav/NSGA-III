@@ -18,7 +18,6 @@ void insert (list *node, int x)
     }
     temp = (list *)malloc(sizeof(list));
     temp->index = x;
-    /*printf("add index %d\n",temp->index);*/
     temp->child = node->child;
     temp->parent = node;
     if (node->child != NULL)
@@ -44,7 +43,6 @@ list* del (list *node)
     {
         temp->child->parent = temp;
     }
-    /*printf("del index %d\n",temp->index);*/
     free (node);
     return (temp);
 }

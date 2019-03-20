@@ -1,7 +1,5 @@
 /* Nond-domination based selection routines */
-/* NSGA-III and NSGA-II Copyrights belong to Luis Felipe Ariza Vesga and the Kanpur Genetic Algorithms Laboratory,
-respectively. You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. 
-All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
+/* The Copyright belongs to Luis Felipe Ariza Vesga (lfarizav@unal.edu.co). You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
 A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. March, 2019. */
 
 # include <stdio.h>
@@ -40,41 +38,41 @@ void fill_nondominated_sort (population *selection_pop, population *mixed_pop, p
     and sorts them from higher to lower constrain violation*/
     bubble_sorting_infeasible_population_index(mixed_pop);
 
-    printf("number_is_infeasible %d, number_is_feasible %d, 2*popsize %d\n",number_is_infeasible,number_is_feasible,2*popsize);
-    printf("\nThere are 4 cases for fill nondominated sort\n");
-    printf("/******************************************************************************************************************/\n");
+    /*printf("number_is_infeasible %d, number_is_feasible %d, 2*popsize %d\n",number_is_infeasible,number_is_feasible,2*popsize);
+    printf("\nThere are 4 cases for fill nondominated sort\n");*/
+    /*printf("******************************************************************************************************************\n");
     printf("Case 1-> All solutions are infeasible\n");
     printf("Case 2-> Number_is_feasible < popsize\n");
     printf("Case 3-> No constrains or Number_is_feasible=2*popsize\n");
     printf("Case 4-> Number_is_feasible >= popsize\n");
     printf("Case 1 and 2 do not associate reference points. Cases 3 and 4 do not consider infeasible solutions at all\n");
-    printf("/*****************************************************************************************************************/\n\n");
+    printf("*****************************************************************************************************************\n\n");*/
 
     if (number_is_infeasible==2*popsize || (number_is_feasible<popsize && number_is_feasible>0))
     {
 	if (number_is_infeasible==2*popsize)
 	{
-			printf("\nCase 1. All solutions are infeasible. Solutions sorted by minimum constrain violation values.\n\n");
-			printf("number_is_feasible %d, number_is_infeasible %d, popsize %d\n",number_is_feasible,number_is_infeasible,popsize);
+			/*printf("\nCase 1. All solutions are infeasible. Solutions sorted by minimum constrain violation values.\n\n");
+			printf("number_is_feasible %d, number_is_infeasible %d, popsize %d\n",number_is_feasible,number_is_infeasible,popsize);*/
 			k=0;
 			for (i=0;i<popsize;i++)
 			{
 				copy_ind (&mixed_pop->ind[infeasible_population_sorted_list_index[i]], &new_pop->ind[i]);
 			}
 
-			printf("Visualization all infeasible solutions of the new_pop sorted by constraint violations\n");
-			for (k=0;k<popsize; k++)
+			/*printf("Visualization all infeasible solutions of the new_pop sorted by constraint violations\n");*/
+			/*for (k=0;k<popsize; k++)
 		    	{
 				display_pop_ind_obj(&(new_pop->ind[k]),k);
-		   	}
+		   	}*/
 			return;
 	}
 	else
 	{
 		if (number_is_feasible<popsize && number_is_feasible>0)
 		{
-			printf("\nCase 2: Number_is_feasible < popsize, number_is_feasible %d\n\n",number_is_feasible);
-			printf("number_is_feasible %d, number_is_infeasible %d, popsize %d\n",number_is_feasible,number_is_infeasible,popsize);
+			/*printf("\nCase 2: Number_is_feasible < popsize, number_is_feasible %d\n\n",number_is_feasible);
+			printf("number_is_feasible %d, number_is_infeasible %d, popsize %d\n",number_is_feasible,number_is_infeasible,popsize);*/
 			for (i=0;i<number_is_feasible;i++)
 			{
 				copy_ind (&mixed_pop->ind[feasible_population_sorted_list_index[i]], &new_pop->ind[i]);
@@ -85,22 +83,22 @@ void fill_nondominated_sort (population *selection_pop, population *mixed_pop, p
 				copy_ind (&mixed_pop->ind[infeasible_population_sorted_list_index[j]], &new_pop->ind[i]);
 			}
 
-			printf("Visualization feasible solutions of the selection_pop number_is_feasible<=popsize\n");
-			for (k=0;k<number_is_feasible; k++)
+			/*printf("Visualization feasible solutions of the selection_pop number_is_feasible<=popsize\n");*/
+			/*for (k=0;k<number_is_feasible; k++)
 			{
 				display_pop_ind_obj(&(new_pop->ind[k]),k);
-			}
-			printf("Visualization infeasible solutions of the selection_pop number_is_feasible<=popsize\n");
-			for (k=number_is_feasible;k<popsize; k++)
+			}*/
+			/*printf("Visualization infeasible solutions of the selection_pop number_is_feasible<=popsize\n");*/
+			/*for (k=number_is_feasible;k<popsize; k++)
 			{
 				display_pop_ind_obj(&(new_pop->ind[k]),k);
-			}
+			}*/
 
-			printf("Visualization of the new_pop infeasible/feasible solutions\n");
-			for (k=0;k<popsize; k++)
+			/*printf("Visualization of the new_pop infeasible/feasible solutions\n");*/
+			/*for (k=0;k<popsize; k++)
 			{
 				display_pop_ind_obj(&(new_pop->ind[k]),k);
-			}
+			}*/
 			return;
 		}
 	}
@@ -112,8 +110,8 @@ void fill_nondominated_sort (population *selection_pop, population *mixed_pop, p
 	{
 	    if (number_is_feasible==2*popsize)
 	    {
-		printf("\nCase 3: No constrains\n\n");
-		printf("number_is_feasible %d, number_is_infeasible %d, popsize %d\n",number_is_feasible,number_is_infeasible,popsize);
+		/*printf("\nCase 3: No constrains\n\n");
+		printf("number_is_feasible %d, number_is_infeasible %d, popsize %d\n",number_is_feasible,number_is_infeasible,popsize);*/
 		for (i=0; i<2*popsize; i++)
 		{
 			insert (temp1,i);
@@ -124,9 +122,9 @@ void fill_nondominated_sort (population *selection_pop, population *mixed_pop, p
 	    {
 		if (number_is_feasible>=popsize && number_is_feasible<2*popsize)
 		{
-			printf("\nCase 4: Number_is_feasible>=popsize\n\n");
+			/*printf("\nCase 4: Number_is_feasible>=popsize\n\n");
 			printf("number_is_feasible %d, number_is_infeasible %d, popsize %d\n",
-			number_is_feasible,number_is_infeasible,popsize);
+			number_is_feasible,number_is_infeasible,popsize);*/
 			for (i=0; i<number_is_feasible; i++)
 			{
 				insert (temp1,feasible_population_sorted_list_index[i]);
@@ -182,7 +180,7 @@ void fill_nondominated_sort (population *selection_pop, population *mixed_pop, p
 		while (temp1 != NULL);
 		temp2 = elite->child;
 		j=i;
-		printf("archieve_size %d, front_size %d\n",archieve_size,front_size);
+		/*printf("archieve_size %d, front_size %d\n",archieve_size,front_size);*/
 		if ( (archieve_size+front_size) <= popsize )
 		{
 		    do
@@ -206,7 +204,7 @@ void fill_nondominated_sort (population *selection_pop, population *mixed_pop, p
 		    if (j==0)
 		    {
 			first_front=archieve_size;
-			printf("first front is %d\n",first_front);
+			/*printf("first front is %d\n",first_front);*/
 		    }
 		    rank+=1;
 		}
@@ -266,7 +264,6 @@ void associated_reference_points_fill (population *selection_pop, population *mi
 
     /*initialization of selection variables*/
     archieve_and_front_sizes=variables_initialization(selection_pop, mixed_pop, new_pop, front_size, archieve_size, elite);/*ok*/
-
     if (archieve_size==popsize)
     {
 	printf("Lucky generation, archieve_size==popsize\n");
@@ -275,7 +272,7 @@ void associated_reference_points_fill (population *selection_pop, population *mi
 
     /*Load first front to pop_size*/
     pop_size=(archieve_size>0 && archieve_size<popsize)?archieve_size:archieve_and_front_sizes;
-    printf("archieve_size is %d, front_size is %d\n",archieve_size,front_size);
+    /*printf("archieve_size is %d, front_size is %d\n",archieve_size,front_size);*/
 
     /* Routine to find min from functions*/
     for (j=0; j<pop_size; j++)
@@ -285,15 +282,15 @@ void associated_reference_points_fill (population *selection_pop, population *mi
     }
 
     /*visualization of min or ideal points*/
-    for (j=0; j<nobj; j++)
+    /*for (j=0; j<nobj; j++)
     {
     	printf("4. scale_obj_min[%d][index=%d] %e\n",j,scale_obj_min_ref,scale_obj_min[j]);
-    }
+    }*/
     /*visualization of max point*/
-    for (j=0; j<nobj; j++)
+    /*for (j=0; j<nobj; j++)
     {
     	printf("4. scale_obj_max[%d][index=%d] %e\n",j,scale_obj_max_ref,scale_obj_max[j]);
-    }
+    }*/
     
     /*Routine that substracts the zmin to solutions*/
     for (k=0; k<archieve_and_front_sizes; k++)
@@ -309,7 +306,6 @@ void associated_reference_points_fill (population *selection_pop, population *mi
     }*/
 
     find_extreme_points(selection_pop, pop_size);/*only consider the individuals in the first front*/
-
     /*normalize solutions*/
     for (l=0; l<archieve_and_front_sizes; l++)
     {
@@ -328,16 +324,16 @@ void associated_reference_points_fill (population *selection_pop, population *mi
     {
         associate(&selection_pop->ind[l],&new_pop->ind[l],l, archieve_size,0,factorial+factorial_inside+last_gen_adaptive_refpoints_number);
     }
-    printf("Printing rho after asociation refpoints ((factorial %d-adaptive_ref_points_inserted %d=%d)+factorial_inside %d +last_gen_adaptive_refpoints_number %d)\n",factorial,adaptive_ref_points_inserted,factorial-adaptive_ref_points_inserted,factorial_inside,last_gen_adaptive_refpoints_number);
+    /*printf("Printing rho after asociation refpoints ((factorial %d-adaptive_ref_points_inserted %d=%d)+factorial_inside %d +last_gen_adaptive_refpoints_number %d)\n",factorial,adaptive_ref_points_inserted,factorial-adaptive_ref_points_inserted,factorial_inside,last_gen_adaptive_refpoints_number);*/
     temp_rho_St_total=0;
     temp_rho_Fl_total=0;
     for (l=0; l<factorial+factorial_inside+last_gen_adaptive_refpoints_number; l++)
     {
 	temp_rho_St_total+=rho_St[l];
 	temp_rho_Fl_total+=rho_Fl[l];
-	printf("rho_St[%d] %d, rho_Fl[%d] %d\n",l,rho_St[l],l,rho_Fl[l]);
+	/*printf("rho_St[%d] %d, rho_Fl[%d] %d\n",l,rho_St[l],l,rho_Fl[l]);*/
     }
-    printf("After association: temp_rho_St_total %d, temp_rho_Fl_total %d\n",temp_rho_St_total,temp_rho_Fl_total);
+    /*printf("After association: temp_rho_St_total %d, temp_rho_Fl_total %d\n",temp_rho_St_total,temp_rho_Fl_total);*/
     
     /*Visualization of associated and distance reference
     for (l=0; l<archieve_and_front_sizes; l++)
@@ -355,22 +351,22 @@ void associated_reference_points_fill (population *selection_pop, population *mi
 
     /*Select solutions from last_front to complete new_pop*/
     member_number=niching(selection_pop, new_pop, front_size,archieve_size,0,factorial+factorial_inside+last_gen_adaptive_refpoints_number);
-    printf("After niching\n");
+    /*printf("After niching\n");*/
     temp_rho_St_total=0;
     temp_rho_Fl_total=0;
     for (l=0; l<factorial+factorial_inside+last_gen_adaptive_refpoints_number; l++)
     {
 	temp_rho_St_total+=rho_St[l];
 	temp_rho_Fl_total+=rho_Fl[l];
-	printf("rho_St[%d] %d, rho_Fl[%d] %d\t",l,rho_St[l],l,rho_Fl[l]);
-	for (k=0;k<nobj;k++)
+	/*printf("rho_St[%d] %d, rho_Fl[%d] %d\t",l,rho_St[l],l,rho_Fl[l]);*/
+	/*for (k=0;k<nobj;k++)
 	{
 		printf("%e\t",ref_points[k][l]);
 	}
-	printf("\n");
+	printf("\n");*/
     }
-    printf("After niching: temp_rho_St_total %d, temp_rho_Fl_total %d\n",temp_rho_St_total,temp_rho_Fl_total);
-    printf("member_number %d, archieve_size %d,total %d, popsize %d\n",member_number,archieve_size,member_number+archieve_size,popsize);
+    /*printf("After niching: temp_rho_St_total %d, temp_rho_Fl_total %d\n",temp_rho_St_total,temp_rho_Fl_total);
+    printf("member_number %d, archieve_size %d,total %d, popsize %d\n",member_number,archieve_size,member_number+archieve_size,popsize);*/
 
 
     /*If adaptive nsga-iii is enabled, then,*/
@@ -379,7 +375,7 @@ void associated_reference_points_fill (population *selection_pop, population *mi
 	/*Add adaptive refpoints to improve Pareto Front distribution*/
 	add_adaptive_refpoints_to_ref_points();
 	last_gen_adaptive_refpoints_number=delete_adaptive_refpoints(archieve_size,front_size,selection_pop,new_pop,generation);
-	display_refpoints ();
+	/*display_refpoints ();*/
 	/*initialization of rho's for next association*/
         /*for (j=0;j<factorial+factorial_inside;j++)
         {
@@ -430,14 +426,14 @@ int bubble_sorting_infeasible_population_index(population *poputation_sorted)
 			CV[number_is_infeasible]=poputation_sorted->ind[i].constr_violation+poputation_sorted->ind[i].equality_constr_violation;
 			poputation_sorted->ind[i].is_feasible=0;
 			number_is_infeasible++;
-			printf("%d,is infeasible %d\n",i,poputation_sorted->ind[i].is_feasible);
+			/*printf("%d,is infeasible %d\n",i,poputation_sorted->ind[i].is_feasible);*/
 		}
 		else
 		{
 			feasible_population_sorted_list_index[number_is_feasible]=i;
 			poputation_sorted->ind[i].is_feasible=1;
 			number_is_feasible++;
-			printf("%d,is feasible %d, number_is_feasible %d\n",i,poputation_sorted->ind[i].is_feasible,number_is_feasible);
+			/*printf("%d,is feasible %d, number_is_feasible %d\n",i,poputation_sorted->ind[i].is_feasible,number_is_feasible);*/
 		}
 	}
 	if (number_is_feasible==2*popsize)
@@ -457,12 +453,12 @@ int bubble_sorting_infeasible_population_index(population *poputation_sorted)
 			}
 		}
 	}
-	printf("sorting infeasible population by violation constrains\n");
+	/*printf("sorting infeasible population by violation constrains\n");*/
 	for (i=0;i<number_is_infeasible;i++)
 	{
 		printf("%d,%e\n",i,poputation_sorted->ind[infeasible_population_sorted_list_index[i]].constr_violation+poputation_sorted->ind[infeasible_population_sorted_list_index[i]].equality_constr_violation);
 	}
-	printf("sorting feasible population by violation constrains\n");
+	/*printf("sorting feasible population by violation constrains\n");*/
 	for (i=0;i<number_is_feasible;i++)
 	{
 		printf("%d,%e\n",i,poputation_sorted->ind[feasible_population_sorted_list_index[i]].constr_violation+poputation_sorted->ind[feasible_population_sorted_list_index[i]].equality_constr_violation);
@@ -480,7 +476,7 @@ void feasible_population_index(population *poputation_sorted)
 		if (poputation_sorted->ind[i].is_feasible)
 		{
 			feasible_population_sorted_list_index[k]=i;
-			printf("feasible_population_index[i] %d\n",i);
+			/*printf("feasible_population_index[i] %d\n",i);*/
 			k++;
 		}
 	}
@@ -497,7 +493,7 @@ void infeasible_population_index(population *poputation_sorted)
 		if (!(poputation_sorted->ind[i].is_feasible))
 		{
 			infeasible_population_sorted_list_index[k]=i;
-			printf("infeasible_population_index[i] %d\n",i);
+			/*printf("infeasible_population_index[i] %d\n",i);*/
 			k++;
 		}
 	}

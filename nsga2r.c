@@ -1,10 +1,13 @@
 /* NSGA-II routine (implementation of the 'main' function) */
+/* The Copyright belongs to Luis Felipe Ariza Vesga (lfarizav@unal.edu.co). You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
+A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. March, 2019. */
 
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
 # include <unistd.h>
 # include <float.h>
+# include <time.h>
 
 # include "global.h"
 # include "rand.h"
@@ -693,9 +696,12 @@ int main (int argc, char **argv)
     printf("Nondominated Sorting Genetic Algorithm version III (%d)\n",(adaptive_nsga==2)?"A^2-":(adaptive_nsga==1)?"A-":"");
     randomize();
     initialize_pop (parent_pop);
+    initialize_pop (child_pop);
+    initialize_pop (mixed_pop);
+    initialize_pop (selection_pop);
 
     generate_DTLZ1 (nobj-1,1/(double)(numberpointperdim-1));
-    display_DTLZ1 ();
+    /*display_DTLZ1 ();*/
     /*onthefly_display_DTLZ1 (gp_dtlz);*/
     if (nobj>5)
     	generate_ref_points_inside (nobj-1,1/(double)(numberpointperdim_inside-1));
@@ -715,14 +721,14 @@ int main (int argc, char **argv)
     printf("\n gen = 1, nobj=%d\n",nobj);
     fflush(stdout);
 
-    if (choice!=0)    {
+    /*if (choice!=0)    {
 	if (nobj>3)
 	{
         	onthefly_display_parallel_coordinates(parent_pop,gp_pc,1);
 	}
 	else
         	onthefly_display (parent_pop,gp,1,0);
-    }
+    }*/
     fflush(fpt1);
     fflush(fpt2);
     fflush(fpt3);
@@ -731,6 +737,7 @@ int main (int argc, char **argv)
     /*sleep(3);*/
     double temp_IGD=DBL_MAX;
     int temp_gen=0;
+    clock_t start = clock();
     for (i=0;i<nobj*(factorial+factorial_inside);i++)
 	for (k=0;k<nobj;k++)
     		adaptive_ref_points_settled[k][i]=0;
@@ -746,10 +753,9 @@ int main (int argc, char **argv)
         evaluate_pop(child_pop);/*ok*/
         merge (parent_pop, child_pop, mixed_pop);/*ok*/
         fill_nondominated_sort (selection_pop, mixed_pop, parent_pop,i);
-
         report_pop(parent_pop,fpt4);
         fflush(fpt4);
-        if (choice!=0){
+        /*if (choice!=0){
 	    if (nobj>3)
 	    {
 	    	onthefly_display_parallel_coordinates(parent_pop,gp_pc,i);
@@ -763,47 +769,47 @@ int main (int argc, char **argv)
 	    }
 
             
-		/*onthefly_display (parent_pop,gp,i);
+		onthefly_display (parent_pop,gp,i);
          onthefly_display_minus_zmin (child_pop, gp_minus_zmin);
          onthefly_display_normalized (child_pop, gp_normalized);
          onthefly_display_a (child_pop, gp_a);
          onthefly_display_normalized (child_pop, gp_normalized);
-		onthefly_display_parallel_coordinates(parent_pop,gp_pc,i);*/
+		onthefly_display_parallel_coordinates(parent_pop,gp_pc,i);
 	}
 	if (adaptive_nsga==1 || adaptive_nsga==2)
 	{
-		/*Reload refpoints changed by adaptive_refpoints and its visualization*/
 		printf("Visualization of adaptive reference points\n");
 		onthefly_display_refpoints (parent_pop, gp_a);
-		/*load_useless_refpoints (adaptive_refpoint_number,useless_refpoint_number);*/
 	}
-	/*if (dtlz<8)
+	if (dtlz<8)
 	{
 		if (IGD(parent_pop)<temp_IGD)
 		{
 			temp_IGD=IGD(parent_pop);
 			temp_gen=i;
 		}
-	}*/
+	}
         printf("\n gen = %d, IGD %e\n",i,temp_IGD);
-	/*sleep(1);*/
+	sleep(1);*/
     }
-    if (nobj<=3)
-    	onthefly_display_real_front (parent_pop,gp_real_front);
+    onthefly_display (parent_pop,gp,i-1,1);
+    /*if (nobj<=3)
+    	onthefly_display_real_front (parent_pop,gp_real_front);*/
     if (adaptive_nsga == 1)
     	printf("\nGenerations finished, now reporting solutions (A-NSGA-III)\n");
-    if (adaptive_nsga == 2)
+    else if (adaptive_nsga == 2)
 	printf("\nGenerations finished, now reporting solutions (A^2-NSGA-III)\n");
     else
     	printf("\nGenerations finished, now reporting solutions (NSGA-III)\n");
-
+    clock_t end = clock();
+    printf("Runtime %e s\n",(float)(end - start) / CLOCKS_PER_SEC);
     report_pop(parent_pop,fpt2);
     report_feasible(parent_pop,fpt3);
-    if (dtlz<8)
+    /*if (dtlz<8)
     {
     	printf("The DTLZ%d Inverted Generational Distance (IGD) for %d dimensions is %e\n",dtlz,nobj,IGD(parent_pop));
     	printf("The best IGD is %e in generation %d\n",temp_IGD,temp_gen);
-    }
+    }*/
     if (nreal!=0)
     {
         fprintf(fpt5,"\n Number of crossover of real variable = %d",nrealcross);
@@ -847,6 +853,7 @@ int main (int argc, char **argv)
     deallocate_memory_pop (child_pop, popsize);
     deallocate_memory_pop (mixed_pop, 2*popsize);
     deallocate_memory_pop (selection_pop, 2*popsize);
+
     free (parent_pop);
     free (child_pop);
     free (mixed_pop);

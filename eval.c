@@ -1,7 +1,5 @@
 /* Routine for evaluating population members  */
-/* NSGA-III and NSGA-II Copyrights belong to Luis Felipe Ariza Vesga and the Kanpur Genetic Algorithms Laboratory,
-respectively. You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. 
-All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
+/* The Copyright belongs to Luis Felipe Ariza Vesga (lfarizav@unal.edu.co). You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
 A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. March, 2019. */
 
 # include <stdio.h>
@@ -43,7 +41,6 @@ void evaluate_ind (individual *ind)
             if (ind->constr[j]<0.0)
             {
                 ind->constr_violation += ind->constr[j];
-		/*printf("%d, ind->constr_violation is %e\n",j,ind->constr_violation);*/
             }
         }
 	if (neqcon>0)
@@ -51,7 +48,6 @@ void evaluate_ind (individual *ind)
 		for (k=0; j<neqcon; k++)
 		{
 		        ind->equality_constr_violation += abs(ind->equality_constr[j]);
-			/*printf("%d, ind->equality_constr_violation is %e\n",k, ind->equality_constr_violation);*/
 		}
 	}
 	else

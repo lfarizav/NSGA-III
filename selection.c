@@ -1,7 +1,5 @@
-/* Data initializtion routines */
-/* NSGA-III and NSGA-II Copyrights belong to Luis Felipe Ariza Vesga and the Kanpur Genetic Algorithms Laboratory,
-respectively. You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. 
-All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
+/* Data initialization routines */
+/* The Copyright belongs to Luis Felipe Ariza Vesga (lfarizav@unal.edu.co). You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
 A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. March, 2019. */
 
 # include <stdio.h>
@@ -60,10 +58,10 @@ int variables_initialization(population *selection_pop, population *mixed_pop, p
 
     if (number_is_feasible>popsize && number_is_feasible<=2*popsize)
     {
-	if (number_is_feasible==2*popsize)
+	/*if (number_is_feasible==2*popsize)
 		printf("Case 3: No constrains\n");
 	else
-		printf("Case 4: Number_is_feasible>popsize\n");
+		printf("Case 4: Number_is_feasible>popsize\n");*/
 	for (j=archieve_size; j<archieve_and_front_sizes; j++)
 	{
 		dist[j] = temp->index;
@@ -524,15 +522,15 @@ void find_a ()/*ok*/
     double d=0.0;
     /*check 6*/
     /*6. matrix zmax is*/
-    printf("6. zmax matrix is: \n");
+    /*printf("6. zmax matrix is: \n");*/
     for (i=0;i<nobj;i++)
     {
         for(j=0;j<nobj;j++)
         {
             zmax_matrix[i][j]=zmax[i][j];
-            printf("\t%e\t",zmax_matrix[i][j]);
+            /*printf("\t%e\t",zmax_matrix[i][j]);*/
         }
-        printf("\n");
+        /*printf("\n");*/
     }
     d = determinant(zmax_matrix, nobj);
     /*printf("determinant is %e\n",d);*/
@@ -574,7 +572,7 @@ void construct_hyperplane (population *selection_pop, int pop_size)/*ok*/
 	negative_intercept=0;
 	duplicated=is_zmax_duplicated ();
 	if (!duplicated)
-		printf("duplicate %d\n",duplicated);
+		/*printf("duplicate %d\n",duplicated);*/
 	{
 		find_a();
 		for (i=0;i<nobj;i++)
@@ -588,7 +586,7 @@ void construct_hyperplane (population *selection_pop, int pop_size)/*ok*/
 	}
 	if (duplicated || negative_intercept)
 	{
-		printf("duplicate %d or negative_intercept %d\n",duplicated,negative_intercept);
+		/*printf("duplicate %d or negative_intercept %d\n",duplicated,negative_intercept);*/
 	    	/*for (i=0;i<nobj;i++)
 	    	{
 			scale_obj_max[i]=0;
@@ -599,14 +597,14 @@ void construct_hyperplane (population *selection_pop, int pop_size)/*ok*/
         		find_max_from_functions(&(selection_pop->ind[j]),j,1);
     		}*/
 
-		printf("When duplicated or negative intercept, the a vector is:\n");
+		/*printf("When duplicated or negative intercept, the a vector is:\n");*/
 		for (i=0;i<nobj;i++)
 	    	{
 			a[i]=selection_pop->ind[scale_obj_max_ref[i]].obj[i];
 			/*a[i]=a_last_gen[i];*/
-			printf("a[%d]= %e\n",i,a[i]);
+			/*printf("a[%d]= %e\n",i,a[i]);*/
 	    	}
-		printf("\n");
+		/*printf("\n");*/
 	}
 }
 double achievement_scalarization_function (individual *ind_minus_zmin,int i)/*ok*/
@@ -651,9 +649,9 @@ void find_extreme_points(population *selection_pop_minus_zmin, int pop_size)/*ok
 		for (m=0;m<nobj;m++)
 		   {
 		       zmax[i][m]=selection_pop_minus_zmin->ind[temp_s_min_index].obj_minus_zmin[m];
-		       printf("%e\t",selection_pop_minus_zmin->ind[temp_s_min_index].obj_minus_zmin[m]);
+		       /*printf("%e\t",selection_pop_minus_zmin->ind[temp_s_min_index].obj_minus_zmin[m]);*/
 		   }
-		    printf("\n");
+		    /*printf("\n");*/
 	}
 	construct_hyperplane (selection_pop_minus_zmin,pop_size);
     return;
@@ -768,23 +766,23 @@ void transpose(double num[25][25], double fac[25][25], int r)/*ok*/
             inverse[i][j] = b[i][j] / d;
         }
     }
-    printf("6.  The inverse zmax matrix is : \n");
+    /*printf("6.  The inverse zmax matrix is : \n");*/
     
     for (i = 0;i < r; i++)
     {
         for (j = 0;j < r; j++)
         {
-            printf("\t%f", inverse[i][j]);
+            /*printf("\t%f", inverse[i][j]);*/
             a[i]+=inverse[j][i];
         }
-        printf("\n");
+        /*printf("\n");*/
     }
-    printf("a vector is:\n\t");
+    /*printf("a vector is:\n\t");*/
     int a_negative=0;
     for (j = 0;j < r; j++)
     {
         a[j]=1/a[j];
-        printf("%e\t",a[j]);
+        /*printf("%e\t",a[j]);*/
 	if (a[j]<0)
 		a_negative=1;
     }
@@ -795,6 +793,6 @@ void transpose(double num[25][25], double fac[25][25], int r)/*ok*/
 		a_last_gen[j]=0.1*a[j];
 	}
     }
-    printf("\n\n");
+    /*printf("\n\n");*/
 }
 
