@@ -701,7 +701,7 @@ int main (int argc, char **argv)
     initialize_pop (selection_pop);
 
     generate_DTLZ1 (nobj-1,1/(double)(numberpointperdim-1));
-    /*display_DTLZ1 ();*/
+    display_DTLZ1 ();
     /*onthefly_display_DTLZ1 (gp_dtlz);*/
     if (nobj>5)
     	generate_ref_points_inside (nobj-1,1/(double)(numberpointperdim_inside-1));
@@ -755,7 +755,7 @@ int main (int argc, char **argv)
         fill_nondominated_sort (selection_pop, mixed_pop, parent_pop,i);
         report_pop(parent_pop,fpt4);
         fflush(fpt4);
-        /*if (choice!=0){
+        if (choice!=0){
 	    if (nobj>3)
 	    {
 	    	onthefly_display_parallel_coordinates(parent_pop,gp_pc,i);
@@ -767,21 +767,13 @@ int main (int argc, char **argv)
 	   	onthefly_display (parent_pop,gp,i,1);
 		onthefly_display_refpoints (parent_pop, gp_a);
 	    }
-
-            
-		onthefly_display (parent_pop,gp,i);
-         onthefly_display_minus_zmin (child_pop, gp_minus_zmin);
-         onthefly_display_normalized (child_pop, gp_normalized);
-         onthefly_display_a (child_pop, gp_a);
-         onthefly_display_normalized (child_pop, gp_normalized);
-		onthefly_display_parallel_coordinates(parent_pop,gp_pc,i);
 	}
 	if (adaptive_nsga==1 || adaptive_nsga==2)
 	{
 		printf("Visualization of adaptive reference points\n");
 		onthefly_display_refpoints (parent_pop, gp_a);
 	}
-	if (dtlz<8)
+	if (dtlz<16)
 	{
 		if (IGD(parent_pop)<temp_IGD)
 		{
@@ -790,11 +782,11 @@ int main (int argc, char **argv)
 		}
 	}
         printf("\n gen = %d, IGD %e\n",i,temp_IGD);
-	sleep(1);*/
+	/*sleep(1);*/
     }
     onthefly_display (parent_pop,gp,i-1,1);
-    /*if (nobj<=3)
-    	onthefly_display_real_front (parent_pop,gp_real_front);*/
+    if (nobj<=3)
+    	onthefly_display_real_front (parent_pop,gp_real_front);
     if (adaptive_nsga == 1)
     	printf("\nGenerations finished, now reporting solutions (A-NSGA-III)\n");
     else if (adaptive_nsga == 2)
@@ -805,11 +797,11 @@ int main (int argc, char **argv)
     printf("Runtime %e s\n",(float)(end - start) / CLOCKS_PER_SEC);
     report_pop(parent_pop,fpt2);
     report_feasible(parent_pop,fpt3);
-    /*if (dtlz<8)
+    if (dtlz<16)
     {
     	printf("The DTLZ%d Inverted Generational Distance (IGD) for %d dimensions is %e\n",dtlz,nobj,IGD(parent_pop));
     	printf("The best IGD is %e in generation %d\n",temp_IGD,temp_gen);
-    }*/
+    }
     if (nreal!=0)
     {
         fprintf(fpt5,"\n Number of crossover of real variable = %d",nrealcross);

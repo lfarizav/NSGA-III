@@ -1,6 +1,4 @@
 /* Data Metrics routines */
-/* The Copyright belongs to Luis Felipe Ariza Vesga (lfarizav@unal.edu.co). You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
-A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. March, 2019. */
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -129,8 +127,10 @@ void get_fronts_from_file (int dtlz)
 
     while (fgets(str_algorithm,500, gp_algorithm)!=NULL)
     {
+	/*printf("%s\n",str_algorithm);*/
    	token_algorithm = strtok (str_algorithm,"\t");
 		for (i=0;i<nobj;i++){	
+		/*printf( " %f\n", atof(token_algorithm));*/
 		igb_algorithm[i][j]=atof(token_algorithm);
 		token_algorithm = strtok (NULL, "\t");
 	   }
@@ -138,9 +138,11 @@ void get_fronts_from_file (int dtlz)
     }
     while (fgets(str_real_front,500, gp_real_front)!=NULL)
     {
+	/*printf("%s\n",str_real_front);*/
 	token_real_front = strtok (str_real_front," ");
 		for (i=0;i<nobj;i++){
 		igb_real_front[i][k]=atof(token_real_front);
+		/*printf( " %f\n", atof(token_real_front));*/
 		token_real_front = strtok (NULL, " ");
 	   }
     k++;
@@ -156,6 +158,12 @@ double IGD (population *pop)
 	double distance;
 	double min_distance;
 	double aux_distance;	
+
+	/*get_maximum_value(1);
+	get_minimum_value(1);
+
+	get_normalized_front (0);
+	get_normalized_front (1);*/
         if (dtlz<5)
         	get_fronts_from_file (dtlz);
 
@@ -167,11 +175,14 @@ double IGD (population *pop)
 			distance=0;
 			for (j=0;j<nobj;j++)
 			{
+
+				/*printf("[%d] Real front %e, NSGA-III front %e\n",i,igb_real_front[j][i],igb_algorithm[j][i]);*/
 				if (dtlz<5)
 					distance+=pow(igb_real_front[j][k]-igb_algorithm[j][i],2);
 				else
 				{
 					distance+=pow(DTLZ[j][k]-pop->ind[i].obj[j],2);
+					/*printf("real %e, algorithm %e\n",DTLZ[j][i],pop->ind[i].obj[j]);*/
 				}
 					
 			}
@@ -183,7 +194,7 @@ double IGD (population *pop)
 		}
 		sum+=min_distance;
 	}
-
+	/*printf("IGD %e\n",sum/(factorial+factorial_inside));*/
 return sum/(factorial+factorial_inside);
 }
 void get_maximum_value(int front)
@@ -211,6 +222,10 @@ void get_maximum_value(int front)
 			}
 		}
 	}
+	/*printf("The maximum values are: \n");
+	for (i=0;i<nobj;i++)
+		printf("%e\t",maximum_value[i]);
+	printf("\n");*/
 return;
 }
 void get_minimum_value(int front)
@@ -238,6 +253,10 @@ void get_minimum_value(int front)
 			}
 		}
 	}
+	/*printf("The minimum values are: \n");
+	for (i=0;i<nobj;i++)
+		printf("%e\t",minimum_value[i]);
+	printf("\n");*/
 return;
 }
 void get_normalized_front (int front)
@@ -247,6 +266,7 @@ void get_normalized_front (int front)
 	{
 		for (j=0;j<nobj;j++)
 		{
+			/*printf("real %e, algorithm %e\n",igb_real_front[j][i],igb_algorithm[j][i]);*/
 			if (front)
 			{
 				igb_real_front_normalized[j][i]=igb_real_front[j][i]-minimum_value[j]/(maximum_value[j]-minimum_value[j]);

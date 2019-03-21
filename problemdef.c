@@ -19,7 +19,7 @@ A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Ma
 /* # define zdt2 */
 /* # define zdt3 */
 /* # define zdt4*/
- # define dtlz7
+ # define dtlz4
 /*# define dtlz1*/
 /* # define zdt5 */
 /* # define zdt6  */
