@@ -90,6 +90,8 @@ For example: car side impact problem definition.
 ### real_front:
 This folder has as much as possible dtlz fronts.
 ### Hou to use:
+Tested in Ubuntu 16.04.
+
 > Edit problemdef.c and define any problem. For example: # define dtlz1
 
 > make nsga2r
