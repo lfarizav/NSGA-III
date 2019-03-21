@@ -90,7 +90,7 @@ For example: car side impact problem definition.
 ### real_front:
 This folder has as much as possible dtlz fronts.
 ### Hou to use:
-Tested in Ubuntu 16.04.
+Tested in Ubuntu 16.04, GCC version 5.4.0.
 
 > Edit problemdef.c and define any problem. For example: # define dtlz1
 
