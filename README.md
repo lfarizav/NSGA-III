@@ -1,5 +1,5 @@
 ## Copyright
-> The Copyright belongs to Luis Felipe Ariza Vesga. You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for **research purposes**. All publications which use this code should **acknowledge the author**. Luis Felipe Ariza Vesga. A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. March, 2019. Emails:lfarizav@unal.edu.co, lfarizav@gmail.com.
+> You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for **research purposes**. All publications which use this code should **acknowledge the author**. Luis Felipe Ariza Vesga. A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. March, 2019. Emails:lfarizav@unal.edu.co, lfarizav@gmail.com.
 ```
 @online{NonofficialNSGAIII,
   title={A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems},
