@@ -43,7 +43,7 @@ void get_fronts_from_file (int dtlz)
 {
     FILE *gp_algorithm;
     FILE *gp_real_front;
-    char str_algorithm[500],str_real_front[500];
+    char str_algorithm[1500],str_real_front[1500];
     int i=0,j=0,k=0,p=3;
     char *token_algorithm,*token_real_front;
     const char s[2] = "\t";
@@ -61,7 +61,7 @@ void get_fronts_from_file (int dtlz)
 	if (nobj==15)	
     		gp_real_front=fopen("real_front/DTLZ1-15-PF.txt","r");		
     }
-    if (dtlz==2)
+    else if (dtlz==2)
     {
 	if (nobj==3)
     		gp_real_front=fopen("real_front/DTLZ2-3-PF.txt","r");
@@ -74,7 +74,7 @@ void get_fronts_from_file (int dtlz)
 	if (nobj==15)	
     		gp_real_front=fopen("real_front/DTLZ2-15-PF.txt","r");		
     }
-    if (dtlz==3)
+    else if (dtlz==3)
     {
 	if (nobj==3)
     		gp_real_front=fopen("real_front/DTLZ3-3-PF.txt","r");
@@ -87,7 +87,7 @@ void get_fronts_from_file (int dtlz)
 	if (nobj==15)	
     		gp_real_front=fopen("real_front/DTLZ3-15-PF.txt","r");		
     }
-    if (dtlz==4)
+    else if (dtlz==4)
     {
 	if (nobj==3)
     		gp_real_front=fopen("real_front/DTLZ4-3-PF.txt","r");
@@ -100,18 +100,44 @@ void get_fronts_from_file (int dtlz)
 	if (nobj==15)	
     		gp_real_front=fopen("real_front/DTLZ4-15-PF.txt","r");		
     }
-    if (dtlz==5)
+    else if (dtlz==5)
     {
 	if (nobj==3)
-    		gp_real_front=fopen("real_front/IDTLZ1-3-PF.txt","r");
+    		gp_real_front=fopen("real_front/DTLZ5-3-PF.txt","r");
 	if (nobj==5)
-    		gp_real_front=fopen("real_front/IDTLZ1-5-PF.txt","r");	
+    		gp_real_front=fopen("real_front/DTLZ5-5-PF.txt","r");	
 	if (nobj==8)
-    		gp_real_front=fopen("real_front/IDTLZ1-8-PF.txt","r");		
+    		gp_real_front=fopen("real_front/DTLZ5-8-PF.txt","r");		
 	if (nobj==10)
-    		gp_real_front=fopen("real_front/IDTLZ1-10-PF.txt","r");		
+    		gp_real_front=fopen("real_front/DTLZ5-10-PF.txt","r");		
 	if (nobj==15)	
-    		gp_real_front=fopen("real_front/IDTLZ1-15-PF.txt","r");		
+    		gp_real_front=fopen("real_front/DTLZ5-15-PF.txt","r");		
+    }
+    else if (dtlz==7)
+    {
+	if (nobj==3)
+    		gp_real_front=fopen("real_front/DTLZ7-3-PF.txt","r");
+	if (nobj==5)
+    		gp_real_front=fopen("real_front/DTLZ7-5-PF.txt","r");	
+	if (nobj==8)
+    		gp_real_front=fopen("real_front/DTLZ7-8-PF.txt","r");		
+	if (nobj==10)
+    		gp_real_front=fopen("real_front/DTLZ7-10-PF.txt","r");		
+	if (nobj==15)	
+    		gp_real_front=fopen("real_front/DTLZ7-15-PF.txt","r");		
+    }
+    else
+    {
+	if (nobj==3)
+    		gp_real_front=fopen("real_front/DTLZ6-3-PF.txt","r");
+	if (nobj==5)
+    		gp_real_front=fopen("real_front/DTLZ6-5-PF.txt","r");	
+	if (nobj==8)
+    		gp_real_front=fopen("real_front/DTLZ6-8-PF.txt","r");		
+	if (nobj==10)
+    		gp_real_front=fopen("real_front/DTLZ6-10-PF.txt","r");		
+	if (nobj==15)	
+    		gp_real_front=fopen("real_front/DTLZ6-15-PF.txt","r");	
     }
 
     if( gp_real_front == NULL )
@@ -125,7 +151,7 @@ void get_fronts_from_file (int dtlz)
       exit(EXIT_FAILURE);
     }
 
-    while (fgets(str_algorithm,500, gp_algorithm)!=NULL)
+    while (fgets(str_algorithm,1500, gp_algorithm)!=NULL)
     {
 	/*printf("%s\n",str_algorithm);*/
    	token_algorithm = strtok (str_algorithm,"\t");
@@ -136,7 +162,7 @@ void get_fronts_from_file (int dtlz)
 	   }
     j++;
     }
-    while (fgets(str_real_front,500, gp_real_front)!=NULL)
+    while (fgets(str_real_front,1500, gp_real_front)!=NULL)
     {
 	/*printf("%s\n",str_real_front);*/
 	token_real_front = strtok (str_real_front," ");
@@ -164,7 +190,7 @@ double IGD (population *pop)
 
 	get_normalized_front (0);
 	get_normalized_front (1);*/
-        if (dtlz<5)
+        if (dtlz<16)
         	get_fronts_from_file (dtlz);
 
 	for (k=0;k<factorial+factorial_inside;k++)
@@ -177,7 +203,7 @@ double IGD (population *pop)
 			{
 
 				/*printf("[%d] Real front %e, NSGA-III front %e\n",i,igb_real_front[j][i],igb_algorithm[j][i]);*/
-				if (dtlz<5)
+				if (dtlz<16)
 					distance+=pow(igb_real_front[j][k]-igb_algorithm[j][i],2);
 				else
 				{
