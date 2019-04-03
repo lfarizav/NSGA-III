@@ -708,8 +708,8 @@ int main (int argc, char **argv)
     /*dinamic generation of reference points*/
     generate_ref_points (nobj-1,1/(double)(numberpointperdim-1));
     display_refpoints ();
-    onthefly_display_refpoints (parent_pop, gp_a);
-    onthefly_display_one (parent_pop, gp_a);
+    /*onthefly_display_refpoints (parent_pop, gp_a);
+    onthefly_display_one (parent_pop, gp_a);*/
     /*generation of adaptive refpoints cluster*/
     generate_adaptive_ref_points (nobj-1,1.0);
 
@@ -736,7 +736,9 @@ int main (int argc, char **argv)
     fflush(fpt5);
     /*sleep(3);*/
     double temp_IGD=DBL_MAX;
+    double IGD_value;
     int temp_gen=0;
+    int i1,i2,i3;
     clock_t start = clock();
     for (i=0;i<nobj*(factorial+factorial_inside);i++)
 	for (k=0;k<nobj;k++)
@@ -759,32 +761,37 @@ int main (int argc, char **argv)
 	    if (nobj>3)
 	    {
 	    	onthefly_display_parallel_coordinates(parent_pop,gp_pc,i);
-		onthefly_display_refpoints (parent_pop, gp_a);
 	    }
 	    else
 	    {
-		printf("3D: # gen = %d, nobj=%d\n",i,nobj);
 	   	onthefly_display (parent_pop,gp,i,1);
-		onthefly_display_refpoints (parent_pop, gp_a);
 	    }
 	}
-	if (adaptive_nsga==1 || adaptive_nsga==2)
+	/*for (i1=0;i1<popsize;i1++)
+	{
+		for (i2=0;i2<nobj;i2++)
+			printf("%e\t",parent_pop->ind[i1].obj[i2]);
+		printf("\n");
+	}
+	exit(-1);*/
+	/*if (adaptive_nsga==1 || adaptive_nsga==2)
 	{
 		printf("Visualization of adaptive reference points\n");
 		onthefly_display_refpoints (parent_pop, gp_a);
-	}
+	}*/
+	
 	if (dtlz<16)
 	{
-		if (IGD(parent_pop)<temp_IGD)
+		IGD_value=IGD(parent_pop);
+		if (IGD_value<temp_IGD)
 		{
-			temp_IGD=IGD(parent_pop);
+			temp_IGD=IGD_value;
 			temp_gen=i;
 		}
 	}
         printf("\n gen = %d, IGD %e\n",i,temp_IGD);
 	/*sleep(1);*/
     }
-    onthefly_display (parent_pop,gp,i-1,1);
     if (nobj<=3)
     	onthefly_display_real_front (parent_pop,gp_real_front);
     if (adaptive_nsga == 1)
