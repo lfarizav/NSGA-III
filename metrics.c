@@ -126,6 +126,19 @@ void get_fronts_from_file (int dtlz)
 	if (nobj==15)	
     		gp_real_front=fopen("real_front/DTLZ7-15-PF.txt","r");		
     }
+    else if (dtlz==8)
+    {
+	if (nobj==3)
+    		gp_real_front=fopen("real_front/DTLZ1C-3-PF.txt","r");
+	if (nobj==5)
+    		gp_real_front=fopen("real_front/DTLZ1C-5-PF.txt","r");	
+	if (nobj==8)
+    		gp_real_front=fopen("real_front/DTLZ1C-8-PF.txt","r");		
+	if (nobj==10)
+    		gp_real_front=fopen("real_front/DTLZ1C-10-PF.txt","r");		
+	if (nobj==15)	
+    		gp_real_front=fopen("real_front/DTLZ1C-15-PF.txt","r");		
+    }
     else
     {
 	if (nobj==3)

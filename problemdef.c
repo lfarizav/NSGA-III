@@ -19,7 +19,7 @@ A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Ma
 /* # define zdt2 */
 /* # define zdt3 */
 /* # define zdt4*/
- # define dtlz4
+ # define dtlz1c
 /*# define dtlz1*/
 /* # define zdt5 */
 /* # define zdt6  */
@@ -951,11 +951,10 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
 void test_problem (double *xreal, double *xbin, int **gene, double *obj, double *constr, double *equality_constr, int normalized)
 {
     int i,j,aux;
-    double g;
+    double g,temp_constr;
     int n_var=5;
     int k=n_var-nobj+1;
-    double temp_constr=0;
-    dtlz=1;
+    dtlz=8;
     g=0.0;
     for (i=n_var-k;i<n_var;i++)
     {
@@ -975,13 +974,19 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
 			aux = nobj-(i+1);
 			obj[i] *= 1 - xreal[aux];
 		}
-		/*constr[i] = obj[i]-0.1;/*F_M>=0.1*/
     }
-    for (i=0;i<nobj-2;i++)
+    for (i=0;i<nobj;i++)
+    {
+	temp_constr=0;
+	for (j=0;j<nobj-1;j++)
+		temp_constr=temp_constr+obj[j]/0.5;
+	constr[i]=1-obj[nobj-1]/0.6-temp_constr;
+    }
+    /*for (i=0;i<nobj-2;i++)
     {
 	temp_constr+=obj[i]/0.5;
     }
-    constr[0]=1-obj[nobj-1]/0.6-temp_constr;
+    constr[0]=1-obj[nobj-1]/0.6-temp_constr;*/
     /*printf("temp_constr is %e\n",constr[0]);*/
     return;
 }
@@ -1347,13 +1352,43 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
 	g+=xreal[i];	
     }
     g=1.0+(9.0*g)/k;
-    for (i=0;i<n_var-1;i++)
+    for (i=0;i<nobj-1;i++)
     {
 	obj[i]=xreal[i];	
     }
     double h=0;
 
 
+    for (i=0;i<nobj-1;i++)
+    {
+	h+=(obj[i]/(1.0+g))*(1.0+sin(3.0*PI*obj[i]));
+    }
+    h=nobj-h;
+    obj[nobj-1]=(1.0+g)*h;
+
+    return;
+}
+#endif
+/*  Test problem DTLZ7_g
+    # of real variables = 20+ # of objectives -1
+    # of bin variables = 0
+    # of objectives = 3-4-5
+    # of constraints = 0
+    */
+#ifdef dtlz7_g
+void test_problem (double *xreal, double *xbin, int **gene, double *obj, double *constr, double *equality_constr, int normalized)
+{
+    int i,j,aux;
+    double g;
+    int n_var=20;
+    int k=n_var-nobj+1;
+    dtlz=7;
+    g=1.0;
+    for (i=0;i<nobj-1;i++)
+    {
+	obj[i]=xreal[i];	
+    }
+    double h=0;
     for (i=0;i<nobj-1;i++)
     {
 	h+=(obj[i]/(1.0+g))*(1.0+sin(3.0*PI*obj[i]));

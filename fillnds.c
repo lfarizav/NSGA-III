@@ -454,15 +454,15 @@ int bubble_sorting_infeasible_population_index(population *poputation_sorted)
 		}
 	}
 	/*printf("sorting infeasible population by violation constrains\n");*/
-	for (i=0;i<number_is_infeasible;i++)
+	/*for (i=0;i<number_is_infeasible;i++)
 	{
 		printf("%d,%e\n",i,poputation_sorted->ind[infeasible_population_sorted_list_index[i]].constr_violation+poputation_sorted->ind[infeasible_population_sorted_list_index[i]].equality_constr_violation);
-	}
+	}*/
 	/*printf("sorting feasible population by violation constrains\n");*/
-	for (i=0;i<number_is_feasible;i++)
+	/*for (i=0;i<number_is_feasible;i++)
 	{
 		printf("%d,%e\n",i,poputation_sorted->ind[feasible_population_sorted_list_index[i]].constr_violation+poputation_sorted->ind[feasible_population_sorted_list_index[i]].equality_constr_violation);
-	}
+	}*/
 return number_is_feasible;
 }
 void feasible_population_index(population *poputation_sorted)
