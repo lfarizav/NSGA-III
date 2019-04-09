@@ -1,4 +1,4 @@
-# Makefile for compiling NSGA-II source code
+# Makefile for compiling NSGA-III, A-NSGA-III and A^2-NSGA-III source code
 CC=gcc
 LD=gcc
 RM=rm -f
