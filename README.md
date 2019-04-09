@@ -98,11 +98,11 @@ This folder has as much as possible dtlz fronts.
 ### Hou to use:
 Tested on Ubuntu 16.04, GCC version 5.4.0.
 
-> Edit problemdef.c and define any problem. For example: # define dtlz1
+> Edit problemdef.c and define any problem. For example: # define carsideimpact
 
 > make nsga2r
 
-> ./nsga2r seed <input_data/dtlz1.in ----> for the dtlz1 problem.
+> ./nsga2r seed <input_data/carsideimpact.in ----> for the carsideimpact problem.
 
 ## References
 [1] K. Deb, “An introduction to genetic algorithms,” Sadhana, vol. 24, no. 4, pp. 293–315, Aug 1999. [Online]. Available: https://doi.org/10. 1007/BF02823145
