@@ -58,11 +58,17 @@ For example: car side impact problem definition.
 0.5 1.5          -->:  Low limit to high limit of real variable 1
 
 0.45 1.35        -->:  Low limit to high limit of real variable 2
+
 0.5 1.5          -->:  Low limit to high limit of real variable 3
+
 0.5 1.5          -->:  Low limit to high limit of real variable 4
+
 0.875 2.625      -->:  Low limit to high limit of real variable 5
+
 0.4 1.2          -->:  Low limit to high limit of real variable 6
+
 0.4 1.2          -->:  Low limit to high limit of real variable 7
+
 0.1              -->:  Crossover probability of real variable (0.6-1.0)
 
 1                -->:  Mutation probablity of real variables (1/nreal)
