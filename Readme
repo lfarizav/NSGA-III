@@ -1,9 +1,12 @@
-This is the Readme file for NSGA-II code.
-
+This is the Readme file for NSGA-III, A-NSGA-III and A^2-NSGA-III codes. A NSGA-II extension from 
+Kanpur the Genetic Algorithms Laboratory (KanGAL).
+The NSGA-III, A-NSGA-III and A^2-NSGA-III extension was coded by Luis Felipe Ariza Vesga.
+Email: lfarizav@gmail.com
 
 About the Algorithm
 --------------------------------------------------------------------------
-NSGA-II: Non-dominated Sorting Genetic Algorithm - II
+NSGA-II: Non-dominated Sorting Genetic Algorithm - II and
+NSGA-III: Non-dominated Sorting Genetic Algorithm - III
 
 Please refer to the following paper for details about the algorithm:
 
@@ -14,6 +17,35 @@ Year: 2002
 Volume: 6
 Number: 2
 Pages: 182-197
+
+Please refer to the following paper for details about the algorithm:
+
+Authors: Dr. Kalyanmoy Deb, and H. Jain
+Paper Title: An Evolutionary Many-Objective Optimization Algorithm Using 
+Reference-Point-Based Nondominated Sorting Approach, Part I: Solving Problems 
+With Box Constraints
+Journal: IEEE Transactions on Evolutionary Computation (IEEE-TEC)
+Year: 2014
+Volume: 18
+Number: 4
+Pages: 577-601
+
+Authors: Dr. Kalyanmoy Deb, and H. Jain
+Paper Title: An Evolutionary Many-Objective Optimization Algorithm Using
+Reference-Point Based Nondominated Sorting Approach, Part II: Handling 
+Constraints and Extending to an Adaptive Approach
+Journal: IEEE Transactions on Evolutionary Computation (IEEE-TEC)
+Year: 2014
+Volume: 18
+Number: 4
+Pages: 602-622
+
+Authors: Dr. Kalyanmoy Deb, and H. Jain
+Paper Title: An Improved Adaptive Approach for Elitist Nondominated Sorting 
+Genetic Algorithm for Many-Objective Optimization
+Journal: COIN Report Number 2013014
+Year: 2013
+
 ---------------------------------------------------------------------------
 
 
