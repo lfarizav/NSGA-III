@@ -8,7 +8,7 @@ About the Algorithm
 NSGA-II: Non-dominated Sorting Genetic Algorithm - II and
 NSGA-III: Non-dominated Sorting Genetic Algorithm - III
 
-Please refer to the following paper for details about the algorithm:
+Please refer to the following papers for details about the algorithm:
 
 Authors: Dr. Kalyanmoy Deb, Sameer Agrawal, Amrit Pratap, T Meyarivan
 Paper Title: A Fast and Elitist multi-objective Genetic Algorithm: NSGA-II
@@ -17,8 +17,6 @@ Year: 2002
 Volume: 6
 Number: 2
 Pages: 182-197
-
-Please refer to the following paper for details about the algorithm:
 
 Authors: Dr. Kalyanmoy Deb, and H. Jain
 Paper Title: An Evolutionary Many-Objective Optimization Algorithm Using 
