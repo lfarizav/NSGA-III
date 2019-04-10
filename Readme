@@ -87,10 +87,12 @@ params.out: This file contains the information about input parameters as read by
 
 About the input parameters
 ---------------------------------------------------------------------------
+adaptive_nsga: 2 --> A^2 NSGA-III, 1 --> A NSGA-III, 0 --> NSGA-III"
 popsize: This variable stores the population size (a multiple of 4)
 ngen: Number of generations
 nobj: Number of objectives
-ncon: Number of constraints
+ncon: Number of inequality constraints
+neqcon: Number of equality constraints
 nreal: Number of real variables
 min_realvar[i]: minimum value of i^{th} real variable
 max_realvar[i]: maximum value of i^{th} real variable
