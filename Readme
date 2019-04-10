@@ -156,12 +156,22 @@ rank.c: Rank assignment routines
 report.c: Routine to write the population information in a file
 sort.c: Randomized quick sort implementation
 tourselect.c: Tournament selection routine
+referencepoints.c: Reference points implementation
+metric.c: Inverted Generational Distace (IGD)
 ---------------------------------------------------------------------------
 
 Please feel free to send questions/comments/doubts/suggestions/bugs
-etc. to deb@iitk.ac.in
+etc. to deb@iitk.ac.in about NSGA-II to
 
 Dr. Kalyanmoy Deb
 14th June 2005
 http://www.iitk.ac.in/kangal/
+
+---------------------------------------------------------------------------
+Please feel free to send questions/comments/doubts/suggestions/bugs
+etc about NSGA-III A-NSGA-III and A^2-NSGA-III to
+
+Luis Felipe Ariza Vesga
+17th Apr 2019
+Some videos on Youtube: https://www.youtube.com/channel/UCMgWIVOV9bJtIfIxQOYhOuw
 ---------------------------------------------------------------------------
