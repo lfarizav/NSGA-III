@@ -159,7 +159,7 @@ report.c: Routine to write the population information in a file
 sort.c: Randomized quick sort implementation
 tourselect.c: Tournament selection routine
 referencepoints.c: Reference points implementation
-metric.c: Inverted Generational Distace (IGD)
+metris.c: Inverted Generational Distace (IGD)
 ---------------------------------------------------------------------------
 
 Please feel free to send questions/comments/doubts/suggestions/bugs
