@@ -1,3 +1,7 @@
+
+/* NSGA-II routine (implementation of the 'main' function) */
+/* The Copyright belongs to Luis Felipe Ariza Vesga (lfarizav@unal.edu.co). You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
+A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Many-Objective Problems. March, 2019. */
 /* Data Metrics routines */
 
 # include <stdio.h>
