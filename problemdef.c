@@ -1,11 +1,11 @@
 /* Test problem definitions */
 /* The Copyright belongs to Luis Felipe Ariza Vesga (lfarizav@unal.edu.co). You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
-A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Many-Objective Problems. March, 2019. */
+A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. March, 2019. */
 
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
-
+# include <float.h>
 # include "global.h"
 # include "rand.h"
 
@@ -19,7 +19,7 @@ A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Many-Objective 
 /* # define zdt2 */
 /* # define zdt3 */
 /* # define zdt4*/
- # define dtlz1c
+ # define c2dtlz2
 /*# define dtlz1*/
 /* # define zdt5 */
 /* # define zdt6  */
@@ -941,13 +941,13 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
     return;
 }
 #endif
-/*  Test problem DTLZ1-C
+/*  Test problem C1DTLZ1
     # of real variables = 5 + # of objectives -1
     # of bin variables = 0
     # of objectives = n
     # of constraints = 1
     */
-#ifdef dtlz1c
+#ifdef c1dtlz1
 void test_problem (double *xreal, double *xbin, int **gene, double *obj, double *constr, double *equality_constr, int normalized)
 {
     int i,j,aux;
@@ -1071,24 +1071,24 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
     return;
 }
 #endif
-/*  Test problem DTLZ2C
+/*  Test problem C2DTLZ2
     # of real variables = 10 + # of objectives -1 = 12-13-14
     # of bin variables = 0
     # of objectives = 3-4-5
     # of constraints = 1
     */
-#ifdef dtlz2c
+#ifdef c2dtlz2
 void test_problem (double *xreal, double *xbin, int **gene, double *obj, double *constr, double *equality_constr, int normalized)
 {
     int i,j,aux;
     int n_var=10;
     int k=n_var-nobj+1;
-    double temp=0;
-    double lambda=0;
     double g;
-    double r[5]={0.225,0.225,0.26,0.26,0.27};
-    
-    dtlz=2;
+    double temp_constr1=0;
+    double temp_constr2=0;
+    double temp_min1=0;
+    double r;
+    dtlz=10;
     g=0.0;
     for (i=n_var-k;i<n_var;i++)
     {
@@ -1107,18 +1107,35 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
 			aux = nobj-(i+1);
 			obj[i] *= sin(xreal[aux]*0.5*PI);
 		}
-		constr[i] = obj[i]-0.1;/*F_M>=0.1*/
     } 
+    /*Follows the constraint*/
+    if (nobj==3)
+	r=0.4;
+    else
+	r=0.5;
+    temp_min1=DBL_MAX;
     for (i=0;i<nobj;i++)
     {
-	lambda+=obj[i];
-    }
-    lambda=lambda/nobj;
+	temp_constr1=0;
+	temp_constr1=temp_constr1+pow(obj[i]-1,2.0);
+	for (j=0;j<nobj;j++)
+	{
+		if (i!=j)
+			temp_constr1=temp_constr1+pow(obj[j],2.0);
+	}
+	temp_constr1=temp_constr1-pow(r,2.0);
+	if (temp_constr1<temp_min1)
+		temp_min1=temp_constr1;
+    }    
+
+    temp_constr2=0;
     for (i=0;i<nobj;i++)
     {
-    	temp+=pow(obj[i]-lambda,2)-pow(r[nobj-1],2);
+	temp_constr2=temp_constr2+pow(obj[i]-1/sqrt(nobj),2.0);
     }
-    constr[0]=temp;
+    temp_constr2=temp_constr2-pow(r,2.0);
+
+    constr[0]=(temp_min1<temp_constr2)?-temp_min1:-temp_constr2;
     return;
 }
 #endif
@@ -1159,24 +1176,23 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
     return;
 }
 #endif
-/*  Test problem DTLZ3C
+/*  Test problem C1DTLZ3
     # of real variables = 10 + # of objectives -1 = 12-13-14
     # of bin variables = 0
     # of objectives = 3-4-5
     # of constraints = 0
     */
-#ifdef dtlz3c
+#ifdef c1dtlz3
 void test_problem (double *xreal, double *xbin, int **gene, double *obj, double *constr, double *equality_constr, int normalized)
 {
     int i,j,aux;
     double g;
-    double temp1_constr=0;
-    double temp2_constr=0;
-    double r[5]={9,12.5,12.5,15,15};
-    double M[5]={3,5,8,10,15};
+    double temp_constr=0;
+    double r[15]={0,0,9,0,12.5,0,0,12.5,0,15,0,0,0,0,15};
+    /*double M[5]={3,5,8,10,15};*/
     int n_var=10;
     int k=n_var-nobj+1;
-    dtlz=3;
+    dtlz=9;
     g=0.0;
     for (i=n_var-k;i<n_var;i++)
     {
@@ -1197,14 +1213,24 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
 			obj[i] *= sin(xreal[aux]*0.5*PI);
 		}
     }
-    for (i=0;i<nobj;i++)
+    /*for (i=0;i<nobj;i++)
+    {*/
+	temp_constr=0;
+	for (j=0;j<nobj;j++)
+	{
+		temp_constr=temp_constr+pow(obj[j],2);
+	}
+    temp_constr=temp_constr-16;
+    temp_constr=temp_constr-pow(r[nobj-1],2);
+    constr[0]=temp_constr*temp_constr;
+    /*}*/
+    /*for (i=0;i<nobj;i++)
     {
-	temp1_constr+=pow(obj[i],2);
-	temp2_constr+=pow(obj[i],2);
-    }
-    temp1_constr-=16;
-    temp2_constr-=pow(r[0],2);
-    constr[0]=temp1_constr*temp2_constr;
+	temp_constr=0;
+	for (j=0;j<nobj-1;j++)
+		temp_constr=temp_constr+obj[j]/0.5;
+	constr[i]=1-obj[nobj-1]/0.6-temp_constr;
+    }*/
     return;
 }
 #endif

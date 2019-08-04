@@ -205,7 +205,7 @@ void display_d (int pop_size);
 int check_dominance (individual *a, individual *b);
 
 void evaluate_pop (population *pop);
-void evaluate_ind (individual *ind);
+void evaluate_ind (individual *ind, int psize);
 
 void fill_nondominated_sort (population *selection_pop, population *mixed_pop, population *new_pop, int generation);
 int bubble_sorting_infeasible_population_index(population *poputation_sorted);
@@ -217,6 +217,12 @@ void reset_pop_obj (population *pop,int size);
 void reset_ind_obj (individual *ind);
 void initialize_pop (population *pop);
 void initialize_ind (individual *ind);
+void initialize_ind_dtlz5 (individual *ind);
+void initialize_ind_dtlz7_15d (population *pop);
+void initialize_ind_dtlz7_10d (population *pop);
+void initialize_ind_dtlz7_8d (population *pop);
+void initialize_ind_dtlz7_5d (population *pop);
+void initialize_ind_dtlz7_3d (population *pop);
 
 void insert (list *node, int x);
 list* del (list *node);
@@ -268,6 +274,7 @@ double perpendicular_distance(individual *normalizedind, int l);
 void invert_real_front(int dtlz);
 void get_fronts_from_file (int dtlz);
 double IGD (population *pop);
+double convergence_metric();
 void get_maximum_value(int front);
 void get_minimum_value(int front);
 void get_normalized_front (int front);

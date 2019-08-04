@@ -1,6 +1,6 @@
 /* NSGA-II routine (implementation of the 'main' function) */
 /* The Copyright belongs to Luis Felipe Ariza Vesga (lfarizav@unal.edu.co). You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
-A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Many-Objective Problems. March, 2019. */
+A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. March, 2019. */
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -789,7 +789,7 @@ int main (int argc, char **argv)
 			temp_gen=i;
 		}
 	}
-        printf("\n gen = %d, IGD %e\n",i,temp_IGD);
+        printf("\n gen = %d, IGD %e, convergence metric %e\n",i,temp_IGD,convergence_metric());
 	/*sleep(1);*/
     }
     if (nobj<=3)
