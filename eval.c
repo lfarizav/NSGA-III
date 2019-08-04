@@ -1,6 +1,6 @@
 /* Routine for evaluating population members  */
 /* The Copyright belongs to Luis Felipe Ariza Vesga (lfarizav@unal.edu.co). You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
-A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Many-Objective Problems. March, 2019. */
+A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. March, 2019. */
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -13,20 +13,23 @@ A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Many-Objective 
 void evaluate_pop (population *pop)
 {
     int i;
-
+    /*printf("The following is the true pareto front of dtlz5\n");*/
     for (i=0; i<popsize; i++)
     {
-        evaluate_ind (&(pop->ind[i]));
+        evaluate_ind (&(pop->ind[i]),i);
     }
     return;
 }
 
 /* Routine to evaluate objective function values and constraints for an individual */
-void evaluate_ind (individual *ind)
+void evaluate_ind (individual *ind, int psize)
 {
-    int j,k;
+    int i,j,k;
     int normalized=0;
     test_problem (ind->xreal, ind->xbin, ind->gene, ind->obj, ind->constr, ind->equality_constr, normalized);
+    /*for (i=0;i<nobj;i++)
+    	printf("%e\t",ind->obj[i]);
+    printf("\n");*/
     if (ncon==0 && neqcon==0)
     {
         ind->constr_violation = 0.0;
