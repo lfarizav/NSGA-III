@@ -1,7 +1,3 @@
-
-/* NSGA-II routine (implementation of the 'main' function) */
-/* The Copyright belongs to Luis Felipe Ariza Vesga (lfarizav@unal.edu.co). You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
-A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Many-Objective Problems. March, 2019. */
 /* Data Metrics routines */
 
 # include <stdio.h>
@@ -143,6 +139,34 @@ void get_fronts_from_file (int dtlz)
 	if (nobj==15)	
     		gp_real_front=fopen("real_front/DTLZ1C-15-PF.txt","r");		
     }
+    else if (dtlz==9)
+    {
+	/*printf("reading dtlz....%d\n",dtlz);*/
+	if (nobj==3)
+    		gp_real_front=fopen("real_front/DTLZ3C-3-PF.txt","r");
+	if (nobj==5)
+    		gp_real_front=fopen("real_front/DTLZ3C-5-PF.txt","r");	
+	if (nobj==8)
+    		gp_real_front=fopen("real_front/DTLZ3C-8-PF.txt","r");		
+	if (nobj==10)
+    		gp_real_front=fopen("real_front/DTLZ3C-10-PF.txt","r");		
+	if (nobj==15)	
+    		gp_real_front=fopen("real_front/DTLZ3C-15-PF.txt","r");		
+    }
+    else if (dtlz==10)
+    {
+	/*printf("reading dtlz....%d\n",dtlz);*/
+	if (nobj==3)
+    		gp_real_front=fopen("real_front/DTLZ2-3-PF.txt","r");
+	if (nobj==5)
+    		gp_real_front=fopen("real_front/DTLZ2-5-PF.txt","r");	
+	if (nobj==8)
+    		gp_real_front=fopen("real_front/DTLZ2-8-PF.txt","r");		
+	if (nobj==10)
+    		gp_real_front=fopen("real_front/DTLZ2-10-PF.txt","r");		
+	if (nobj==15)	
+    		gp_real_front=fopen("real_front/DTLZ2-15-PF.txt","r");		
+    }
     else
     {
 	if (nobj==3)
@@ -240,6 +264,44 @@ double IGD (population *pop)
 	/*printf("IGD %e\n",sum/(factorial+factorial_inside));*/
 return sum/(factorial+factorial_inside);
 }
+
+double convergence_metric()/*individual *normalizedind, int l*/
+{ 
+	double numerator=0.0, denominator=0.0, temp=0.0,average=0.0, d;
+	int l;
+	double dmin=DBL_MAX;
+	int i,k;
+	if (dtlz<16)
+        	get_fronts_from_file (dtlz);/*Now, we can use solutions from the well distributed front (igb_real_front) and the ones obtained from the NSGA-III algorithm (igb_algorithm)*/
+	for (l=0;l<popsize;l++)
+	{
+		for (i=0;i<factorial+factorial_inside;i++)
+		{
+			for (k=0;k<nobj;k++)
+			{
+				numerator += igb_real_front[k][i]*igb_algorithm[k][l];
+				denominator += pow(igb_real_front[k][i],2);
+			}
+
+			/*num_div_den is used to visualize the perpendicular vector from one solution to the reference line*/
+			num_div_den[i]=numerator/denominator;
+			d=0;
+			for (k=0;k<nobj;k++)
+			{
+				d+=pow(num_div_den[i]*igb_real_front[k][i]-igb_algorithm[k][l],2);
+			}
+			d=sqrt(d);
+			if (d<dmin)
+				dmin=d;
+		}
+		/*temp=dmin;
+		if (temp<average)
+			average=temp;*/
+		average+=dmin;
+	}
+return (average/popsize);
+}
+
 void get_maximum_value(int front)
 {
 	int i,j;
