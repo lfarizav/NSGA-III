@@ -206,6 +206,7 @@ int check_dominance (individual *a, individual *b);
 
 void evaluate_pop (population *pop);
 void evaluate_ind (individual *ind, int psize);
+void evaluate_ind_c2dtlz2_generator (int psize);
 
 void fill_nondominated_sort (population *selection_pop, population *mixed_pop, population *new_pop, int generation);
 int bubble_sorting_infeasible_population_index(population *poputation_sorted);
@@ -272,7 +273,7 @@ int is_zmax_duplicated ();
 double perpendicular_distance(individual *normalizedind, int l);
 
 void invert_real_front(int dtlz);
-void get_fronts_from_file (int dtlz);
+int get_fronts_from_file (int dtlz);
 double IGD (population *pop);
 double convergence_metric();
 void get_maximum_value(int front);
