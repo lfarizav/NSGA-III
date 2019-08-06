@@ -39,7 +39,7 @@ void invert_real_front(int dtlz)
     fclose(real_front);
 
 }
-void get_fronts_from_file (int dtlz)
+int get_fronts_from_file (int dtlz)
 {
     FILE *gp_algorithm;
     FILE *gp_real_front;
@@ -157,15 +157,15 @@ void get_fronts_from_file (int dtlz)
     {
 	/*printf("reading dtlz....%d\n",dtlz);*/
 	if (nobj==3)
-    		gp_real_front=fopen("real_front/DTLZ2-3-PF.txt","r");
+    		gp_real_front=fopen("real_front/C2-DTLZ2-3-PF.txt","r");
 	if (nobj==5)
-    		gp_real_front=fopen("real_front/DTLZ2-5-PF.txt","r");	
+    		gp_real_front=fopen("real_front/C2-DTLZ2-5-PF.txt","r");	
 	if (nobj==8)
-    		gp_real_front=fopen("real_front/DTLZ2-8-PF.txt","r");		
+    		gp_real_front=fopen("real_front/C2-DTLZ2-8-PF.txt","r");		
 	if (nobj==10)
-    		gp_real_front=fopen("real_front/DTLZ2-10-PF.txt","r");		
+    		gp_real_front=fopen("real_front/C2-DTLZ2-10-PF.txt","r");		
 	if (nobj==15)	
-    		gp_real_front=fopen("real_front/DTLZ2-15-PF.txt","r");		
+    		gp_real_front=fopen("real_front/C2-DTLZ2-15-PF.txt","r");		
     }
     else
     {
@@ -206,21 +206,23 @@ void get_fronts_from_file (int dtlz)
     while (fgets(str_real_front,1500, gp_real_front)!=NULL)
     {
 	/*printf("%s\n",str_real_front);*/
-	token_real_front = strtok (str_real_front," ");
+	token_real_front = strtok (str_real_front,"\t");
 		for (i=0;i<nobj;i++){
 		igb_real_front[i][k]=atof(token_real_front);
 		/*printf( " %f\n", atof(token_real_front));*/
-		token_real_front = strtok (NULL, " ");
+		token_real_front = strtok (NULL, "\t");
 	   }
     k++;
+    /*printf("k = %d",k);*/
     }
    fclose(gp_algorithm);
    fclose(gp_real_front);
    IGDfrontsize=k;
+   return k;
 }
 double IGD (population *pop)
 {
-	int i,j,k;
+	int i,j,k,frontsize;
 	double sum=0;
 	double distance;
 	double min_distance;
@@ -232,9 +234,9 @@ double IGD (population *pop)
 	get_normalized_front (0);
 	get_normalized_front (1);*/
         if (dtlz<16)
-        	get_fronts_from_file (dtlz);
-
-	for (k=0;k<factorial+factorial_inside;k++)
+        	frontsize = get_fronts_from_file (dtlz);
+		/*printf("frontsize %d\n",frontsize);*/
+	for (k=0;k<frontsize;k++)
 	{
 		min_distance=DBL_MAX;
 		for (i=0;i<factorial+factorial_inside;i++)
@@ -268,14 +270,14 @@ return sum/(factorial+factorial_inside);
 double convergence_metric()/*individual *normalizedind, int l*/
 { 
 	double numerator=0.0, denominator=0.0, temp=0.0,average=0.0, d;
-	int l;
+	int l,frontsize;
 	double dmin=DBL_MAX;
 	int i,k;
 	if (dtlz<16)
-        	get_fronts_from_file (dtlz);/*Now, we can use solutions from the well distributed front (igb_real_front) and the ones obtained from the NSGA-III algorithm (igb_algorithm)*/
+        	frontsize=get_fronts_from_file (dtlz);/*Now, we can use solutions from the well distributed front (igb_real_front) and the ones obtained from the NSGA-III algorithm (igb_algorithm)*/
 	for (l=0;l<popsize;l++)
 	{
-		for (i=0;i<factorial+factorial_inside;i++)
+		for (i=0;i<frontsize;i++)
 		{
 			for (k=0;k<nobj;k++)
 			{
