@@ -1,0 +1,16 @@
+set terminal pdf enhanced color font 'Helvetica,18'
+set output 'dtlz_convergence_metric810.pdf'
+set grid ytics mytics
+set grid xtics mytics
+set ylabel "Value of the convergence metric"
+set xlabel "Generation"
+set yrange [0.2:0.6]
+set xtics 200
+set multiplot
+plot 'convergence_DTLZ2.txt' u 1:4 w linespoints title ' DTLZ2.8D',\
+'convergence_DTLZ2.txt' u 1:5 w linespoints title 'DTLZ2.10D',\
+'convergence_DTLZ3.txt' u 1:4 w linespoints title ' DTLZ3.8D',\
+'convergence_DTLZ3.txt' u 1:5 w linespoints title 'DTLZ3.10D',\
+#'convergence_DTLZ4.txt' u 1:4 w linespoints title ' DTLZ4.8D',\
+#'convergence_DTLZ4.txt' u 1:5 w linespoints title 'DTLZ4.10D'
+unset multiplot

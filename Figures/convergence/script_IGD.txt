@@ -1,0 +1,47 @@
+set terminal pdf enhanced color font 'Helvetica,13'
+set output 'dtlz_igd_metric.pdf'
+set grid ytics mytics
+set grid xtics mytics
+set ylabel "Value of the IGD metric"
+set xlabel "Generation"
+set format y "10^{%L}"
+set logscale y
+set xtics 300
+set yrange [1E-04:5E+02]
+#set style line 2 lc rgb '#0ce90b' lt 1 lw 1.5 # --- green
+#set style line 3 lc rgb '#09e0b3' lt 1 lw 1.5 #      .
+#set style line 4 lc rgb '#065fd8' lt 1 lw 1.5 #      .
+#set style line 5 lc rgb '#4e04cf' lt 1 lw 1.5 #      .
+#set style line 6 lc rgb '#c702a9' lt 1 lw 1.5 #      .
+#set style line 7 lc rgb '#bf000a' lt 1 lw 1.5 # --- red
+set key font ",10"
+set multiplot layout 1,2
+set xrange [0:1500]
+set key maxcolumns 4 maxrows 9
+plot 'IGD_DTLZ1.txt' u 1:2 w linespoints  pointinterval 180 lw 2 lt rgb "black" pointtype 6 title 'DTLZ1-3D',\
+'IGD_DTLZ2.txt' u 1:2 w linespoints  pointinterval 180 lw 2 lt rgb "black" pointtype 8 title 'DTLZ2.3D',\
+'IGD_DTLZ3.txt' u 1:2 w linespoints  pointinterval 180 lw 2 lt rgb "brown" title 'DTLZ3.3D',\
+'IGD_DTLZ4.txt' u 1:2 w linespoints  pointinterval 180 lw 2 lt rgb "blue" title 'DTLZ4.3D',\
+'IGD_DTLZ5.txt' u 1:2 w linespoints  pointinterval 180 lw 2 lt rgb "red" pointtype 12 title 'DTLZ5.3D',\
+'IGD_DTLZ7.txt' u 1:2 w linespoints  pointinterval 180 lw 2 lt rgb "blue" title 'DTLZ7.3D',\
+'IGD_DTLZ1.txt' u 1:3 w linespoints  pointinterval 180 lw 2 lt rgb "magenta" pointtype 8 title 'DTLZ1.5D',\
+'IGD_DTLZ2.txt' u 1:3 w linespoints  pointinterval 180 lw 2 lt rgb "blue" title 'DTLZ2.5D',\
+'IGD_DTLZ3.txt' u 1:3 w linespoints  pointinterval 180 lw 2 lt rgb "green" pointtype 4 title 'DTLZ3.5D',\
+'IGD_DTLZ4.txt' u 1:3 w linespoints  pointinterval 180 lw 2 title 'DTLZ4.5D',\
+'IGD_DTLZ5.txt' u 1:3 w linespoints  pointinterval 180 lw 2 lt rgb "black" pointtype 12 title 'DTLZ5.5D',\
+
+set key maxcolumns 4 maxrows 11
+set yrange [1E-04:5E+01]
+plot 'IGD_IDTLZ1.txt' u 1:2 w linespoints  pointinterval 80 pointtype 6 title ' IDTLZ1.3D',\
+'IGD_IDTLZ1.txt' u 1:3 w linespoints  pointinterval 80 pointtype 6 title ' IDTLZ1.5D',\
+'IGD_DTLZ2.txt' u 1:4 w linespoints  pointinterval 180 lw 2 title ' DTLZ2.8D',\
+'IGD_DTLZ3.txt' u 1:4 w linespoints  pointinterval 180 lw 2 lt rgb "cyan" pointtype 10 title ' DTLZ3.8D',\
+'IGD_DTLZ4.txt' u 1:4 w linespoints  pointinterval 180 lw 2 title ' DTLZ4.8D',\
+'IGD_DTLZ5.txt' u 1:4 w linespoints  pointinterval 180 lw 2 title ' DTLZ5.8D',\
+'IGD_DTLZ7.txt' u 1:4 w linespoints  pointinterval 180 lw 2 lt rgb "brown" pointtype 7 title ' DTLZ7.8D',\
+'IGD_DTLZ2.txt' u 1:5 w linespoints  pointinterval 180 lw 2 title 'DTLZ2.10D',\
+'IGD_DTLZ3.txt' u 1:5 w linespoints  pointinterval 180 lw 2 title 'DTLZ3.10D',\
+'IGD_DTLZ4.txt' u 1:5 w linespoints  pointinterval 180 lw 2 title 'DTLZ4.10D',\
+'IGD_DTLZ5.txt' u 1:5 w linespoints  pointinterval 180 lw 2 title 'DTLZ5.10D',\
+'IGD_DTLZ7.txt' u 1:5 w linespoints  pointinterval 180 lw 2 title 'DTLZ7.10D'
+unset multiplot
