@@ -98,6 +98,8 @@ double **igb_algorithm_normalized;
 double **igb_real_front_normalized;
 double *maximum_value;
 double *minimum_value;
+double *convergence_data;
+double *IGD_data;
 char *supplied_refpoints_location;
 int number_is_feasible;
 int number_is_infeasible;
@@ -132,6 +134,8 @@ int main (int argc, char **argv)
     FILE *gp_normalized;
     FILE *gp_a;
     FILE *gp_dtlz;
+    FILE *gp_convergence;
+    FILE *gp_IGD;
     FILE *gp_real_front;
     population *parent_pop;
     population *child_pop;
@@ -144,6 +148,8 @@ int main (int argc, char **argv)
     gp_normalized = popen(GNUPLOT_COMMAND,"w");
     gp_a = popen(GNUPLOT_COMMAND,"w");
     gp_real_front = popen(GNUPLOT_COMMAND,"w");
+    gp_convergence = popen(GNUPLOT_COMMAND,"w");
+    gp_IGD = popen(GNUPLOT_COMMAND,"w");
     if (argc<2)
     {
         printf("\nUsage ./nsga2r random_seed, argc is %d\n",argc);
@@ -334,6 +340,8 @@ int main (int argc, char **argv)
         gp = popen(GNUPLOT_COMMAND,"w");
 	gp_pc = popen(GNUPLOT_COMMAND,"w");
         gp_dtlz = popen(GNUPLOT_COMMAND,"w");
+	gp_convergence = popen(GNUPLOT_COMMAND,"w");
+	gp_IGD = popen(GNUPLOT_COMMAND,"w");
 
         if (gp==NULL)
         {
@@ -584,6 +592,8 @@ int main (int argc, char **argv)
     scale_obj_max_ref=(double *)malloc(nobj*sizeof(int));
     a=(double *)malloc(nobj*sizeof(double));
     smin=(double *)malloc(nobj*sizeof(double));
+    convergence_data=(double *)malloc(ngen*sizeof(double));
+    IGD_data=(double *)malloc(ngen*sizeof(double));
     zmax=(double **)malloc(nobj*sizeof(double*));
     for (i=0;i<nobj;i++)
         zmax[i]=(double *)malloc(nobj*sizeof(double));
@@ -738,6 +748,7 @@ int main (int argc, char **argv)
     double temp_IGD=DBL_MAX;
     double IGD_value;
     int temp_gen=0;
+    double convergence_value;
     int i1,i2,i3;
     clock_t start = clock();
     for (i=0;i<nobj*(factorial+factorial_inside);i++)
@@ -753,6 +764,7 @@ int main (int argc, char **argv)
         mutation_pop (child_pop);/*ok*/
         decode_pop(child_pop);/*ok*/
         evaluate_pop(child_pop);/*ok*/
+	/*exit(-1);*/
         merge (parent_pop, child_pop, mixed_pop);/*ok*/
         fill_nondominated_sort (selection_pop, mixed_pop, parent_pop,i);
         report_pop(parent_pop,fpt4);
@@ -789,10 +801,21 @@ int main (int argc, char **argv)
 			temp_gen=i;
 		}
 	}
-        printf("\n gen = %d, IGD %e, convergence metric %e\n",i,temp_IGD,convergence_metric());
+	convergence_value=convergence_metric();
+        printf("\n gen = %d, IGD %e, convergence metric %e\n",i,temp_IGD,convergence_value);
+	IGD_data[i]=temp_IGD;
+	convergence_data[i]=convergence_value;
 	/*sleep(1);*/
     }
+    printf("IGD metric\n");
+    for (i=0;i<ngen;i++)
+	printf("%e\n",IGD_data[i]);
+    printf("convergence metric\n");
+    for (i=0;i<ngen;i++)
+	printf("%e\n",convergence_data[i]);
     if (nobj<=3)
+	onthefly_display_convergence (gp_convergence,ngen);
+	onthefly_display_IGD (gp_IGD,ngen);
     	onthefly_display_real_front (parent_pop,gp_real_front);
     if (adaptive_nsga == 1)
     	printf("\nGenerations finished, now reporting solutions (A-NSGA-III)\n");
@@ -834,6 +857,8 @@ int main (int argc, char **argv)
     {
         pclose(gp);
         pclose(gp_dtlz);
+        pclose(gp_convergence);
+        pclose(gp_IGD);
         pclose(gp_pc);
 
     }

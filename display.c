@@ -1,6 +1,6 @@
 /* Routines to display the population information using gnuplot */
 /* The Copyright belongs to Luis Felipe Ariza Vesga (lfarizav@unal.edu.co). You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
-A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Many-Objective Problems. March, 2019. */
+A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. March, 2019. */
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -45,6 +45,41 @@ void onthefly_display (population *pop, FILE *gp, int ii, int normalization)
             fprintf(gp,"set title 'Generation #%d'\n set view %d,%d\n unset key\n splot 'plot.out' w points pointtype 6 pointsize 1\n",ii,angle1,angle2);
         fflush(gp);
     }
+    fclose(fpt);
+    return;
+}
+/* Function to display the current population for the subsequent generation */
+void onthefly_display_convergence (FILE *gp, int size)
+{
+    int i,j;
+    int flag;
+    FILE *fpt;
+    fpt = fopen("plot_convergence.out","w");
+    flag = 0;
+
+    for (i=0; i<size; i++)
+    {
+	fprintf(fpt,"%d\t%e\n",i,convergence_data[i]);
+    }
+    fprintf(gp,"set logscale y\nset title 'Convergence metric'\n unset key\n plot 'plot_convergence.out' w lines pointtype 6 pointsize 1\n");
+    fclose(fpt);
+    return;
+}
+/* Function to display the current population for the subsequent generation */
+void onthefly_display_IGD (FILE *gp, int size)
+{
+    int i,j;
+    char xlabel="UEs";
+    int flag;
+    FILE *fpt;
+    fpt = fopen("plot_IGD.out","w");
+    flag = 0;
+
+    for (i=0; i<size; i++)
+    {
+	fprintf(fpt,"%d\t%e\n",i,IGD_data[i]);
+    }
+    fprintf(gp,"set xlabel %s\nset logscale y\nset title 'IGD metric'\n unset key\n plot 'plot_IGD.out' w lines pointtype 6 pointsize 1\n");
     fclose(fpt);
     return;
 }
@@ -344,16 +379,16 @@ void onthefly_display_parallel_coordinates (population *pop, FILE *gp_pc, int ii
     FILE *fpt, *fpt_pc;
     fpt_pc = fopen("plot_pc.out","w");
     fpt = fopen("plot.out","w");
-    for (j=0; j<popsize; j++)
+    /*for (j=0; j<popsize; j++)
     {
        	find_min_from_functions(&(pop->ind[j]),j,1);
         find_max_from_functions(&(pop->ind[j]),j,1);
-    }
+    }*/
     for (i=0; i<popsize; i++)
     {
 		for (j=0;j<nobj;j++)
 		{
-                	fprintf(fpt_pc,"%d\t%e\n",j+1,(pop->ind[i].obj[j]-scale_obj_min[j])/(scale_obj_max[j]-scale_obj_min[j]));
+                	fprintf(fpt_pc,"%d\t%e\n",j+1,(pop->ind[i].obj[j]/*-scale_obj_min[j])/(scale_obj_max[j]-scale_obj_min[j]*/));
 		}
 		for (j=0;j<=nobj;j++)
 		{

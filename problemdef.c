@@ -975,13 +975,10 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
 			obj[i] *= 1 - xreal[aux];
 		}
     }
-    for (i=0;i<nobj;i++)
-    {
-	temp_constr=0;
-	for (j=0;j<nobj-1;j++)
+    temp_constr=0;
+    for (j=0;j<nobj-1;j++)
 		temp_constr=temp_constr+obj[j]/0.5;
-	constr[i]=1-obj[nobj-1]/0.6-temp_constr;
-    }
+    constr[0]=1-obj[nobj-1]/0.6-temp_constr;
     /*for (i=0;i<nobj-2;i++)
     {
 	temp_constr+=obj[i]/0.5;
