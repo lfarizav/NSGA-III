@@ -1,0 +1,6 @@
+set terminal postscript eps enhanced color font 'Helvetica,30'
+set output 'dtlz2_5d.eps'
+set ylabel "Normalized Objective Value"
+set xlabel "Objective Number"
+set xtics 1
+plot for [i=0:276] 'plot_pc2.out' i i u 1:2 w linesp notitle
