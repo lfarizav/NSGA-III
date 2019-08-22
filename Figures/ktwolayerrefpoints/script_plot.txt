@@ -1,0 +1,27 @@
+set terminal pdf enhanced color font 'Helvetica,20'
+set output 'ktwolayerrefpoints.pdf'
+set multiplot layout 1,2
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 80,135
+set xyplane 0
+set xlabel offset -1,-1
+set ylabel offset -1,-1
+set xrange [0:1]
+set yrange [0:1]
+set zrange [0:1]
+set xtics 0,0.5,1
+set ytics 0,0.5,0.5
+splot 'plot_rf.out' w points pointtype 6 pointsize 0.5 notitle, \
+'plot_one.out' w lines notitle, \
+'plot_one_scale_1.out' w lines notitle, \
+'plot_one_scale_2.out' w lines notitle
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 80,135
+splot 'plot_rf1.out' w points pointtype 6 pointsize 0.5 notitle, \
+'plot_one.out' w lines notitle, \
+'plot_one_scale.out' w lines notitle
+unset multiplot

@@ -1,0 +1,14 @@
+set terminal postscript eps enhanced color font 'Helvetica,30'
+set output 'dasanddennis.eps'
+set xyplane 0
+set xtics 0.5,0.5,1
+set ytics 0.5
+set ztics 0.5
+set xlabel offset -1,-1
+set ylabel offset -1,-1
+set zlabel offset 1,1
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 60,70
+splot 'plot_rf.out' w points lt rgb "red" pointtype 6 pointsize 1 notitle
