@@ -1,0 +1,27 @@
+set terminal pdf enhanced color font 'Helvetica,12'
+set output 'compfrontdtlz1.pdf'
+set multiplot layout 1,3
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 85,135
+set xtics 0.2
+set ytics 0.2
+set xlabel offset -1,-1
+set ylabel offset -1,-1
+set xtics font "Helvetica,10" 
+set xyplane 0
+splot 'plot0.out' w points lt rgb "red" pointtype 6 pointsize 0.5 notitle
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 85,135
+set xyplane 0
+splot 'plot1.out' w points lt rgb "red" pointtype 6 pointsize 0.5 notitle
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 85,135
+set xyplane 0
+splot 'plot2.out' w points lt rgb "red" pointtype 6 pointsize 0.5 notitle
+unset multiplot
