@@ -419,6 +419,62 @@ void onthefly_display_parallel_coordinates (population *pop, FILE *gp_pc, int ii
     fclose(fpt);
     return;
 }
+/* Function to display the current population in parallel coordinates for the subsequent generation in more than 3 dimmensions	*/
+void onthefly_display_parallel_coordinates_normalized (population *pop, FILE *gp_pc, int ii)
+{
+    int i,j,k;
+    for (i=0;i<nobj;i++)
+    {
+	scale_obj_min[i]=DBL_MAX;
+    }
+    memset(scale_obj_max,0,nobj*sizeof(double));
+    FILE *fpt, *fpt_pc;
+    fpt_pc = fopen("plot_pc.out","w");
+    fpt = fopen("plot.out","w");
+    for (j=0; j<popsize; j++)
+    {
+       	/*display_pop_ind_obj(&(selection_pop->ind[j]),j); /*Display selection population = St+last front*/
+       	find_min_from_functions(&(pop->ind[j]),j,1);
+        find_max_from_functions(&(pop->ind[j]),j,1);
+    }
+    for (i=0; i<popsize; i++)
+    {
+		for (j=0;j<nobj;j++)
+		{
+                	fprintf(fpt_pc,"%d\t%e\n",j+1,(pop->ind[i].obj[j]-scale_obj_min[j])/(scale_obj_max[j]-scale_obj_min[j]));
+		}
+		for (j=0;j<=nobj;j++)
+		{
+			fprintf(fpt_pc,"\n");
+		}
+                fflush(fpt_pc);
+    }
+
+    for (i=0; i<popsize; i++)
+    {
+        /*if (pop->ind[i].constr_violation==0)
+        {*/
+	    for (j=0;j<nobj;j++)
+	    {
+			fprintf(fpt,"%e\t",pop->ind[i].obj[j]);
+	    }
+	    fprintf(fpt,"\n");
+            fflush(fpt);
+        /*}*/
+    }
+    fprintf(gp_pc,"set title 'Parallel Coordinates'\n unset key\n unset xtics\n set tmargin 6\n");
+    fprintf(gp_pc,"set x2tics rotate by 90 offset 0 mirror ( ");
+    for (k=1;k<nobj;k++)
+    {
+			fprintf(gp_pc,"'objective %d' %d,",k,k);
+    }
+    fprintf(gp_pc,"'objective %d' %d)\n plot for [i=0:%d] 'plot_pc.out' i i u 1:2 w linesp notitle\n",k,k,popsize);
+
+    fflush(gp_pc);
+    fclose(fpt_pc);
+    fclose(fpt);
+    return;
+}
 void display_pop (population *pop)
 {
     int i;

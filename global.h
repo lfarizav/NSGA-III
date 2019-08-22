@@ -193,6 +193,7 @@ void onthefly_display_zmax (population *pop, FILE *gp);
 void onthefly_display_DTLZ1 (FILE *gp_dtlz);
 void onthefly_display_refpoints (population *pop, FILE *gp);
 void onthefly_display_parallel_coordinates (population *pop, FILE *gp_pc, int ii);
+void onthefly_display_parallel_coordinates_normalized (population *pop, FILE *gp_pc, int ii);
 void onthefly_display_convergence (FILE *gp, int size);
 void display_pop (population *pop);
 void display_pop_ind_obj (individual *ind, int popsizeline);
