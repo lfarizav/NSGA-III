@@ -3,7 +3,7 @@ set output 'dtlz_convergence_metric.pdf'
 set grid ytics mytics
 set grid xtics mytics
 set ylabel "Convergence value"
-set xlabel "Generation"
+set xlabel "Number of generations"
 set format y "10^{%L}"
 set logscale y
 set xtics 200
