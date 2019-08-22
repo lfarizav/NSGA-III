@@ -1,0 +1,67 @@
+set terminal pdf enhanced color font 'Helvetica,20'
+set output 'dtlz1_boxplot.pdf'
+bm = 0.15
+lm = 0.12
+rm = 0.95
+gap = 0.03
+size = 0.75
+yoffset = 0.35
+y1 = 0.0; y2 = 150.0; y3 = 1900.0; y4 = 4100.0
+set grid ytics mytics
+set style line 1 lt 2 lc rgb "red" lw 3
+set style line 2 lt 2 lc rgb "orange" lw 3
+set style line 3 lt 2 lc rgb "yellow" lw 3
+set style line 4 lt 2 lc rgb "green" lw 3
+set style line 5 lt 2 lc rgb "purple" lw 3
+set style line 6 lt 2 lc rgb "blue" lw 3
+set style line 7 lt 2 lc rgb "brown" lw 3
+set style line 8 lt 2 lc rgb "black" lw 3
+
+set key inside left maxcols 1 maxrows 6
+
+# Data columns: X Min 1stQuartile Median 3rdQuartile Max BoxWidth Titles
+set multiplot
+set boxwidth 0.3 absolute
+set xrange[0.5:8.5]
+set border 1+2+8
+set xtics nomirror
+set ytics nomirror
+set lmargin at screen lm
+set rmargin at screen rm
+set bmargin at screen bm
+set tmargin at screen bm + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) )+yoffset
+
+set yrange[y1:y2]
+
+# set bars 4.0
+set style fill empty
+set ytics 20 
+plot 'DTLZ1.txt' using 1:3:2:6:5:7:xticlabels(8) with candlesticks ls 1 lt rgb "purple" notitle whiskerbars, \
+  ''         using 1:4:4:4:4:7 with candlesticks ls 1 notitle
+unset xtics
+unset xlabel
+set border 2+4+8
+set bmargin at screen bm + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) ) + gap+yoffset
+set tmargin at screen bm + size + gap+yoffset
+set yrange [y3:y4]
+set label 'IGD value [*1E-4]' at screen 0.03, bm + 0.5 * (size + gap) offset 45.5,-strlen("Power [mW]")/4.0 rotate by 90
+
+set arrow from screen lm - gap / 4.0, bm+yoffset + size * (abs(y2-y1) / (abs(y2-y1)+abs(y4-y3) ) ) - gap / 4.0 to screen \
+lm + gap / 4.0, bm+yoffset + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) ) + gap / 4.0 nohead
+
+set arrow from screen lm - gap / 4.0, bm+yoffset + size * (abs(y2-y1) / (abs(y2-y1)+abs(y4-y3) ) ) - gap / 4.0  + gap to screen \
+lm + gap / 4.0, bm+yoffset + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) ) + gap / 4.0 + gap nohead
+
+set arrow from screen rm - gap / 4.0, bm+yoffset + size * (abs(y2-y1) / (abs(y2-y1)+abs(y4-y3) ) ) - gap / 4.0 to screen \
+rm + gap / 4.0, bm+yoffset + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) ) + gap / 4.0 nohead
+
+set arrow from screen rm - gap / 4.0, bm+yoffset + size * (abs(y2-y1) / (abs(y2-y1)+abs(y4-y3) ) ) - gap / 4.0  + gap to screen \
+rm + gap / 4.0, bm+yoffset + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) ) + gap / 4.0 + gap nohead
+
+# set bars 4.0
+set style fill empty
+set ytics 500
+replot 'DTLZ2.txt' using 1:3:2:6:5:7:xticlabels(8) with candlesticks ls 1 lt rgb "purple" notitle whiskerbars, \
+  ''         using 1:4:4:4:4:7 with candlesticks ls 1 notitle
+
+unset multiplot

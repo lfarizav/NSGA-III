@@ -1,0 +1,29 @@
+set terminal postscript eps enhanced color font 'Helvetica,30'
+set output 'c2dtlz2versions.eps'
+set multiplot layout 1,3
+set xyplane 0
+set xlabel offset -1,-1
+set ylabel offset -1,-1
+set zlabel offset 2,2
+set xtics 0.5
+set ytics 0.5,0.5,0.5
+set ztics 0.5
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 80,135
+set xrange [0:1]
+set yrange [0:1]
+set zrange [0:1]
+splot 'plot_c2dtlz2_nsga3.out' w points pointtype 6 lt rgb "red" pointsize 0.5 notitle
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 80,135
+splot 'plot_c2dtlz2_ansga3.out' w points pointtype 6 lt rgb "red" pointsize 0.5 notitle
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 80,135
+splot 'plot_c2dtlz2_a2nsga3.out' w points pointtype 6 lt rgb "red" pointsize 0.5 notitle
+unset multiplot
