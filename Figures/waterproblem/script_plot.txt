@@ -1,0 +1,8 @@
+set terminal postscript eps enhanced color font 'Helvetica,30'
+set output 'water_0p5.eps'
+set ylabel "Normalized Objective Value"
+set xlabel "Objective Number"
+set view 80,135
+set xtics 1
+plot for [i=0:276] 'plot_pc.out' i i u 1:2 w linesp notitle
+

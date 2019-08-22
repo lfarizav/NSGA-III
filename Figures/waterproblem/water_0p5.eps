@@ -1,0 +1,4232 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%Title: water_0p5.eps
+%%Creator: gnuplot 5.0 patchlevel 3
+%%CreationDate: Tue Aug 20 18:56:58 2019
+%%DocumentFonts: (atend)
+%%BoundingBox: 50 50 410 302
+%%EndComments
+%%BeginProlog
+/gnudict 256 dict def
+gnudict begin
+%
+% The following true/false flags may be edited by hand if desired.
+% The unit line width and grayscale image gamma correction may also be changed.
+%
+/Color true def
+/Blacktext false def
+/Solid false def
+/Dashlength 1 def
+/Landscape false def
+/Level1 false def
+/Level3 false def
+/Rounded false def
+/ClipToBoundingBox false def
+/SuppressPDFMark false def
+/TransparentPatterns false def
+/gnulinewidth 5.000 def
+/userlinewidth gnulinewidth def
+/Gamma 1.0 def
+/BackgroundColor {-1.000 -1.000 -1.000} def
+%
+/vshift -100 def
+/dl1 {
+  10.0 Dashlength userlinewidth gnulinewidth div mul mul mul
+  Rounded { currentlinewidth 0.75 mul sub dup 0 le { pop 0.01 } if } if
+} def
+/dl2 {
+  10.0 Dashlength userlinewidth gnulinewidth div mul mul mul
+  Rounded { currentlinewidth 0.75 mul add } if
+} def
+/hpt_ 31.5 def
+/vpt_ 31.5 def
+/hpt hpt_ def
+/vpt vpt_ def
+/doclip {
+  ClipToBoundingBox {
+    newpath 50 50 moveto 410 50 lineto 410 302 lineto 50 302 lineto closepath
+    clip
+  } if
+} def
+%
+% Gnuplot Prolog Version 5.1 (Oct 2015)
+%
+%/SuppressPDFMark true def
+%
+/M {moveto} bind def
+/L {lineto} bind def
+/R {rmoveto} bind def
+/V {rlineto} bind def
+/N {newpath moveto} bind def
+/Z {closepath} bind def
+/C {setrgbcolor} bind def
+/f {rlineto fill} bind def
+/g {setgray} bind def
+/Gshow {show} def   % May be redefined later in the file to support UTF-8
+/vpt2 vpt 2 mul def
+/hpt2 hpt 2 mul def
+/Lshow {currentpoint stroke M 0 vshift R 
+	Blacktext {gsave 0 setgray textshow grestore} {textshow} ifelse} def
+/Rshow {currentpoint stroke M dup stringwidth pop neg vshift R
+	Blacktext {gsave 0 setgray textshow grestore} {textshow} ifelse} def
+/Cshow {currentpoint stroke M dup stringwidth pop -2 div vshift R 
+	Blacktext {gsave 0 setgray textshow grestore} {textshow} ifelse} def
+/UP {dup vpt_ mul /vpt exch def hpt_ mul /hpt exch def
+  /hpt2 hpt 2 mul def /vpt2 vpt 2 mul def} def
+/DL {Color {setrgbcolor Solid {pop []} if 0 setdash}
+ {pop pop pop 0 setgray Solid {pop []} if 0 setdash} ifelse} def
+/BL {stroke userlinewidth 2 mul setlinewidth
+	Rounded {1 setlinejoin 1 setlinecap} if} def
+/AL {stroke userlinewidth 2 div setlinewidth
+	Rounded {1 setlinejoin 1 setlinecap} if} def
+/UL {dup gnulinewidth mul /userlinewidth exch def
+	dup 1 lt {pop 1} if 10 mul /udl exch def} def
+/PL {stroke userlinewidth setlinewidth
+	Rounded {1 setlinejoin 1 setlinecap} if} def
+3.8 setmiterlimit
+% Classic Line colors (version 5.0)
+/LCw {1 1 1} def
+/LCb {0 0 0} def
+/LCa {0 0 0} def
+/LC0 {1 0 0} def
+/LC1 {0 1 0} def
+/LC2 {0 0 1} def
+/LC3 {1 0 1} def
+/LC4 {0 1 1} def
+/LC5 {1 1 0} def
+/LC6 {0 0 0} def
+/LC7 {1 0.3 0} def
+/LC8 {0.5 0.5 0.5} def
+% Default dash patterns (version 5.0)
+/LTB {BL [] LCb DL} def
+/LTw {PL [] 1 setgray} def
+/LTb {PL [] LCb DL} def
+/LTa {AL [1 udl mul 2 udl mul] 0 setdash LCa setrgbcolor} def
+/LT0 {PL [] LC0 DL} def
+/LT1 {PL [2 dl1 3 dl2] LC1 DL} def
+/LT2 {PL [1 dl1 1.5 dl2] LC2 DL} def
+/LT3 {PL [6 dl1 2 dl2 1 dl1 2 dl2] LC3 DL} def
+/LT4 {PL [1 dl1 2 dl2 6 dl1 2 dl2 1 dl1 2 dl2] LC4 DL} def
+/LT5 {PL [4 dl1 2 dl2] LC5 DL} def
+/LT6 {PL [1.5 dl1 1.5 dl2 1.5 dl1 1.5 dl2 1.5 dl1 6 dl2] LC6 DL} def
+/LT7 {PL [3 dl1 3 dl2 1 dl1 3 dl2] LC7 DL} def
+/LT8 {PL [2 dl1 2 dl2 2 dl1 6 dl2] LC8 DL} def
+/SL {[] 0 setdash} def
+/Pnt {stroke [] 0 setdash gsave 1 setlinecap M 0 0 V stroke grestore} def
+/Dia {stroke [] 0 setdash 2 copy vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath stroke
+  Pnt} def
+/Pls {stroke [] 0 setdash vpt sub M 0 vpt2 V
+  currentpoint stroke M
+  hpt neg vpt neg R hpt2 0 V stroke
+ } def
+/Box {stroke [] 0 setdash 2 copy exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V closepath stroke
+  Pnt} def
+/Crs {stroke [] 0 setdash exch hpt sub exch vpt add M
+  hpt2 vpt2 neg V currentpoint stroke M
+  hpt2 neg 0 R hpt2 vpt2 V stroke} def
+/TriU {stroke [] 0 setdash 2 copy vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath stroke
+  Pnt} def
+/Star {2 copy Pls Crs} def
+/BoxF {stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V closepath fill} def
+/TriUF {stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath fill} def
+/TriD {stroke [] 0 setdash 2 copy vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath stroke
+  Pnt} def
+/TriDF {stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath fill} def
+/DiaF {stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath fill} def
+/Pent {stroke [] 0 setdash 2 copy gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath stroke grestore Pnt} def
+/PentF {stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath fill grestore} def
+/Circle {stroke [] 0 setdash 2 copy
+  hpt 0 360 arc stroke Pnt} def
+/CircleF {stroke [] 0 setdash hpt 0 360 arc fill} def
+/C0 {BL [] 0 setdash 2 copy moveto vpt 90 450 arc} bind def
+/C1 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 90 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C2 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 90 180 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C3 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 180 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C4 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 180 270 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C5 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 90 arc
+	2 copy moveto
+	2 copy vpt 180 270 arc closepath fill
+	vpt 0 360 arc} bind def
+/C6 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 90 270 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C7 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 270 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C8 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 270 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C9 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 270 450 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C10 {BL [] 0 setdash 2 copy 2 copy moveto vpt 270 360 arc closepath fill
+	2 copy moveto
+	2 copy vpt 90 180 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C11 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 180 arc closepath fill
+	2 copy moveto
+	2 copy vpt 270 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C12 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 180 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C13 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 90 arc closepath fill
+	2 copy moveto
+	2 copy vpt 180 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C14 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 90 360 arc closepath fill
+	vpt 0 360 arc} bind def
+/C15 {BL [] 0 setdash 2 copy vpt 0 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/Rec {newpath 4 2 roll moveto 1 index 0 rlineto 0 exch rlineto
+	neg 0 rlineto closepath} bind def
+/Square {dup Rec} bind def
+/Bsquare {vpt sub exch vpt sub exch vpt2 Square} bind def
+/S0 {BL [] 0 setdash 2 copy moveto 0 vpt rlineto BL Bsquare} bind def
+/S1 {BL [] 0 setdash 2 copy vpt Square fill Bsquare} bind def
+/S2 {BL [] 0 setdash 2 copy exch vpt sub exch vpt Square fill Bsquare} bind def
+/S3 {BL [] 0 setdash 2 copy exch vpt sub exch vpt2 vpt Rec fill Bsquare} bind def
+/S4 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt Square fill Bsquare} bind def
+/S5 {BL [] 0 setdash 2 copy 2 copy vpt Square fill
+	exch vpt sub exch vpt sub vpt Square fill Bsquare} bind def
+/S6 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt vpt2 Rec fill Bsquare} bind def
+/S7 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt vpt2 Rec fill
+	2 copy vpt Square fill Bsquare} bind def
+/S8 {BL [] 0 setdash 2 copy vpt sub vpt Square fill Bsquare} bind def
+/S9 {BL [] 0 setdash 2 copy vpt sub vpt vpt2 Rec fill Bsquare} bind def
+/S10 {BL [] 0 setdash 2 copy vpt sub vpt Square fill 2 copy exch vpt sub exch vpt Square fill
+	Bsquare} bind def
+/S11 {BL [] 0 setdash 2 copy vpt sub vpt Square fill 2 copy exch vpt sub exch vpt2 vpt Rec fill
+	Bsquare} bind def
+/S12 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill Bsquare} bind def
+/S13 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill
+	2 copy vpt Square fill Bsquare} bind def
+/S14 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill
+	2 copy exch vpt sub exch vpt Square fill Bsquare} bind def
+/S15 {BL [] 0 setdash 2 copy Bsquare fill Bsquare} bind def
+/D0 {gsave translate 45 rotate 0 0 S0 stroke grestore} bind def
+/D1 {gsave translate 45 rotate 0 0 S1 stroke grestore} bind def
+/D2 {gsave translate 45 rotate 0 0 S2 stroke grestore} bind def
+/D3 {gsave translate 45 rotate 0 0 S3 stroke grestore} bind def
+/D4 {gsave translate 45 rotate 0 0 S4 stroke grestore} bind def
+/D5 {gsave translate 45 rotate 0 0 S5 stroke grestore} bind def
+/D6 {gsave translate 45 rotate 0 0 S6 stroke grestore} bind def
+/D7 {gsave translate 45 rotate 0 0 S7 stroke grestore} bind def
+/D8 {gsave translate 45 rotate 0 0 S8 stroke grestore} bind def
+/D9 {gsave translate 45 rotate 0 0 S9 stroke grestore} bind def
+/D10 {gsave translate 45 rotate 0 0 S10 stroke grestore} bind def
+/D11 {gsave translate 45 rotate 0 0 S11 stroke grestore} bind def
+/D12 {gsave translate 45 rotate 0 0 S12 stroke grestore} bind def
+/D13 {gsave translate 45 rotate 0 0 S13 stroke grestore} bind def
+/D14 {gsave translate 45 rotate 0 0 S14 stroke grestore} bind def
+/D15 {gsave translate 45 rotate 0 0 S15 stroke grestore} bind def
+/DiaE {stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath stroke} def
+/BoxE {stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V closepath stroke} def
+/TriUE {stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath stroke} def
+/TriDE {stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath stroke} def
+/PentE {stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath stroke grestore} def
+/CircE {stroke [] 0 setdash 
+  hpt 0 360 arc stroke} def
+/Opaque {gsave closepath 1 setgray fill grestore 0 setgray closepath} def
+/DiaW {stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V Opaque stroke} def
+/BoxW {stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V Opaque stroke} def
+/TriUW {stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V Opaque stroke} def
+/TriDW {stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V Opaque stroke} def
+/PentW {stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  Opaque stroke grestore} def
+/CircW {stroke [] 0 setdash 
+  hpt 0 360 arc Opaque stroke} def
+/BoxFill {gsave Rec 1 setgray fill grestore} def
+/Density {
+  /Fillden exch def
+  currentrgbcolor
+  /ColB exch def /ColG exch def /ColR exch def
+  /ColR ColR Fillden mul Fillden sub 1 add def
+  /ColG ColG Fillden mul Fillden sub 1 add def
+  /ColB ColB Fillden mul Fillden sub 1 add def
+  ColR ColG ColB setrgbcolor} def
+/BoxColFill {gsave Rec PolyFill} def
+/PolyFill {gsave Density fill grestore grestore} def
+/h {rlineto rlineto rlineto gsave closepath fill grestore} bind def
+%
+% PostScript Level 1 Pattern Fill routine for rectangles
+% Usage: x y w h s a XX PatternFill
+%	x,y = lower left corner of box to be filled
+%	w,h = width and height of box
+%	  a = angle in degrees between lines and x-axis
+%	 XX = 0/1 for no/yes cross-hatch
+%
+/PatternFill {gsave /PFa [ 9 2 roll ] def
+  PFa 0 get PFa 2 get 2 div add PFa 1 get PFa 3 get 2 div add translate
+  PFa 2 get -2 div PFa 3 get -2 div PFa 2 get PFa 3 get Rec
+  TransparentPatterns {} {gsave 1 setgray fill grestore} ifelse
+  clip
+  currentlinewidth 0.5 mul setlinewidth
+  /PFs PFa 2 get dup mul PFa 3 get dup mul add sqrt def
+  0 0 M PFa 5 get rotate PFs -2 div dup translate
+  0 1 PFs PFa 4 get div 1 add floor cvi
+	{PFa 4 get mul 0 M 0 PFs V} for
+  0 PFa 6 get ne {
+	0 1 PFs PFa 4 get div 1 add floor cvi
+	{PFa 4 get mul 0 2 1 roll M PFs 0 V} for
+ } if
+  stroke grestore} def
+%
+/languagelevel where
+ {pop languagelevel} {1} ifelse
+dup 2 lt
+	{/InterpretLevel1 true def
+	 /InterpretLevel3 false def}
+	{/InterpretLevel1 Level1 def
+	 2 gt
+	    {/InterpretLevel3 Level3 def}
+	    {/InterpretLevel3 false def}
+	 ifelse }
+ ifelse
+%
+% PostScript level 2 pattern fill definitions
+%
+/Level2PatternFill {
+/Tile8x8 {/PaintType 2 /PatternType 1 /TilingType 1 /BBox [0 0 8 8] /XStep 8 /YStep 8}
+	bind def
+/KeepColor {currentrgbcolor [/Pattern /DeviceRGB] setcolorspace} bind def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 0 0 M 8 8 L 0 8 M 8 0 L stroke} 
+>> matrix makepattern
+/Pat1 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 0 0 M 8 8 L 0 8 M 8 0 L stroke
+	0 4 M 4 8 L 8 4 L 4 0 L 0 4 L stroke}
+>> matrix makepattern
+/Pat2 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 0 0 M 0 8 L
+	8 8 L 8 0 L 0 0 L fill}
+>> matrix makepattern
+/Pat3 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop -4 8 M 8 -4 L
+	0 12 M 12 0 L stroke}
+>> matrix makepattern
+/Pat4 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop -4 0 M 8 12 L
+	0 -4 M 12 8 L stroke}
+>> matrix makepattern
+/Pat5 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop -2 8 M 4 -4 L
+	0 12 M 8 -4 L 4 12 M 10 0 L stroke}
+>> matrix makepattern
+/Pat6 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop -2 0 M 4 12 L
+	0 -4 M 8 12 L 4 -4 M 10 8 L stroke}
+>> matrix makepattern
+/Pat7 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 8 -2 M -4 4 L
+	12 0 M -4 8 L 12 4 M 0 10 L stroke}
+>> matrix makepattern
+/Pat8 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 0 -2 M 12 4 L
+	-4 0 M 12 8 L -4 4 M 8 10 L stroke}
+>> matrix makepattern
+/Pat9 exch def
+/Pattern1 {PatternBgnd KeepColor Pat1 setpattern} bind def
+/Pattern2 {PatternBgnd KeepColor Pat2 setpattern} bind def
+/Pattern3 {PatternBgnd KeepColor Pat3 setpattern} bind def
+/Pattern4 {PatternBgnd KeepColor Landscape {Pat5} {Pat4} ifelse setpattern} bind def
+/Pattern5 {PatternBgnd KeepColor Landscape {Pat4} {Pat5} ifelse setpattern} bind def
+/Pattern6 {PatternBgnd KeepColor Landscape {Pat9} {Pat6} ifelse setpattern} bind def
+/Pattern7 {PatternBgnd KeepColor Landscape {Pat8} {Pat7} ifelse setpattern} bind def
+} def
+%
+%
+%End of PostScript Level 2 code
+%
+/PatternBgnd {
+  TransparentPatterns {} {gsave 1 setgray fill grestore} ifelse
+} def
+%
+% Substitute for Level 2 pattern fill codes with
+% grayscale if Level 2 support is not selected.
+%
+/Level1PatternFill {
+/Pattern1 {0.250 Density} bind def
+/Pattern2 {0.500 Density} bind def
+/Pattern3 {0.750 Density} bind def
+/Pattern4 {0.125 Density} bind def
+/Pattern5 {0.375 Density} bind def
+/Pattern6 {0.625 Density} bind def
+/Pattern7 {0.875 Density} bind def
+} def
+%
+% Now test for support of Level 2 code
+%
+Level1 {Level1PatternFill} {Level2PatternFill} ifelse
+%
+/Symbol-Oblique /Symbol findfont [1 0 .167 1 0 0] makefont
+dup length dict begin {1 index /FID eq {pop pop} {def} ifelse} forall
+currentdict end definefont pop
+%
+/MFshow {
+   { dup 5 get 3 ge
+     { 5 get 3 eq {gsave} {grestore} ifelse }
+     {dup dup 0 get findfont exch 1 get scalefont setfont
+     [ currentpoint ] exch dup 2 get 0 exch R dup 5 get 2 ne {dup dup 6
+     get exch 4 get {textshow} {stringwidth pop 0 R} ifelse }if dup 5 get 0 eq
+     {dup 3 get {2 get neg 0 exch R pop} {pop aload pop M} ifelse} {dup 5
+     get 1 eq {dup 2 get exch dup 3 get exch 6 get stringwidth pop -2 div
+     dup 0 R} {dup 6 get stringwidth pop -2 div 0 R 6 get
+     textshow 2 index {aload pop M neg 3 -1 roll neg R pop pop} {pop pop pop
+     pop aload pop M} ifelse }ifelse }ifelse }
+     ifelse }
+   forall} def
+/Gswidth {dup type /stringtype eq {stringwidth} {pop (n) stringwidth} ifelse} def
+/MFwidth {0 exch { dup 5 get 3 ge { 5 get 3 eq { 0 } { pop } ifelse }
+ {dup 3 get{dup dup 0 get findfont exch 1 get scalefont setfont
+     6 get Gswidth pop add} {pop} ifelse} ifelse} forall} def
+/MLshow { currentpoint stroke M
+  0 exch R
+  Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
+/MRshow { currentpoint stroke M
+  exch dup MFwidth neg 3 -1 roll R
+  Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
+/MCshow { currentpoint stroke M
+  exch dup MFwidth -2 div 3 -1 roll R
+  Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
+/XYsave    { [( ) 1 2 true false 3 ()] } bind def
+/XYrestore { [( ) 1 2 true false 4 ()] } bind def
+Level1 SuppressPDFMark or 
+{} {
+/SDict 10 dict def
+systemdict /pdfmark known not {
+  userdict /pdfmark systemdict /cleartomark get put
+} if
+SDict begin [
+  /Title (water_0p5.eps)
+  /Subject (gnuplot plot)
+  /Creator (gnuplot 5.0 patchlevel 3)
+  /Author (lfarizav)
+%  /Producer (gnuplot)
+%  /Keywords ()
+  /CreationDate (Tue Aug 20 18:56:58 2019)
+  /DOCINFO pdfmark
+end
+} ifelse
+%
+% Support for boxed text - Ethan A Merritt May 2005
+%
+/InitTextBox { userdict /TBy2 3 -1 roll put userdict /TBx2 3 -1 roll put
+           userdict /TBy1 3 -1 roll put userdict /TBx1 3 -1 roll put
+	   /Boxing true def } def
+/ExtendTextBox { Boxing
+    { gsave dup false charpath pathbbox
+      dup TBy2 gt {userdict /TBy2 3 -1 roll put} {pop} ifelse
+      dup TBx2 gt {userdict /TBx2 3 -1 roll put} {pop} ifelse
+      dup TBy1 lt {userdict /TBy1 3 -1 roll put} {pop} ifelse
+      dup TBx1 lt {userdict /TBx1 3 -1 roll put} {pop} ifelse
+      grestore } if } def
+/PopTextBox { newpath TBx1 TBxmargin sub TBy1 TBymargin sub M
+               TBx1 TBxmargin sub TBy2 TBymargin add L
+	       TBx2 TBxmargin add TBy2 TBymargin add L
+	       TBx2 TBxmargin add TBy1 TBymargin sub L closepath } def
+/DrawTextBox { PopTextBox stroke /Boxing false def} def
+/FillTextBox { gsave PopTextBox 1 1 1 setrgbcolor fill grestore /Boxing false def} def
+0 0 0 0 InitTextBox
+/TBxmargin 20 def
+/TBymargin 20 def
+/Boxing false def
+/textshow { ExtendTextBox Gshow } def
+%
+% redundant definitions for compatibility with prologue.ps older than 5.0.2
+/LTB {BL [] LCb DL} def
+/LTb {PL [] LCb DL} def
+end
+%%EndProlog
+%%Page: 1 1
+gnudict begin
+gsave
+doclip
+50 50 translate
+0.050 0.050 scale
+0 setgray
+newpath
+(Helvetica) findfont 300 scalefont setfont
+BackgroundColor 0 lt 3 1 roll 0 lt exch 0 lt or or not {BackgroundColor C 1.000 0 0 7200.00 5040.00 BoxColFill} if
+1.000 UL
+LTb
+LCb setrgbcolor
+1470 960 M
+63 0 V
+5126 0 R
+-63 0 V
+stroke
+1290 960 M
+[ [(Helvetica) 300.0 0.0 true true 0 ( 0)]
+] -100.0 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+1470 1704 M
+63 0 V
+5126 0 R
+-63 0 V
+stroke
+1290 1704 M
+[ [(Helvetica) 300.0 0.0 true true 0 ( 0.2)]
+] -100.0 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+1470 2448 M
+63 0 V
+5126 0 R
+-63 0 V
+stroke
+1290 2448 M
+[ [(Helvetica) 300.0 0.0 true true 0 ( 0.4)]
+] -100.0 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+1470 3191 M
+63 0 V
+5126 0 R
+-63 0 V
+stroke
+1290 3191 M
+[ [(Helvetica) 300.0 0.0 true true 0 ( 0.6)]
+] -100.0 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+1470 3935 M
+63 0 V
+5126 0 R
+-63 0 V
+stroke
+1290 3935 M
+[ [(Helvetica) 300.0 0.0 true true 0 ( 0.8)]
+] -100.0 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+1470 4679 M
+63 0 V
+5126 0 R
+-63 0 V
+stroke
+1290 4679 M
+[ [(Helvetica) 300.0 0.0 true true 0 ( 1)]
+] -100.0 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+1470 960 M
+0 63 V
+0 3656 R
+0 -63 V
+stroke
+1470 660 M
+[ [(Helvetica) 300.0 0.0 true true 0 ( 1)]
+] -100.0 MCshow
+1.000 UL
+LTb
+LCb setrgbcolor
+2767 960 M
+0 63 V
+0 3656 R
+0 -63 V
+stroke
+2767 660 M
+[ [(Helvetica) 300.0 0.0 true true 0 ( 2)]
+] -100.0 MCshow
+1.000 UL
+LTb
+LCb setrgbcolor
+4065 960 M
+0 63 V
+0 3656 R
+0 -63 V
+stroke
+4065 660 M
+[ [(Helvetica) 300.0 0.0 true true 0 ( 3)]
+] -100.0 MCshow
+1.000 UL
+LTb
+LCb setrgbcolor
+5362 960 M
+0 63 V
+0 3656 R
+0 -63 V
+stroke
+5362 660 M
+[ [(Helvetica) 300.0 0.0 true true 0 ( 4)]
+] -100.0 MCshow
+1.000 UL
+LTb
+LCb setrgbcolor
+6659 960 M
+0 63 V
+0 3656 R
+0 -63 V
+stroke
+6659 660 M
+[ [(Helvetica) 300.0 0.0 true true 0 ( 5)]
+] -100.0 MCshow
+1.000 UL
+LTb
+LCb setrgbcolor
+1.000 UL
+LTB
+LCb setrgbcolor
+1470 4679 N
+0 -3719 V
+5189 0 V
+0 3719 V
+-5189 0 V
+Z stroke
+1.000 UP
+1.000 UL
+LTb
+LCb setrgbcolor
+LCb setrgbcolor
+240 2819 M
+currentpoint gsave translate -270 rotate 0 0 moveto
+[ [(Helvetica) 300.0 0.0 true true 0 (Normalized Objective Value)]
+] -100.0 MCshow
+grestore
+LTb
+LCb setrgbcolor
+4064 210 M
+[ [(Helvetica) 300.0 0.0 true true 0 (Objective Number)]
+] -100.0 MCshow
+LTb
+% Begin plot #1
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 1471 M
+2767 1269 L
+1298 202 V
+5362 3213 L
+6659 4679 L
+1470 1471 Pls
+2767 1269 Pls
+4065 1471 Pls
+5362 3213 Pls
+6659 4679 Pls
+% End plot #1
+% Begin plot #2
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 1225 M
+1297 320 V
+4065 1225 L
+5362 3831 L
+1297 255 V
+1470 1225 Crs
+2767 1545 Crs
+4065 1225 Crs
+5362 3831 Crs
+6659 4086 Crs
+% End plot #2
+% Begin plot #3
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 2098 M
+2767 1081 L
+4065 2098 L
+1297 57 V
+6659 4661 L
+1470 2098 Star
+2767 1081 Star
+4065 2098 Star
+5362 2155 Star
+6659 4661 Star
+% End plot #3
+% Begin plot #4
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 1878 M
+2767 1305 L
+1298 573 V
+1297 579 V
+1297 905 V
+1470 1878 Box
+2767 1305 Box
+4065 1878 Box
+5362 2457 Box
+6659 3362 Box
+% End plot #4
+% Begin plot #5
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 3166 M
+2767 960 L
+4065 3166 L
+5362 1323 L
+6659 4672 L
+1470 3166 BoxF
+2767 960 BoxF
+4065 3166 BoxF
+5362 1323 BoxF
+6659 4672 BoxF
+% End plot #5
+% Begin plot #6
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 2580 M
+2767 1153 L
+4065 2580 L
+5362 1676 L
+6659 3200 L
+1470 2580 Circle
+2767 1153 Circle
+4065 2580 Circle
+5362 1676 Circle
+6659 3200 Circle
+% End plot #6
+% Begin plot #7
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 3729 M
+2767 1000 L
+4065 3729 L
+5362 1126 L
+6659 3417 L
+1470 3729 CircleF
+2767 1000 CircleF
+4065 3729 CircleF
+5362 1126 CircleF
+6659 3417 CircleF
+% End plot #7
+% Begin plot #8
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 2917 M
+2767 1312 L
+4065 2917 L
+5362 1450 L
+1297 796 V
+1470 2917 TriU
+2767 1312 TriU
+4065 2917 TriU
+5362 1450 TriU
+6659 2246 TriU
+% End plot #8
+% Begin plot #9
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 3986 M
+2767 1126 L
+4065 3986 L
+5362 1066 L
+6659 2345 L
+1470 3986 TriUF
+2767 1126 TriUF
+4065 3986 TriUF
+5362 1066 TriUF
+6659 2345 TriUF
+% End plot #9
+% Begin plot #10
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 1233 M
+1297 450 V
+4065 1233 L
+5362 3808 L
+6659 3552 L
+1470 1233 TriD
+2767 1683 TriD
+4065 1233 TriD
+5362 3808 TriD
+6659 3552 TriD
+% End plot #10
+% Begin plot #11
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 1006 M
+2767 2191 L
+4065 1006 L
+5362 4515 L
+6659 3304 L
+1470 1006 TriDF
+2767 2191 TriDF
+4065 1006 TriDF
+5362 4515 TriDF
+6659 3304 TriDF
+% End plot #11
+% Begin plot #12
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 1766 M
+1297 -65 V
+1298 65 V
+1297 871 V
+6659 2380 L
+1470 1766 Dia
+2767 1701 Dia
+4065 1766 Dia
+5362 2637 Dia
+6659 2380 Dia
+% End plot #12
+% Begin plot #13
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 1607 M
+1297 489 V
+4065 1607 L
+5362 2927 L
+6659 2057 L
+1470 1607 DiaF
+2767 2096 DiaF
+4065 1607 DiaF
+5362 2927 DiaF
+6659 2057 DiaF
+% End plot #13
+% Begin plot #14
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 2429 M
+2767 1506 L
+1298 923 V
+5362 1803 L
+1297 320 V
+1470 2429 Pent
+2767 1506 Pent
+4065 2429 Pent
+5362 1803 Pent
+6659 2123 Pent
+% End plot #14
+% Begin plot #15
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 2217 M
+2767 1832 L
+1298 385 V
+5362 2016 L
+6659 1819 L
+1470 2217 PentF
+2767 1832 PentF
+4065 2217 PentF
+5362 2016 PentF
+6659 1819 PentF
+% End plot #15
+% Begin plot #16
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 3077 M
+2767 1403 L
+4065 3077 L
+5362 1365 L
+1297 591 V
+1470 3077 C0
+2767 1403 C0
+4065 3077 C0
+5362 1365 C0
+6659 1956 C0
+% End plot #16
+% Begin plot #17
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 2867 M
+2767 1694 L
+4065 2867 L
+5362 1479 L
+1297 172 V
+1470 2867 C1
+2767 1694 C1
+4065 2867 C1
+5362 1479 C1
+6659 1651 C1
+% End plot #17
+% Begin plot #18
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 3554 M
+2767 1589 L
+4065 3554 L
+5362 1177 L
+1297 368 V
+1470 3554 C2
+2767 1589 C2
+4065 3554 C2
+5362 1177 C2
+6659 1545 C2
+% End plot #18
+% Begin plot #19
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 1012 M
+2767 3400 L
+4065 1012 L
+5362 4496 L
+6659 2126 L
+1470 1012 C3
+2767 3400 C3
+4065 1012 C3
+5362 4496 C3
+6659 2126 C3
+% End plot #19
+% Begin plot #20
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 1776 M
+1297 706 V
+4065 1776 L
+1297 844 V
+6659 1640 L
+1470 1776 C4
+2767 2482 C4
+4065 1776 C4
+5362 2620 C4
+6659 1640 C4
+% End plot #20
+% Begin plot #21
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 2377 M
+1297 -96 V
+1298 96 V
+5362 1852 L
+6659 1447 L
+1470 2377 C5
+2767 2281 C5
+4065 2377 C5
+5362 1852 C5
+6659 1447 C5
+% End plot #21
+% Begin plot #22
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 3065 M
+2767 2089 L
+1298 976 V
+5362 1371 L
+1297 -29 V
+1470 3065 C6
+2767 2089 C6
+4065 3065 C6
+5362 1371 C6
+6659 1342 C6
+% End plot #22
+% Begin plot #23
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 2925 M
+2767 2276 L
+1298 649 V
+5362 1445 L
+6659 1300 L
+1470 2925 C7
+2767 2276 C7
+4065 2925 C7
+5362 1445 C7
+6659 1300 C7
+% End plot #23
+% Begin plot #24
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 3983 M
+2767 2387 L
+4065 3983 L
+5362 1066 L
+1297 51 V
+1470 3983 C8
+2767 2387 C8
+4065 3983 C8
+5362 1066 C8
+6659 1117 C8
+% End plot #24
+% Begin plot #25
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 1497 M
+2767 3475 L
+4065 1497 L
+5362 3155 L
+6659 1470 L
+1470 1497 C9
+2767 3475 C9
+4065 1497 C9
+5362 3155 C9
+6659 1470 C9
+% End plot #25
+% Begin plot #26
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 1197 M
+2767 4186 L
+4065 1197 L
+5362 3911 L
+6659 1551 L
+1470 1197 C10
+2767 4186 C10
+4065 1197 C10
+5362 3911 C10
+6659 1551 C10
+% End plot #26
+% Begin plot #27
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 1836 M
+2767 3526 L
+4065 1836 L
+1297 686 V
+6659 1289 L
+1470 1836 C11
+2767 3526 C11
+4065 1836 C11
+5362 2522 C11
+6659 1289 C11
+% End plot #27
+% Begin plot #28
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 2579 M
+1297 701 V
+4065 2579 L
+5362 1677 L
+6659 1142 L
+1470 2579 C12
+2767 3280 C12
+4065 2579 C12
+5362 1677 C12
+6659 1142 C12
+% End plot #28
+% Begin plot #29
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 3729 M
+2767 3529 L
+1298 200 V
+5362 1126 L
+6659 992 L
+1470 3729 C13
+2767 3529 C13
+4065 3729 C13
+5362 1126 C13
+6659 992 C13
+% End plot #29
+% Begin plot #30
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 1465 M
+2767 4679 L
+4065 1465 L
+5362 3224 L
+6659 1272 L
+1470 1465 C14
+2767 4679 C14
+4065 1465 C14
+5362 3224 C14
+6659 1272 C14
+% End plot #30
+% Begin plot #31
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 2161 M
+2767 4658 L
+4065 2161 L
+1297 -82 V
+6659 1070 L
+1470 2161 C15
+2767 4658 C15
+4065 2161 C15
+5362 2079 C15
+6659 1070 C15
+% End plot #31
+% Begin plot #32
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 3070 M
+2767 4677 L
+4065 3070 L
+5362 1368 L
+6659 967 L
+1470 3070 S0
+2767 4677 S0
+4065 3070 S0
+5362 1368 S0
+6659 967 S0
+% End plot #32
+% Begin plot #33
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 3878 M
+2767 1088 L
+4065 3830 L
+5362 1103 L
+6659 2635 L
+1470 3878 S1
+2767 1088 S1
+4065 3830 S1
+5362 1103 S1
+6659 2635 S1
+% End plot #33
+% Begin plot #34
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 4679 M
+2767 1207 L
+4065 4679 L
+5362 960 L
+1297 879 V
+1470 4679 S2
+2767 1207 S2
+4065 4679 S2
+5362 960 S2
+6659 1839 S2
+% End plot #34
+% Begin plot #35
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 2621 M
+2767 1786 L
+1298 741 V
+5362 1738 L
+1297 7 V
+1470 2621 S3
+2767 1786 S3
+4065 2527 S3
+5362 1738 S3
+6659 1745 S3
+% End plot #35
+% Begin plot #36
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 3537 M
+2767 1596 L
+4065 3337 L
+5362 1271 L
+1297 413 V
+1470 3537 S4
+2767 1596 S4
+4065 3337 S4
+5362 1271 S4
+6659 1684 S4
+% End plot #36
+% Begin plot #37
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 4679 M
+2767 1907 L
+4065 4679 L
+5362 960 L
+1297 222 V
+1470 4679 S5
+2767 1907 S5
+4065 4679 S5
+5362 960 S5
+6659 1182 S5
+% End plot #37
+% Begin plot #38
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 3699 M
+2767 2607 L
+4065 3699 L
+5362 1134 L
+1297 -31 V
+1470 3699 S6
+2767 2607 S6
+4065 3699 S6
+5362 1134 S6
+6659 1103 S6
+% End plot #38
+% Begin plot #39
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 1480 M
+2767 1267 L
+1298 213 V
+5362 3192 L
+6659 4658 L
+1470 1480 S7
+2767 1267 S7
+4065 1480 S7
+5362 3192 S7
+6659 4658 S7
+% End plot #39
+% Begin plot #40
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 1232 M
+1297 319 V
+4065 1232 L
+5362 3810 L
+1297 217 V
+1470 1232 S8
+2767 1551 S8
+4065 1232 S8
+5362 3810 S8
+6659 4027 S8
+% End plot #40
+% Begin plot #41
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 2098 M
+2767 1081 L
+4065 2098 L
+1297 57 V
+6659 4664 L
+1470 2098 S9
+2767 1081 S9
+4065 2098 S9
+5362 2155 S9
+6659 4664 S9
+% End plot #41
+% Begin plot #42
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 1835 M
+2767 1303 L
+1298 532 V
+1297 689 V
+1297 928 V
+1470 1835 S10
+2767 1303 S10
+4065 1835 S10
+5362 2524 S10
+6659 3452 S10
+% End plot #42
+% Begin plot #43
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 3148 M
+2767 962 L
+4065 3148 L
+5362 1331 L
+6659 4651 L
+1470 3148 S11
+2767 962 S11
+4065 3148 S11
+5362 1331 S11
+6659 4651 S11
+% End plot #43
+% Begin plot #44
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 2594 M
+2767 1154 L
+4065 2594 L
+5362 1665 L
+6659 3177 L
+1470 2594 S12
+2767 1154 S12
+4065 2594 S12
+5362 1665 S12
+6659 3177 S12
+% End plot #44
+% Begin plot #45
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 3721 M
+2767 1001 L
+4065 3721 L
+5362 1128 L
+6659 3416 L
+1470 3721 S13
+2767 1001 S13
+4065 3721 S13
+5362 1128 S13
+6659 3416 S13
+% End plot #45
+% Begin plot #46
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 2945 M
+2767 1296 L
+4065 2945 L
+5362 1434 L
+1297 839 V
+1470 2945 S14
+2767 1296 S14
+4065 2945 S14
+5362 1434 S14
+6659 2273 S14
+% End plot #46
+% Begin plot #47
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 3950 M
+2767 1133 L
+4065 3950 L
+5362 1073 L
+6659 2330 L
+1470 3950 S15
+2767 1133 S15
+4065 3950 S15
+5362 1073 S15
+6659 2330 S15
+% End plot #47
+% Begin plot #48
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 1222 M
+1297 352 V
+4065 1222 L
+5362 3840 L
+1297 139 V
+1470 1222 D0
+2767 1574 D0
+4065 1222 D0
+5362 3840 D0
+6659 3979 D0
+% End plot #48
+% Begin plot #49
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 1006 M
+2767 2195 L
+4065 1006 L
+5362 4515 L
+6659 3297 L
+1470 1006 D1
+2767 2195 D1
+4065 1006 D1
+5362 4515 D1
+6659 3297 D1
+% End plot #49
+% Begin plot #50
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 1762 M
+1297 -61 V
+1298 61 V
+1297 882 V
+6659 2385 L
+1470 1762 D2
+2767 1701 D2
+4065 1762 D2
+5362 2644 D2
+6659 2385 D2
+% End plot #50
+% Begin plot #51
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 1592 M
+1297 504 V
+4065 1592 L
+5362 2957 L
+6659 2075 L
+1470 1592 D3
+2767 2096 D3
+4065 1592 D3
+5362 2957 D3
+6659 2075 D3
+% End plot #51
+% Begin plot #52
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 2415 M
+2767 1487 L
+1298 928 V
+5362 1816 L
+1297 351 V
+1470 2415 D4
+2767 1487 D4
+4065 2415 D4
+5362 1816 D4
+6659 2167 D4
+% End plot #52
+% Begin plot #53
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 2213 M
+2767 1852 L
+1298 361 V
+5362 2021 L
+6659 1802 L
+1470 2213 D5
+2767 1852 D5
+4065 2213 D5
+5362 2021 D5
+6659 1802 D5
+% End plot #53
+% Begin plot #54
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 3052 M
+2767 1389 L
+4065 3052 L
+5362 1378 L
+1297 614 V
+1470 3052 D6
+2767 1389 D6
+4065 3052 D6
+5362 1378 D6
+6659 1992 D6
+% End plot #54
+% Begin plot #55
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 2867 M
+2767 1694 L
+4065 2867 L
+5362 1479 L
+1297 172 V
+1470 2867 D7
+2767 1694 D7
+4065 2867 D7
+5362 1479 D7
+6659 1651 D7
+% End plot #55
+% Begin plot #56
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 3661 M
+2767 1613 L
+4065 3661 L
+5362 1145 L
+1297 353 V
+1470 3661 D8
+2767 1613 D8
+4065 3661 D8
+5362 1145 D8
+6659 1498 D8
+% End plot #56
+% Begin plot #57
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 1006 M
+2767 3394 L
+4065 1006 L
+5362 4516 L
+6659 2144 L
+1470 1006 D9
+2767 3394 D9
+4065 1006 D9
+5362 4516 D9
+6659 2144 D9
+% End plot #57
+% Begin plot #58
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 1757 M
+1297 752 V
+4065 1757 L
+1297 895 V
+6659 1639 L
+1470 1757 D10
+2767 2509 D10
+4065 1757 D10
+5362 2652 D10
+6659 1639 D10
+% End plot #58
+% Begin plot #59
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 2416 M
+2767 2261 L
+1298 155 V
+5362 1815 L
+6659 1442 L
+1470 2416 D11
+2767 2261 D11
+4065 2416 D11
+5362 1815 D11
+6659 1442 D11
+% End plot #59
+% Begin plot #60
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 3077 M
+2767 2104 L
+1298 973 V
+5362 1365 L
+1297 -32 V
+1470 3077 D12
+2767 2104 D12
+4065 3077 D12
+5362 1365 D12
+6659 1333 D12
+% End plot #60
+% Begin plot #61
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 2887 M
+2767 2344 L
+1298 543 V
+5362 1467 L
+6659 1285 L
+1470 2887 D13
+2767 2344 D13
+4065 2887 D13
+5362 1467 D13
+6659 1285 D13
+% End plot #61
+% Begin plot #62
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 4057 M
+2767 2421 L
+4065 4057 L
+5362 1052 L
+1297 51 V
+1470 4057 D14
+2767 2421 D14
+4065 4057 D14
+5362 1052 D14
+6659 1103 D14
+% End plot #62
+% Begin plot #63
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 1526 M
+2767 3522 L
+4065 1526 L
+5362 3093 L
+6659 1440 L
+1470 1526 D15
+2767 3522 D15
+4065 1526 D15
+5362 3093 D15
+6659 1440 D15
+% End plot #63
+% Begin plot #64
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 1235 M
+2767 4121 L
+4065 1235 L
+5362 3803 L
+6659 1528 L
+1470 1235 BoxE
+2767 4121 BoxE
+4065 1235 BoxE
+5362 3803 BoxE
+6659 1528 BoxE
+% End plot #64
+% Begin plot #65
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 1832 M
+2767 3475 L
+4065 1832 L
+1297 696 V
+6659 1300 L
+1470 1832 CircE
+2767 3475 CircE
+4065 1832 CircE
+5362 2528 CircE
+6659 1300 CircE
+% End plot #65
+% Begin plot #66
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 2562 M
+1297 704 V
+4065 2562 L
+5362 1690 L
+6659 1146 L
+1470 2562 TriUE
+2767 3266 TriUE
+4065 2562 TriUE
+5362 1690 TriUE
+6659 1146 TriUE
+% End plot #66
+% Begin plot #67
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 3764 M
+2767 3563 L
+1298 201 V
+5362 1117 L
+6659 987 L
+1470 3764 TriDE
+2767 3563 TriDE
+4065 3764 TriDE
+5362 1117 TriDE
+6659 987 TriDE
+% End plot #67
+% Begin plot #68
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 1524 M
+2767 4654 L
+4065 1524 L
+5362 3097 L
+6659 1247 L
+1470 1524 DiaE
+2767 4654 DiaE
+4065 1524 DiaE
+5362 3097 DiaE
+6659 1247 DiaE
+% End plot #68
+% Begin plot #69
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 2138 M
+2767 4664 L
+4065 2138 L
+1297 -32 V
+6659 1074 L
+1470 2138 PentE
+2767 4664 PentE
+4065 2138 PentE
+5362 2106 PentE
+6659 1074 PentE
+% End plot #69
+% Begin plot #70
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 3170 M
+2767 4677 L
+4065 3170 L
+5362 1321 L
+6659 960 L
+1470 3170 BoxW
+2767 4677 BoxW
+4065 3170 BoxW
+5362 1321 BoxW
+6659 960 BoxW
+% End plot #70
+% Begin plot #71
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 3726 M
+2767 1108 L
+4065 3725 L
+5362 1127 L
+6659 2562 L
+1470 3726 CircW
+2767 1108 CircW
+4065 3725 CircW
+5362 1127 CircW
+6659 2562 CircW
+% End plot #71
+% Begin plot #72
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 4667 M
+2767 1203 L
+4065 4667 L
+5362 961 L
+1297 890 V
+1470 4667 TriUW
+2767 1203 TriUW
+4065 4667 TriUW
+5362 961 TriUW
+6659 1851 TriUW
+% End plot #72
+% Begin plot #73
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 2472 M
+2767 1789 L
+1298 683 V
+5362 1766 L
+1297 -41 V
+1470 2472 TriDW
+2767 1789 TriDW
+4065 2472 TriDW
+5362 1766 TriDW
+6659 1725 TriDW
+% End plot #73
+% Begin plot #74
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 3960 M
+2767 1598 L
+4065 3337 L
+5362 1316 L
+1297 554 V
+1470 3960 DiaW
+2767 1598 DiaW
+4065 3337 DiaW
+5362 1316 DiaW
+6659 1870 DiaW
+% End plot #74
+% Begin plot #75
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 4644 M
+2767 1885 L
+4065 4644 L
+5362 964 L
+1297 229 V
+1470 4644 PentW
+2767 1885 PentW
+4065 4644 PentW
+5362 964 PentW
+6659 1193 PentW
+% End plot #75
+% Begin plot #76
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 3733 M
+2767 2591 L
+4065 3733 L
+5362 1125 L
+1297 -23 V
+1470 3733 Pls
+2767 2591 Pls
+4065 3733 Pls
+5362 1125 Pls
+6659 1102 Pls
+% End plot #76
+% Begin plot #77
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 1475 M
+2767 1267 L
+1298 208 V
+5362 3202 L
+6659 4676 L
+1470 1475 Crs
+2767 1267 Crs
+4065 1475 Crs
+5362 3202 Crs
+6659 4676 Crs
+% End plot #77
+% Begin plot #78
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 1243 M
+1297 284 V
+4065 1243 L
+5362 3781 L
+1297 305 V
+1470 1243 Star
+2767 1527 Star
+4065 1243 Star
+5362 3781 Star
+6659 4086 Star
+% End plot #78
+% Begin plot #79
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 2113 M
+2767 1077 L
+4065 2113 L
+1297 23 V
+6659 4676 L
+1470 2113 Box
+2767 1077 Box
+4065 2113 Box
+5362 2136 Box
+6659 4676 Box
+% End plot #79
+% Begin plot #80
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 1878 M
+2767 1306 L
+1298 572 V
+1297 579 V
+1297 898 V
+1470 1878 BoxF
+2767 1306 BoxF
+4065 1878 BoxF
+5362 2457 BoxF
+6659 3355 BoxF
+% End plot #80
+% Begin plot #81
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 3136 M
+2767 962 L
+4065 3136 L
+5362 1337 L
+6659 4670 L
+1470 3136 Circle
+2767 962 Circle
+4065 3136 Circle
+5362 1337 Circle
+6659 4670 Circle
+% End plot #81
+% Begin plot #82
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 2579 M
+2767 1161 L
+4065 2579 L
+5362 1677 L
+6659 3151 L
+1470 2579 CircleF
+2767 1161 CircleF
+4065 2579 CircleF
+5362 1677 CircleF
+6659 3151 CircleF
+% End plot #82
+% Begin plot #83
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 3756 M
+2767 1001 L
+4065 3756 L
+5362 1119 L
+6659 3387 L
+1470 3756 TriU
+2767 1001 TriU
+4065 3756 TriU
+5362 1119 TriU
+6659 3387 TriU
+% End plot #83
+% Begin plot #84
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 2931 M
+2767 1296 L
+4065 2931 L
+5362 1442 L
+1297 839 V
+1470 2931 TriUF
+2767 1296 TriUF
+4065 2931 TriUF
+5362 1442 TriUF
+6659 2281 TriUF
+% End plot #84
+% Begin plot #85
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 3944 M
+2767 1133 L
+4065 3944 L
+5362 1075 L
+6659 2332 L
+1470 3944 TriD
+2767 1133 TriD
+4065 3944 TriD
+5362 1075 TriD
+6659 2332 TriD
+% End plot #85
+% Begin plot #86
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 1473 M
+1297 57 V
+1298 -57 V
+5362 3206 L
+1297 113 V
+1470 1473 TriDF
+2767 1530 TriDF
+4065 1473 TriDF
+5362 3206 TriDF
+6659 3319 TriDF
+% End plot #86
+% Begin plot #87
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 1011 M
+2767 2191 L
+4065 1011 L
+5362 4499 L
+6659 3282 L
+1470 1011 Dia
+2767 2191 Dia
+4065 1011 Dia
+5362 4499 Dia
+6659 3282 Dia
+% End plot #87
+% Begin plot #88
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 1766 M
+1297 -65 V
+1298 65 V
+1297 871 V
+6659 2380 L
+1470 1766 DiaF
+2767 1701 DiaF
+4065 1766 DiaF
+5362 2637 DiaF
+6659 2380 DiaF
+% End plot #88
+% Begin plot #89
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 1542 M
+1297 589 V
+4065 1542 L
+5362 3059 L
+6659 2100 L
+1470 1542 Pent
+2767 2131 Pent
+4065 1542 Pent
+5362 3059 Pent
+6659 2100 Pent
+% End plot #89
+% Begin plot #90
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 2430 M
+2767 1506 L
+1298 924 V
+5362 1803 L
+1297 320 V
+1470 2430 PentF
+2767 1506 PentF
+4065 2430 PentF
+5362 1803 PentF
+6659 2123 PentF
+% End plot #90
+% Begin plot #91
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 2217 M
+2767 1840 L
+1298 377 V
+5362 2015 L
+6659 1811 L
+1470 2217 C0
+2767 1840 C0
+4065 2217 C0
+5362 2015 C0
+6659 1811 C0
+% End plot #91
+% Begin plot #92
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 3063 M
+2767 1389 L
+4065 3063 L
+5362 1372 L
+1297 615 V
+1470 3063 C1
+2767 1389 C1
+4065 3063 C1
+5362 1372 C1
+6659 1987 C1
+% End plot #92
+% Begin plot #93
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 2845 M
+2767 1702 L
+4065 2845 L
+5362 1493 L
+1297 159 V
+1470 2845 C2
+2767 1702 C2
+4065 2845 C2
+5362 1493 C2
+6659 1652 C2
+% End plot #93
+% Begin plot #94
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 3675 M
+2767 1590 L
+4065 3675 L
+5362 1141 L
+1297 374 V
+1470 3675 C3
+2767 1590 C3
+4065 3675 C3
+5362 1141 C3
+6659 1515 C3
+% End plot #94
+% Begin plot #95
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 1006 M
+2767 3394 L
+4065 1006 L
+5362 4516 L
+6659 2144 L
+1470 1006 C4
+2767 3394 C4
+4065 1006 C4
+5362 4516 C4
+6659 2144 C4
+% End plot #95
+% Begin plot #96
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 1839 M
+1297 621 V
+4065 1839 L
+1297 679 V
+6659 1611 L
+1470 1839 C5
+2767 2460 C5
+4065 1839 C5
+5362 2518 C5
+6659 1611 C5
+% End plot #96
+% Begin plot #97
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 2420 M
+2767 2281 L
+1298 139 V
+5362 1812 L
+6659 1432 L
+1470 2420 C6
+2767 2281 C6
+4065 2420 C6
+5362 1812 C6
+6659 1432 C6
+% End plot #97
+% Begin plot #98
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 3077 M
+2767 2104 L
+1298 973 V
+5362 1365 L
+1297 -32 V
+1470 3077 C7
+2767 2104 C7
+4065 3077 C7
+5362 1365 C7
+6659 1333 C7
+% End plot #98
+% Begin plot #99
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 2925 M
+2767 2250 L
+1298 675 V
+5362 1445 L
+6659 1309 L
+1470 2925 C8
+2767 2250 C8
+4065 2925 C8
+5362 1445 C8
+6659 1309 C8
+% End plot #99
+% Begin plot #100
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 3966 M
+2767 2385 L
+4065 3966 L
+5362 1070 L
+1297 49 V
+1470 3966 C9
+2767 2385 C9
+4065 3966 C9
+5362 1070 C9
+6659 1119 C9
+% End plot #100
+% Begin plot #101
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 1473 M
+2767 3551 L
+4065 1473 L
+5362 3208 L
+6659 1467 L
+1470 1473 C10
+2767 3551 C10
+4065 1473 C10
+5362 3208 C10
+6659 1467 C10
+% End plot #101
+% Begin plot #102
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 1242 M
+2767 4091 L
+4065 1242 L
+5362 3783 L
+6659 1527 L
+1470 1242 C11
+2767 4091 C11
+4065 1242 C11
+5362 3783 C11
+6659 1527 C11
+% End plot #102
+% Begin plot #103
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 1821 M
+2767 3512 L
+4065 1821 L
+1297 726 V
+6659 1297 L
+1470 1821 C12
+2767 3512 C12
+4065 1821 C12
+5362 2547 C12
+6659 1297 C12
+% End plot #103
+% Begin plot #104
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 2566 M
+1297 732 V
+4065 2566 L
+5362 1687 L
+6659 1141 L
+1470 2566 C13
+2767 3298 C13
+4065 2566 C13
+5362 1687 C13
+6659 1141 C13
+% End plot #104
+% Begin plot #105
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 3684 M
+2767 3522 L
+1298 162 V
+5362 1138 L
+6659 995 L
+1470 3684 C14
+2767 3522 C14
+4065 3684 C14
+5362 1138 C14
+6659 995 C14
+% End plot #105
+% Begin plot #106
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 1534 M
+2767 4678 L
+4065 1534 L
+5362 3075 L
+6659 1240 L
+1470 1534 C15
+2767 4678 C15
+4065 1534 C15
+5362 3075 C15
+6659 1240 C15
+% End plot #106
+% Begin plot #107
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 2138 M
+2767 4679 L
+4065 2138 L
+1297 -32 V
+6659 1073 L
+1470 2138 S0
+2767 4679 S0
+4065 2138 S0
+5362 2106 S0
+6659 1073 S0
+% End plot #107
+% Begin plot #108
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 3146 M
+2767 4678 L
+4065 3146 L
+5362 1332 L
+6659 962 L
+1470 3146 S1
+2767 4678 S1
+4065 3146 S1
+5362 1332 S1
+6659 962 S1
+% End plot #108
+% Begin plot #109
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 3879 M
+2767 1087 L
+4065 3831 L
+5362 1103 L
+6659 2645 L
+1470 3879 S2
+2767 1087 S2
+4065 3831 S2
+5362 1103 S2
+6659 2645 S2
+% End plot #109
+% Begin plot #110
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 4678 M
+2767 1209 L
+4065 4678 L
+5362 960 L
+1297 875 V
+1470 4678 S3
+2767 1209 S3
+4065 4678 S3
+5362 960 S3
+6659 1835 S3
+% End plot #110
+% Begin plot #111
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 2624 M
+2767 1779 L
+1298 750 V
+5362 1736 L
+1297 14 V
+1470 2624 S4
+2767 1779 S4
+4065 2529 S4
+5362 1736 S4
+6659 1750 S4
+% End plot #111
+% Begin plot #112
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 3960 M
+2767 1598 L
+4065 3337 L
+5362 1316 L
+1297 554 V
+1470 3960 S5
+2767 1598 S5
+4065 3337 S5
+5362 1316 S5
+6659 1870 S5
+% End plot #112
+% Begin plot #113
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 4679 M
+2767 1905 L
+4065 4679 L
+5362 960 L
+1297 222 V
+1470 4679 S6
+2767 1905 S6
+4065 4679 S6
+5362 960 S6
+6659 1182 S6
+% End plot #113
+% Begin plot #114
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 3699 M
+2767 2607 L
+4065 3699 L
+5362 1134 L
+1297 -31 V
+1470 3699 S7
+2767 2607 S7
+4065 3699 S7
+5362 1134 S7
+6659 1103 S7
+% End plot #114
+% Begin plot #115
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 1480 M
+2767 1265 L
+1298 215 V
+5362 3192 L
+6659 4669 L
+1470 1480 S8
+2767 1265 S8
+4065 1480 S8
+5362 3192 S8
+6659 4669 S8
+% End plot #115
+% Begin plot #116
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 1230 M
+1297 331 V
+4065 1230 L
+5362 3816 L
+1297 179 V
+1470 1230 S9
+2767 1561 S9
+4065 1230 S9
+5362 3816 S9
+6659 3995 S9
+% End plot #116
+% Begin plot #117
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 2113 M
+2767 1077 L
+4065 2113 L
+1297 23 V
+6659 4675 L
+1470 2113 S10
+2767 1077 S10
+4065 2113 S10
+5362 2136 S10
+6659 4675 S10
+% End plot #117
+% Begin plot #118
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 1802 M
+2767 1327 L
+1298 475 V
+1297 775 V
+1297 823 V
+1470 1802 S11
+2767 1327 S11
+4065 1802 S11
+5362 2577 S11
+6659 3400 S11
+% End plot #118
+% Begin plot #119
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 3136 M
+2767 962 L
+4065 3136 L
+5362 1337 L
+6659 4670 L
+1470 3136 S12
+2767 962 S12
+4065 3136 S12
+5362 1337 S12
+6659 4670 S12
+% End plot #119
+% Begin plot #120
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 2569 M
+2767 1157 L
+4065 2569 L
+5362 1685 L
+6659 3188 L
+1470 2569 S13
+2767 1157 S13
+4065 2569 S13
+5362 1685 S13
+6659 3188 S13
+% End plot #120
+% Begin plot #121
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 3714 M
+2767 1000 L
+4065 3714 L
+5362 1130 L
+6659 3430 L
+1470 3714 S14
+2767 1000 S14
+4065 3714 S14
+5362 1130 S14
+6659 3430 S14
+% End plot #121
+% Begin plot #122
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 2917 M
+2767 1316 L
+4065 2917 L
+5362 1450 L
+1297 782 V
+1470 2917 S15
+2767 1316 S15
+4065 2917 S15
+5362 1450 S15
+6659 2232 S15
+% End plot #122
+% Begin plot #123
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 3986 M
+2767 1126 L
+4065 3986 L
+5362 1066 L
+6659 2345 L
+1470 3986 D0
+2767 1126 D0
+4065 3986 D0
+5362 1066 D0
+6659 2345 D0
+% End plot #123
+% Begin plot #124
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 1435 M
+1297 71 V
+1298 -71 V
+5362 3294 L
+1297 213 V
+1470 1435 D1
+2767 1506 D1
+4065 1435 D1
+5362 3294 D1
+6659 3507 D1
+% End plot #124
+% Begin plot #125
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 960 M
+2767 2255 L
+4065 960 L
+5362 4679 L
+6659 3422 L
+1470 960 D2
+2767 2255 D2
+4065 960 D2
+5362 4679 D2
+6659 3422 D2
+% End plot #125
+% Begin plot #126
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 1766 M
+1297 -65 V
+1298 65 V
+1297 871 V
+6659 2380 L
+1470 1766 D3
+2767 1701 D3
+4065 1766 D3
+5362 2637 D3
+6659 2380 D3
+% End plot #126
+% Begin plot #127
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 1542 M
+1297 582 V
+4065 1542 L
+5362 3059 L
+6659 2107 L
+1470 1542 D4
+2767 2124 D4
+4065 1542 D4
+5362 3059 D4
+6659 2107 D4
+% End plot #127
+% Begin plot #128
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 2429 M
+2767 1491 L
+1298 938 V
+5362 1803 L
+1297 348 V
+1470 2429 D5
+2767 1491 D5
+4065 2429 D5
+5362 1803 D5
+6659 2151 D5
+% End plot #128
+% Begin plot #129
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 2230 M
+2767 1840 L
+1298 390 V
+5362 2001 L
+6659 1804 L
+1470 2230 D6
+2767 1840 D6
+4065 2230 D6
+5362 2001 D6
+6659 1804 D6
+% End plot #129
+% Begin plot #130
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 3062 M
+2767 1389 L
+4065 3062 L
+5362 1372 L
+1297 615 V
+1470 3062 D7
+2767 1389 D7
+4065 3062 D7
+5362 1372 D7
+6659 1987 D7
+% End plot #130
+% Begin plot #131
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 2867 M
+2767 1700 L
+4065 2867 L
+5362 1479 L
+1297 167 V
+1470 2867 D8
+2767 1700 D8
+4065 2867 D8
+5362 1479 D8
+6659 1646 D8
+% End plot #131
+% Begin plot #132
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 3705 M
+2767 1554 L
+4065 3705 L
+5362 1133 L
+1297 409 V
+1470 3705 D9
+2767 1554 D9
+4065 3705 D9
+5362 1133 D9
+6659 1542 D9
+% End plot #132
+% Begin plot #133
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 1005 M
+2767 3400 L
+4065 1005 L
+5362 4521 L
+6659 2144 L
+1470 1005 D10
+2767 3400 D10
+4065 1005 D10
+5362 4521 D10
+6659 2144 D10
+% End plot #133
+% Begin plot #134
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 1776 M
+1297 706 V
+4065 1776 L
+1297 843 V
+6659 1640 L
+1470 1776 D11
+2767 2482 D11
+4065 1776 D11
+5362 2619 D11
+6659 1640 D11
+% End plot #134
+% Begin plot #135
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 2422 M
+2767 2223 L
+1298 199 V
+5362 1809 L
+6659 1458 L
+1470 2422 D12
+2767 2223 D12
+4065 2422 D12
+5362 1809 D12
+6659 1458 D12
+% End plot #135
+% Begin plot #136
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 3077 M
+2767 2104 L
+1298 973 V
+5362 1365 L
+1297 -32 V
+1470 3077 D13
+2767 2104 D13
+4065 3077 D13
+5362 1365 D13
+6659 1333 D13
+% End plot #136
+% Begin plot #137
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 2925 M
+2767 2281 L
+1298 644 V
+5362 1445 L
+6659 1298 L
+1470 2925 D14
+2767 2281 D14
+4065 2925 D14
+5362 1445 D14
+6659 1298 D14
+% End plot #137
+% Begin plot #138
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 3959 M
+2767 2417 L
+4065 3959 L
+5362 1071 L
+1297 42 V
+1470 3959 D15
+2767 2417 D15
+4065 3959 D15
+5362 1071 D15
+6659 1113 D15
+% End plot #138
+% Begin plot #139
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 1403 M
+2767 3622 L
+4065 1403 L
+5362 3369 L
+6659 1500 L
+1470 1403 BoxE
+2767 3622 BoxE
+4065 1403 BoxE
+5362 3369 BoxE
+6659 1500 BoxE
+% End plot #139
+% Begin plot #140
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 1249 M
+2767 4131 L
+4065 1249 L
+5362 3764 L
+6659 1512 L
+1470 1249 CircE
+2767 4131 CircE
+4065 1249 CircE
+5362 3764 CircE
+6659 1512 CircE
+% End plot #140
+% Begin plot #141
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 1836 M
+2767 3526 L
+4065 1836 L
+1297 686 V
+6659 1289 L
+1470 1836 TriUE
+2767 3526 TriUE
+4065 1836 TriUE
+5362 2522 TriUE
+6659 1289 TriUE
+% End plot #141
+% Begin plot #142
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 2594 M
+1297 684 V
+4065 2594 L
+5362 1665 L
+6659 1139 L
+1470 2594 TriDE
+2767 3278 TriDE
+4065 2594 TriDE
+5362 1665 TriDE
+6659 1139 TriDE
+% End plot #142
+% Begin plot #143
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 3684 M
+2767 3547 L
+1298 137 V
+5362 1138 L
+6659 993 L
+1470 3684 DiaE
+2767 3547 DiaE
+4065 3684 DiaE
+5362 1138 DiaE
+6659 993 DiaE
+% End plot #143
+% Begin plot #144
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 1535 M
+2767 4678 L
+4065 1535 L
+5362 3073 L
+6659 1239 L
+1470 1535 PentE
+2767 4678 PentE
+4065 1535 PentE
+5362 3073 PentE
+6659 1239 PentE
+% End plot #144
+% Begin plot #145
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 2161 M
+2767 4679 L
+4065 2161 L
+1297 -82 V
+6659 1069 L
+1470 2161 BoxW
+2767 4679 BoxW
+4065 2161 BoxW
+5362 2079 BoxW
+6659 1069 BoxW
+% End plot #145
+% Begin plot #146
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 3162 M
+2767 4678 L
+4065 3162 L
+5362 1325 L
+6659 961 L
+1470 3162 CircW
+2767 4678 CircW
+4065 3162 CircW
+5362 1325 CircW
+6659 961 CircW
+% End plot #146
+% Begin plot #147
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 3733 M
+2767 1106 L
+4065 3733 L
+5362 1125 L
+6659 2569 L
+1470 3733 TriUW
+2767 1106 TriUW
+4065 3733 TriUW
+5362 1125 TriUW
+6659 2569 TriUW
+% End plot #147
+% Begin plot #148
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 4645 M
+2767 1216 L
+4065 4645 L
+5362 964 L
+1297 863 V
+1470 4645 TriDW
+2767 1216 TriDW
+4065 4645 TriDW
+5362 964 TriDW
+6659 1827 TriDW
+% End plot #148
+% Begin plot #149
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 2624 M
+2767 1779 L
+1298 750 V
+5362 1736 L
+1297 14 V
+1470 2624 DiaW
+2767 1779 DiaW
+4065 2529 DiaW
+5362 1736 DiaW
+6659 1750 DiaW
+% End plot #149
+% Begin plot #150
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 3960 M
+2767 1596 L
+4065 3337 L
+5362 1316 L
+1297 557 V
+1470 3960 PentW
+2767 1596 PentW
+4065 3337 PentW
+5362 1316 PentW
+6659 1873 PentW
+% End plot #150
+% Begin plot #151
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 4678 M
+2767 1907 L
+4065 4678 L
+5362 960 L
+1297 222 V
+1470 4678 Pls
+2767 1907 Pls
+4065 4678 Pls
+5362 960 Pls
+6659 1182 Pls
+% End plot #151
+% Begin plot #152
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 3699 M
+2767 2601 L
+4065 3699 L
+5362 1134 L
+1297 -30 V
+1470 3699 Crs
+2767 2601 Crs
+4065 3699 Crs
+5362 1134 Crs
+6659 1104 Crs
+% End plot #152
+% Begin plot #153
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 1475 M
+2767 1267 L
+1298 208 V
+5362 3202 L
+6659 4676 L
+1470 1475 Star
+2767 1267 Star
+4065 1475 Star
+5362 3202 Star
+6659 4676 Star
+% End plot #153
+% Begin plot #154
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 1233 M
+1297 318 V
+4065 1233 L
+5362 3809 L
+1297 217 V
+1470 1233 Box
+2767 1551 Box
+4065 1233 Box
+5362 3809 Box
+6659 4026 Box
+% End plot #154
+% Begin plot #155
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 2114 M
+2767 1077 L
+4065 2114 L
+1297 21 V
+6659 4674 L
+1470 2114 BoxF
+2767 1077 BoxF
+4065 2114 BoxF
+5362 2135 BoxF
+6659 4674 BoxF
+% End plot #155
+% Begin plot #156
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 1802 M
+2767 1327 L
+1298 475 V
+1297 775 V
+1297 823 V
+1470 1802 Circle
+2767 1327 Circle
+4065 1802 Circle
+5362 2577 Circle
+6659 3400 Circle
+% End plot #156
+% Begin plot #157
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 3163 M
+2767 960 L
+4065 3163 L
+5362 1325 L
+6659 4677 L
+1470 3163 CircleF
+2767 960 CircleF
+4065 3163 CircleF
+5362 1325 CircleF
+6659 4677 CircleF
+% End plot #157
+% Begin plot #158
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 2576 M
+2767 1153 L
+4065 2576 L
+5362 1679 L
+6659 3201 L
+1470 2576 TriU
+2767 1153 TriU
+4065 2576 TriU
+5362 1679 TriU
+6659 3201 TriU
+% End plot #158
+% Begin plot #159
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 3721 M
+2767 1001 L
+4065 3721 L
+5362 1128 L
+6659 3416 L
+1470 3721 TriUF
+2767 1001 TriUF
+4065 3721 TriUF
+5362 1128 TriUF
+6659 3416 TriUF
+% End plot #159
+% Begin plot #160
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 2918 M
+2767 1315 L
+4065 2918 L
+5362 1449 L
+1297 789 V
+1470 2918 TriD
+2767 1315 TriD
+4065 2918 TriD
+5362 1449 TriD
+6659 2238 TriD
+% End plot #160
+% Begin plot #161
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 3944 M
+2767 1149 L
+4065 3944 L
+5362 1075 L
+6659 2264 L
+1470 3944 TriDF
+2767 1149 TriDF
+4065 3944 TriDF
+5362 1075 TriDF
+6659 2264 TriDF
+% End plot #161
+% Begin plot #162
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 1487 M
+1297 9 V
+1298 -9 V
+5362 3176 L
+1297 224 V
+1470 1487 Dia
+2767 1496 Dia
+4065 1487 Dia
+5362 3176 Dia
+6659 3400 Dia
+% End plot #162
+% Begin plot #163
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 960 M
+2767 2255 L
+4065 960 L
+5362 4679 L
+6659 3422 L
+1470 960 DiaF
+2767 2255 DiaF
+4065 960 DiaF
+5362 4679 DiaF
+6659 3422 DiaF
+% End plot #163
+% Begin plot #164
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 1786 M
+2767 1676 L
+1298 110 V
+1297 818 V
+6659 2401 L
+1470 1786 Pent
+2767 1676 Pent
+4065 1786 Pent
+5362 2604 Pent
+6659 2401 Pent
+% End plot #164
+% Begin plot #165
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 1556 M
+1297 527 V
+4065 1556 L
+5362 3029 L
+6659 2130 L
+1470 1556 PentF
+2767 2083 PentF
+4065 1556 PentF
+5362 3029 PentF
+6659 2130 PentF
+% End plot #165
+% Begin plot #166
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 2415 M
+2767 1487 L
+1298 928 V
+5362 1816 L
+1297 351 V
+1470 2415 C0
+2767 1487 C0
+4065 2415 C0
+5362 1816 C0
+6659 2167 C0
+% End plot #166
+% Begin plot #167
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 2213 M
+2767 1848 L
+1298 365 V
+5362 2021 L
+6659 1806 L
+1470 2213 C1
+2767 1848 C1
+4065 2213 C1
+5362 2021 C1
+6659 1806 C1
+% End plot #167
+% Begin plot #168
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 3080 M
+2767 1375 L
+4065 3080 L
+5362 1364 L
+1297 645 V
+1470 3080 C2
+2767 1375 C2
+4065 3080 C2
+5362 1364 C2
+6659 2009 C2
+% End plot #168
+% Begin plot #169
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 2845 M
+2767 1702 L
+4065 2845 L
+5362 1493 L
+1297 159 V
+1470 2845 C3
+2767 1702 C3
+4065 2845 C3
+5362 1493 C3
+6659 1652 C3
+% End plot #169
+% Begin plot #170
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 3659 M
+2767 1610 L
+4065 3659 L
+5362 1145 L
+1297 356 V
+1470 3659 C4
+2767 1610 C4
+4065 3659 C4
+5362 1145 C4
+6659 1501 C4
+% End plot #170
+% Begin plot #171
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 1002 M
+2767 3394 L
+4065 1002 L
+5362 4532 L
+6659 2155 L
+1470 1002 C5
+2767 3394 C5
+4065 1002 C5
+5362 4532 C5
+6659 2155 C5
+% End plot #171
+% Begin plot #172
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 1842 M
+1297 561 V
+4065 1842 L
+1297 671 V
+6659 1638 L
+1470 1842 C6
+2767 2403 C6
+4065 1842 C6
+5362 2513 C6
+6659 1638 C6
+% End plot #172
+% Begin plot #173
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 2439 M
+2767 2276 L
+1298 163 V
+5362 1794 L
+6659 1428 L
+1470 2439 C7
+2767 2276 C7
+4065 2439 C7
+5362 1794 C7
+6659 1428 C7
+% End plot #173
+% Begin plot #174
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 3063 M
+2767 2023 L
+4065 3063 L
+5362 1372 L
+1297 0 V
+1470 3063 C8
+2767 2023 C8
+4065 3063 C8
+5362 1372 C8
+6659 1372 C8
+% End plot #174
+% Begin plot #175
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 2930 M
+2767 2292 L
+1298 636 V
+5362 1444 L
+6659 1294 L
+1470 2930 C9
+2767 2292 C9
+4065 2928 C9
+5362 1444 C9
+6659 1294 C9
+% End plot #175
+% Begin plot #176
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 3985 M
+2767 2417 L
+4065 3985 L
+5362 1066 L
+1297 45 V
+1470 3985 C10
+2767 2417 C10
+4065 3985 C10
+5362 1066 C10
+6659 1111 C10
+% End plot #176
+% Begin plot #177
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 1488 M
+2767 3475 L
+4065 1488 L
+5362 3174 L
+6659 1476 L
+1470 1488 C11
+2767 3475 C11
+4065 1488 C11
+5362 3174 C11
+6659 1476 C11
+% End plot #177
+% Begin plot #178
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 1198 M
+2767 4121 L
+4065 1198 L
+5362 3907 L
+6659 1565 L
+1470 1198 C12
+2767 4121 C12
+4065 1198 C12
+5362 3907 C12
+6659 1565 C12
+% End plot #178
+% Begin plot #179
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 1842 M
+2767 3494 L
+4065 1842 L
+1297 671 V
+6659 1292 L
+1470 1842 C13
+2767 3494 C13
+4065 1842 C13
+5362 2513 C13
+6659 1292 C13
+% End plot #179
+% Begin plot #180
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 2562 M
+1297 717 V
+4065 2562 L
+5362 1690 L
+6659 1144 L
+1470 2562 C14
+2767 3279 C14
+4065 2562 C14
+5362 1690 C14
+6659 1144 C14
+% End plot #180
+% Begin plot #181
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 3729 M
+2767 3523 L
+1298 206 V
+5362 1126 L
+6659 992 L
+1470 3729 C15
+2767 3523 C15
+4065 3729 C15
+5362 1126 C15
+6659 992 C15
+% End plot #181
+% Begin plot #182
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 1524 M
+2767 4654 L
+4065 1524 L
+5362 3097 L
+6659 1247 L
+1470 1524 S0
+2767 4654 S0
+4065 1524 S0
+5362 3097 S0
+6659 1247 S0
+% End plot #182
+% Begin plot #183
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 2234 M
+2767 4677 L
+4065 2234 L
+5362 1997 L
+6659 1057 L
+1470 2234 S1
+2767 4677 S1
+4065 2234 S1
+5362 1997 S1
+6659 1057 S1
+% End plot #183
+% Begin plot #184
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 3162 M
+2767 4678 L
+4065 3162 L
+5362 1325 L
+6659 961 L
+1470 3162 S2
+2767 4678 S2
+4065 3162 S2
+5362 1325 S2
+6659 961 S2
+% End plot #184
+% Begin plot #185
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 3837 M
+2767 1106 L
+4065 3831 L
+5362 1101 L
+6659 2519 L
+1470 3837 S3
+2767 1106 S3
+4065 3831 S3
+5362 1101 S3
+6659 2519 S3
+% End plot #185
+% Begin plot #186
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 4645 M
+2767 1214 L
+4065 4645 L
+5362 964 L
+1297 867 V
+1470 4645 S4
+2767 1214 S4
+4065 4645 S4
+5362 964 S4
+6659 1831 S4
+% End plot #186
+% Begin plot #187
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 4655 M
+2767 1919 L
+4065 4655 L
+5362 963 L
+1297 217 V
+1470 4655 S5
+2767 1919 S5
+4065 4655 S5
+5362 963 S5
+6659 1180 S5
+% End plot #187
+% Begin plot #188
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 3740 M
+2767 2653 L
+4065 3740 L
+5362 1123 L
+1297 -32 V
+1470 3740 S6
+2767 2653 S6
+4065 3740 S6
+5362 1123 S6
+6659 1091 S6
+% End plot #188
+% Begin plot #189
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 1475 M
+2767 1267 L
+1298 208 V
+5362 3202 L
+6659 4676 L
+1470 1475 S7
+2767 1267 S7
+4065 1475 S7
+5362 3202 S7
+6659 4676 S7
+% End plot #189
+% Begin plot #190
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 1428 M
+1297 78 V
+1298 -78 V
+5362 3311 L
+1297 216 V
+1470 1428 S8
+2767 1506 S8
+4065 1428 S8
+5362 3311 S8
+6659 3527 S8
+% End plot #190
+% Begin plot #191
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 2099 M
+2767 1081 L
+4065 2099 L
+1297 55 V
+6659 4649 L
+1470 2099 S9
+2767 1081 S9
+4065 2099 S9
+5362 2154 S9
+6659 4649 S9
+% End plot #191
+% Begin plot #192
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 1800 M
+2767 1327 L
+1298 473 V
+1297 780 V
+1297 824 V
+1470 1800 S10
+2767 1327 S10
+4065 1800 S10
+5362 2580 S10
+6659 3404 S10
+% End plot #192
+% Begin plot #193
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 3170 M
+2767 960 L
+4065 3170 L
+5362 1322 L
+6659 4663 L
+1470 3170 S11
+2767 960 S11
+4065 3170 S11
+5362 1322 S11
+6659 4663 S11
+% End plot #193
+% Begin plot #194
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 2576 M
+2767 1157 L
+4065 2576 L
+5362 1679 L
+6659 3177 L
+1470 2576 S12
+2767 1157 S12
+4065 2576 S12
+5362 1679 S12
+6659 3177 S12
+% End plot #194
+% Begin plot #195
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 3713 M
+2767 1000 L
+4065 3713 L
+5362 1131 L
+6659 3430 L
+1470 3713 S13
+2767 1000 S13
+4065 3713 S13
+5362 1131 S13
+6659 3430 S13
+% End plot #195
+% Begin plot #196
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 2905 M
+2767 1299 L
+4065 2905 L
+5362 1457 L
+1297 831 V
+1470 2905 S14
+2767 1299 S14
+4065 2905 S14
+5362 1457 S14
+6659 2288 S14
+% End plot #196
+% Begin plot #197
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 3950 M
+2767 1128 L
+4065 3950 L
+5362 1073 L
+6659 2348 L
+1470 3950 S15
+2767 1128 S15
+4065 3950 S15
+5362 1073 S15
+6659 2348 S15
+% End plot #197
+% Begin plot #198
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 1437 M
+1297 69 V
+1298 -69 V
+5362 3289 L
+1297 212 V
+1470 1437 D0
+2767 1506 D0
+4065 1437 D0
+5362 3289 D0
+6659 3501 D0
+% End plot #198
+% Begin plot #199
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 999 M
+2767 2238 L
+4065 999 L
+5362 4539 L
+6659 3254 L
+1470 999 D1
+2767 2238 D1
+4065 999 D1
+5362 4539 D1
+6659 3254 D1
+% End plot #199
+% Begin plot #200
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 1784 M
+2767 1676 L
+1298 108 V
+1297 823 V
+6659 2404 L
+1470 1784 D2
+2767 1676 D2
+4065 1784 D2
+5362 2607 D2
+6659 2404 D2
+% End plot #200
+% Begin plot #201
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 1505 M
+1297 690 V
+4065 1505 L
+5362 3136 L
+6659 2084 L
+1470 1505 D3
+2767 2195 D3
+4065 1505 D3
+5362 3136 D3
+6659 2084 D3
+% End plot #201
+% Begin plot #202
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 2438 M
+2767 1506 L
+1298 932 V
+5362 1795 L
+1297 322 V
+1470 2438 D4
+2767 1506 D4
+4065 2438 D4
+5362 1795 D4
+6659 2117 D4
+% End plot #202
+% Begin plot #203
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 2179 M
+2767 1846 L
+1298 333 V
+5362 2058 L
+6659 1829 L
+1470 2179 D5
+2767 1846 D5
+4065 2179 D5
+5362 2058 D5
+6659 1829 D5
+% End plot #203
+% Begin plot #204
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 3089 M
+2767 1368 L
+4065 3089 L
+5362 1359 L
+1297 659 V
+1470 3089 D6
+2767 1368 D6
+4065 3089 D6
+5362 1359 D6
+6659 2018 D6
+% End plot #204
+% Begin plot #205
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 2842 M
+2767 1689 L
+4065 2842 L
+5362 1494 L
+1297 171 V
+1470 2842 D7
+2767 1689 D7
+4065 2842 D7
+5362 1494 D7
+6659 1665 D7
+% End plot #205
+% Begin plot #206
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 3606 M
+2767 1588 L
+4065 3606 L
+5362 1161 L
+1297 372 V
+1470 3606 D8
+2767 1588 D8
+4065 3606 D8
+5362 1161 D8
+6659 1533 D8
+% End plot #206
+% Begin plot #207
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 1002 M
+2767 3394 L
+4065 1002 L
+5362 4532 L
+6659 2155 L
+1470 1002 D9
+2767 3394 D9
+4065 1002 D9
+5362 4532 D9
+6659 2155 D9
+% End plot #207
+% Begin plot #208
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 1844 M
+1297 616 V
+4065 1844 L
+1297 666 V
+6659 1608 L
+1470 1844 D10
+2767 2460 D10
+4065 1844 D10
+5362 2510 D10
+6659 1608 D10
+% End plot #208
+% Begin plot #209
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 1470 2426 M
+2767 2281 L
+1298 145 V
+5362 1806 L
+6659 1430 L
+1470 2426 D11
+2767 2281 D11
+4065 2426 D11
+5362 1806 D11
+6659 1430 D11
+% End plot #209
+% Begin plot #210
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 1470 3063 M
+2767 2108 L
+1298 955 V
+5362 1372 L
+1297 -38 V
+1470 3063 D12
+2767 2108 D12
+4065 3063 D12
+5362 1372 D12
+6659 1334 D12
+% End plot #210
+% Begin plot #211
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 1470 2923 M
+2767 2256 L
+1298 667 V
+5362 1447 L
+6659 1307 L
+1470 2923 D13
+2767 2256 D13
+4065 2923 D13
+5362 1447 D13
+6659 1307 D13
+% End plot #211
+% Begin plot #212
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 1470 3959 M
+2767 2417 L
+4065 3959 L
+5362 1071 L
+1297 42 V
+1470 3959 D14
+2767 2417 D14
+4065 3959 D14
+5362 1071 D14
+6659 1113 D14
+% End plot #212
+% Begin plot #213
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C 1470 1428 M
+2767 3549 L
+4065 1428 L
+5362 3311 L
+6659 1500 L
+1470 1428 D15
+2767 3549 D15
+4065 1428 D15
+5362 3311 D15
+6659 1500 D15
+% End plot #213
+% Begin plot #214
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C 1470 1235 M
+2767 4070 L
+4065 1235 L
+5362 3802 L
+6659 1539 L
+1470 1235 BoxE
+2767 4070 BoxE
+4065 1235 BoxE
+5362 3802 BoxE
+6659 1539 BoxE
+% End plot #214
+% Begin plot #215
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C 1470 1821 M
+2767 3528 L
+4065 1821 L
+1297 726 V
+6659 1294 L
+1470 1821 CircE
+2767 3528 CircE
+4065 1821 CircE
+5362 2547 CircE
+6659 1294 CircE
+% End plot #215
+% Begin plot #216
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C 1470 2588 M
+1297 690 V
+4065 2588 L
+5362 1670 L
+6659 1140 L
+1470 2588 TriUE
+2767 3278 TriUE
+4065 2588 TriUE
+5362 1670 TriUE
+6659 1140 TriUE
+% End plot #216
+% Begin plot #217
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C % End plot #217
+% Begin plot #218
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C % End plot #218
+% Begin plot #219
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C % End plot #219
+% Begin plot #220
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C % End plot #220
+% Begin plot #221
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C % End plot #221
+% Begin plot #222
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C % End plot #222
+% Begin plot #223
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C % End plot #223
+% Begin plot #224
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C % End plot #224
+% Begin plot #225
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C % End plot #225
+% Begin plot #226
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C % End plot #226
+% Begin plot #227
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C % End plot #227
+% Begin plot #228
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C % End plot #228
+% Begin plot #229
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C % End plot #229
+% Begin plot #230
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C % End plot #230
+% Begin plot #231
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C % End plot #231
+% Begin plot #232
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C % End plot #232
+% Begin plot #233
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C % End plot #233
+% Begin plot #234
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C % End plot #234
+% Begin plot #235
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C % End plot #235
+% Begin plot #236
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C % End plot #236
+% Begin plot #237
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C % End plot #237
+% Begin plot #238
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C % End plot #238
+% Begin plot #239
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C % End plot #239
+% Begin plot #240
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C % End plot #240
+% Begin plot #241
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C % End plot #241
+% Begin plot #242
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C % End plot #242
+% Begin plot #243
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C % End plot #243
+% Begin plot #244
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C % End plot #244
+% Begin plot #245
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C % End plot #245
+% Begin plot #246
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C % End plot #246
+% Begin plot #247
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C % End plot #247
+% Begin plot #248
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C % End plot #248
+% Begin plot #249
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C % End plot #249
+% Begin plot #250
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C % End plot #250
+% Begin plot #251
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C % End plot #251
+% Begin plot #252
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C % End plot #252
+% Begin plot #253
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C % End plot #253
+% Begin plot #254
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C % End plot #254
+% Begin plot #255
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C % End plot #255
+% Begin plot #256
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C % End plot #256
+% Begin plot #257
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C % End plot #257
+% Begin plot #258
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C % End plot #258
+% Begin plot #259
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C % End plot #259
+% Begin plot #260
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C % End plot #260
+% Begin plot #261
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C % End plot #261
+% Begin plot #262
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C % End plot #262
+% Begin plot #263
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C % End plot #263
+% Begin plot #264
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C % End plot #264
+% Begin plot #265
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C % End plot #265
+% Begin plot #266
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C % End plot #266
+% Begin plot #267
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C % End plot #267
+% Begin plot #268
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C % End plot #268
+% Begin plot #269
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C % End plot #269
+% Begin plot #270
+1.000 UP
+1.000 UL
+LTb
+0.00 0.45 0.70 C % End plot #270
+% Begin plot #271
+1.000 UP
+1.000 UL
+LTb
+0.90 0.12 0.06 C % End plot #271
+% Begin plot #272
+1.000 UP
+1.000 UL
+LTb
+0.00 0.00 0.00 C % End plot #272
+% Begin plot #273
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C % End plot #273
+% Begin plot #274
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C % End plot #274
+% Begin plot #275
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C % End plot #275
+% Begin plot #276
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C % End plot #276
+% Begin plot #277
+1.000 UP
+1.000 UL
+LTb
+0.94 0.89 0.26 C % End plot #277
+2.000 UL
+LTb
+LCb setrgbcolor
+1.000 UL
+LTB
+LCb setrgbcolor
+1470 4679 N
+0 -3719 V
+5189 0 V
+0 3719 V
+-5189 0 V
+Z stroke
+1.000 UP
+1.000 UL
+LTb
+LCb setrgbcolor
+stroke
+grestore
+end
+showpage
+%%Trailer
+%%DocumentFonts: Helvetica
