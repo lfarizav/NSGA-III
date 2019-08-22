@@ -1,0 +1,29 @@
+set terminal postscript eps enhanced color font 'Helvetica,30'
+set output 'compfrontdtlz2.eps'
+set xyplane 0
+set ytics 0.5,0.5,0.5
+set xtics 0.5
+set ztics 0.5
+set xrange [0:1]
+set yrange [0:1]
+set zrange [0:1]
+set xlabel offset -1,-1
+set ylabel offset -1,-1
+set zlabel offset 2,2
+set multiplot layout 1,3
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 80,135
+splot 'plot0.out' w points lt rgb "red" pointtype 6 pointsize 0.5 notitle
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 80,135
+splot 'plot1.out' w points lt rgb "red" pointtype 6 pointsize 0.5 notitle
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 80,135
+splot 'plot2.out' w points lt rgb "red" pointtype 6 pointsize 0.5 notitle
+unset multiplot

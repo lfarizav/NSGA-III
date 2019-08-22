@@ -1,0 +1,23 @@
+set terminal postscript eps enhanced color font 'Helvetica,30'
+set output 'comprefpointsdtlz2.eps'
+set xtics 0.5
+set ytics 0.5
+set ztics 0.5
+set xlabel "x-units" font "Times-Roman,12"
+set multiplot layout 1,3
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 80,135
+splot 'plot_rf0.out' w points pointtype 6 pointsize 0.5 notitle
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 80,135
+splot 'plot_rf1.out' w points pointtype 6 pointsize 0.5 notitle
+set xlabel "f1"
+set ylabel "f2"
+set zlabel "f3"
+set view 80,135
+splot 'plot_rf2.out' w points pointtype 6 pointsize 0.5 notitle
+unset multiplot
