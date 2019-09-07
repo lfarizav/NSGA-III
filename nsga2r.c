@@ -110,6 +110,8 @@ int *usefull_refpoint_index;
 int *sort_all_refpoint_index;
 int *sort_all_adaptive_refpoint_index;
 double **adaptive_refpoints;
+double **RRUs;
+double **UEs;
 int useless_refpoint_number;
 int usefull_refpoint_number;
 int adaptive_refpoint_number;
@@ -555,7 +557,7 @@ int main (int argc, char **argv)
     fprintf(fpt4,"# of objectives = %d, # of constraints = %d, # of real_var = %d, # of bits of bin_var = %d, constr_violation, rank\n",nobj,ncon,nreal,bitlength);
 
     /*Remember numberpointperdim_inside = numberpointperdim-1, if you want to use two layers of reference points*/
-    numberpointperdim=(nobj==3)?13:(nobj==5)?7:(nobj==8)?4:(nobj==10)?4:(nobj==15)?3:4;/*numberpointperdim=(nobj==3)?13:(nobj==4)?7:(nobj==5)?7:4;*/
+    numberpointperdim=(nobj==3)?13:(nobj==4||nobj==5)?7:(nobj==8)?4:(nobj==10)?4:(nobj==15)?3:20;/*numberpointperdim=(nobj==3)?13:(nobj==4)?7:(nobj==5)?7:4;*/
     numberpointperdim_inside=numberpointperdim-1;
     /*popsize=nCn(3-1+12,12)=92(3d),nCn(3-1+6,6)=210(5d),nCn(3-1+8,8)=6435(8d)*/
     numberofdivisions=numberpointperdim-1;
@@ -690,6 +692,16 @@ int main (int argc, char **argv)
     {
 	igb_real_front_normalized[i] = (double *)malloc((popsize)*sizeof(double));
     }
+    RRUs = (double **)malloc(5*sizeof(double *));
+    for (i=0;i<5;i++)
+    {
+	RRUs[i] = (double *)malloc(6*sizeof(double));
+    }
+    UEs = (double **)malloc(6*sizeof(double *));
+    for (i=0;i<6;i++)
+    {
+	UEs[i] = (double *)malloc(100*sizeof(double));
+    }
     maximum_value = (double *)malloc((nobj)*sizeof(double));
     minimum_value = (double *)malloc((nobj)*sizeof(double));
     w_scalarizing_vector=(double *)malloc(nobj*sizeof(double));
@@ -750,12 +762,13 @@ int main (int argc, char **argv)
     int temp_gen=0;
     double convergence_value;
     int i1,i2,i3;
-    clock_t start = clock();
+    clock_t start;
     for (i=0;i<nobj*(factorial+factorial_inside);i++)
 	for (k=0;k<nobj;k++)
     		adaptive_ref_points_settled[k][i]=0;
     for (i=2; i<=ngen; i++)
     {
+	clock_t start = clock();
    	 /*if (i==50)
    	 {
 		exit(-1);
@@ -772,7 +785,7 @@ int main (int argc, char **argv)
         if (choice!=0){
 	    if (nobj>3)
 	    {
-	    	onthefly_display_parallel_coordinates(parent_pop,gp_pc,i);
+	    	onthefly_display_parallel_coordinates_normalized(parent_pop,gp_pc,i);
 	    }
 	    else
 	    {
@@ -802,21 +815,27 @@ int main (int argc, char **argv)
 		}
 	}
 	convergence_value=convergence_metric();
-        printf("\n gen = %d, IGD %e, convergence metric %e\n",i,temp_IGD,convergence_value);
+	if (dtlz<16)
+        	printf("\n gen = %d, IGD %e, convergence metric %e\n",i,temp_IGD,convergence_value);
+	else
+		printf("\n gen = %d",i);
 	IGD_data[i]=temp_IGD;
 	convergence_data[i]=convergence_value;
 	/*sleep(1);*/
+    	clock_t end = clock();
+    	printf("Runtime %e s\n",(float)(end - start) / CLOCKS_PER_SEC);
+	sleep(1);
     }
-    printf("IGD metric\n");
+    /*printf("IGD metric\n");
     for (i=0;i<ngen;i++)
 	printf("%e\n",IGD_data[i]);
     printf("convergence metric\n");
     for (i=0;i<ngen;i++)
-	printf("%e\n",convergence_data[i]);
+	printf("%e\n",convergence_data[i]);*/
     if (nobj<=3)
-	onthefly_display_convergence (gp_convergence,ngen);
+	/*onthefly_display_convergence (gp_convergence,ngen);
 	onthefly_display_IGD (gp_IGD,ngen);
-    	onthefly_display_real_front (parent_pop,gp_real_front);
+    	onthefly_display_real_front (parent_pop,gp_real_front);*/
     if (adaptive_nsga == 1)
     	printf("\nGenerations finished, now reporting solutions (A-NSGA-III)\n");
     else if (adaptive_nsga == 2)

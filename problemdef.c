@@ -1,11 +1,13 @@
 /* Test problem definitions */
-/* The Copyright belongs to Luis Felipe Ariza Vesga (lfarizav@unal.edu.co). You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
-A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. March, 2019. */
+/* The Copyright belongs to Luis Felipe Ariza Vesga (lfarizav@unal.edu.co). You are free to use this RRU (https://github.com/lfarizav/NSGA-III) for research purposes. All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
+A Fast Nondominated Sorting Genetic RRU Extension to Solve Evolutionary Many-Objective Problems. March, 2019. */
 
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
 # include <float.h>
+# include <string.h>
+
 # include "global.h"
 # include "rand.h"
 
@@ -19,7 +21,7 @@ A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Ma
 /* # define zdt2 */
 /* # define zdt3 */
 /* # define zdt4*/
- # define waterproblem
+ # define energy_efficiency_optimization
 /*# define dtlz1*/
 /* # define zdt5 */
 /* # define zdt6  */
@@ -38,7 +40,91 @@ A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Ma
 /*  # define pipe*/
 /*# define pipe4d*/
 
-/*  Test problem crashworthiness
+/*  Real problem energy_efficiency_optimization
+    # of real variables = 6->n_a(# of allocated resource blocks per RRU)
+    # of bin variables = 6->RRUs
+    # of bits for bin variables = 1
+    # of objectives = 4
+    # of constraints = 0
+    */
+#ifdef energy_efficiency_optimization
+void test_problem (double *xreal, double *xbin, int **gene, double *obj, double *constr, double *equality_constr, int normalized)
+{
+	dtlz=30;
+	int static Number_of_RRUs=0;
+	int static Number_of_UEs=0;
+	int p_off=33.88;/*Watts*/
+	int p_base=48.65;/*Watts*/
+	int p_rb=0.384;/*Watts/RB*/
+	int light_speed=300000000;
+	int frequency_carrier=2600000000;
+	int lamda=light_speed/frequency_carrier;
+	int K=4;
+	int u=0;
+	int v=0;
+	double w=0;
+	double x=0;
+	double num,dem;
+	int i,j;
+	int temp;
+	int static stop=1;
+	if (stop)
+	{
+		Number_of_RRUs=get_RRU_data_from_file (10);
+		Number_of_UEs=get_UE_data_from_file (10);
+		stop=0;
+	}
+	double average_distance[Number_of_RRUs][1];
+	printf("Number of RRUs = %d, Number of UEs = %d\n",Number_of_RRUs,Number_of_UEs);
+	for (i=0;i<Number_of_RRUs;i++)
+	{	
+		for (j=0;j<5;j++)
+		{
+			printf("%e\t",RRUs[j][i]);
+			if (j==4)
+				average_distance[i][1]=RRUs[j][i];
+				
+		}
+		printf("\n");
+	}
+	for (i=0;i<Number_of_UEs;i++)
+	{	
+		for (j=0;j<6;j++)
+		{
+			printf("%e\t",UEs[j][i]);
+		}
+		printf("\n");
+	}
+
+	for (i=0;i<Number_of_RRUs;i++)
+	{
+		j=4;
+		temp=0;
+		if (gene[i][0] == 1)
+		{
+		    	u++;
+		}
+		printf("gene %d = %d, xreal[%d] = %e, u = %d, average_distance_RRU-UE = %e\n",i,gene[i][0]==1,i,xreal[i],u,average_distance[j,1]);
+		temp=(gene[i][0] == 1)?1:0;
+		v=v+floor(xreal[i])*temp;
+		w=w+p_base*temp+p_rb*floor(xreal[i])*temp+p_off*(temp)?0:1;
+		if (average_distance[j,1]!=0)
+		{
+			num=pow(lamda/(2*PI**average_distance[j,1]),K);
+			dem=-174+10*log(12*15000*floor(xreal[i]));
+			x=x+num/dem;
+		}
+	}
+	obj[0]=u;
+	obj[1]=v;
+	obj[2]=w;
+	obj[3]=x;
+	constr[0]=25-u;
+	constr[1]=25-v;
+	return;
+}
+#endif
+/*  Real problem crashworthiness
     # of real variables = 5
     # of bin variables = 0
     # of objectives = 3
@@ -58,7 +144,7 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
 }
 #endif
 
-/*  Test problem carsideimpact
+/*  Real problem carsideimpact
     # of real variables = 3
     # of bin variables = 0
     # of objectives = 4
@@ -83,7 +169,7 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
     return;
 }
 #endif
-/*  Test problem waterproblem
+/*  Real problem waterproblem
     # of real variables = 7
     # of bin variables = 0
     # of objectives = 3
@@ -316,6 +402,7 @@ if (nobj==5)
 #ifdef zdt1
 void test_problem (double *xreal, double *xbin, int **gene, double *obj, double *constr, double *equality_constr, int normalized)
 {
+    dtlz=20;
     double f1, f2, g, h;
     int i;
     f1 = xreal[0];
@@ -372,6 +459,7 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
 #ifdef zdt3
 void test_problem (double *xreal, double *xbin, int **gene, double *obj, double *constr, double *equality_constr, int normalized)
 {
+    dtlz=20;
     double f1, f2, g, h;
     int i;
     f1 = xreal[0];
@@ -447,6 +535,7 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
 #ifdef zdt5
 void test_problem (double *xreal, double *xbin, int **gene, double *obj, double *constr, double *equality_constr, int normalized)
 {
+dtlz=20;
     int i, j;
     int u[11];
     int v[11];
@@ -882,6 +971,7 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
     for (i=n_var-k;i<n_var;i++)
     {
 	g+=(xreal[i]-0.5)*(xreal[i]-0.5)-cos(20.0*PI*(xreal[i]-0.5));	
+	/*printf("xreal[%d] = %e",i,xreal[i]);*/
     }
     g = 100*(k+g);
     for (i=0;i<nobj;i++)

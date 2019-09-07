@@ -392,3 +392,64 @@ void hyper_volume()
 	
 return;
 }
+int get_RRU_data_from_file (int UE)
+{
+    /*scenario=0->stadium,scenario=1->airport*/
+    FILE *gp_RRU;
+    char str_RRU[1500];
+    int i=0,j=0;
+    char *token_RRU;
+    const char s[2] = "\t";
+    gp_RRU=fopen("RRU_data.txt","rt");
+
+    if( gp_RRU == NULL )
+    {
+      perror("Error while opening the file.\n");
+      exit(EXIT_FAILURE);
+    }
+
+    while (fgets(str_RRU,1500, gp_RRU)!=NULL)
+    {
+	/*printf("test RRU: %s\n",str_RRU);*/
+   	token_RRU = strtok (str_RRU,"\t");
+		for (i=0;i<5;i++){	
+		/*printf( " %f\n", atof(token_RRU));*/
+		RRUs[i][j]=atof(token_RRU);
+		token_RRU = strtok (NULL, "\t");
+	   }
+    j++;
+    }
+   fclose(gp_RRU);
+   return j;
+}
+
+int get_UE_data_from_file (int RRU)
+{
+    /*scenario=0->stadium,scenario=1->airport*/
+    FILE *gp_UE;
+    char str_UE[1500];
+    int i=0,j=0;
+    char *token_UE;
+    const char s[2] = "\t";
+    gp_UE=fopen("UE_data.txt","rt");
+
+    if( gp_UE == NULL )
+    {
+      perror("Error while opening the file.\n");
+      exit(EXIT_FAILURE);
+    }
+
+    while (fgets(str_UE,1500, gp_UE)!=NULL)
+    {
+	/*printf("test UE: %s\n",str_UE);*/
+   	token_UE = strtok (str_UE,"\t");
+		for (i=0;i<6;i++){	
+		/*printf( " %f\n", atof(token_UE));*/
+		UEs[i][j]=atof(token_UE);
+		token_UE = strtok (NULL, "\t");
+	   }
+    j++;
+    }
+   fclose(gp_UE);
+   return j;
+}

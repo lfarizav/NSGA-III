@@ -160,6 +160,8 @@ extern int usefull_refpoint_number;
 extern double *convergence_data;
 extern double *IGD_data;
 extern double **adaptive_refpoints;
+extern double **RRUs;
+extern double **UEs;
 extern int adaptive_refpoint_number;
 extern int last_gen_adaptive_refpoints_number;
 extern double *num_div_den;
@@ -241,7 +243,8 @@ void bin_mutate_ind (individual *ind);
 void real_mutate_ind (individual *ind);
 
 void test_problem (double *xreal, double *xbin, int **gene, double *obj, double *constr, double *equality_constr, int normalized);
-
+int get_RRU_data_from_file (int UE);
+int get_UE_data_from_file (int RRU);
 void report_pop (population *pop, FILE *fpt);
 void report_feasible (population *pop, FILE *fpt);
 void report_ind (individual *ind, FILE *fpt);
