@@ -75,14 +75,17 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
 		stop=0;
 	}
 	double average_distance[Number_of_RRUs][1];
-	printf("Number of RRUs = %d, Number of UEs = %d\n",Number_of_RRUs,Number_of_UEs);
+	/*printf("Number of RRUs = %d, Number of UEs = %d\n",Number_of_RRUs,Number_of_UEs);
 	for (i=0;i<Number_of_RRUs;i++)
 	{	
 		for (j=0;j<5;j++)
 		{
 			printf("%e\t",RRUs[j][i]);
 			if (j==4)
+			{
 				average_distance[i][1]=RRUs[j][i];
+				printf("RRU[%d][%d]=(%e, %e)\t",RRUs[j][i],j,i,average_distance[i][1]);
+			}
 				
 		}
 		printf("\n");
@@ -94,24 +97,22 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
 			printf("%e\t",UEs[j][i]);
 		}
 		printf("\n");
-	}
+	}*/
 
 	for (i=0;i<Number_of_RRUs;i++)
 	{
-		j=4;
-		temp=0;
-		if (gene[i][0] == 1)
+		temp=(gene[i][0] == 1)?1:0;;
+		if (temp)
 		{
 		    	u++;
 		}
-		printf("gene %d = %d, xreal[%d] = %e, u = %d, average_distance_RRU-UE = %e\n",i,gene[i][0]==1,i,xreal[i],u,average_distance[j,1]);
-		temp=(gene[i][0] == 1)?1:0;
+		printf("gene %d = %d, xreal[%d] = %e, u = %d, average_distance_RRU-UE = %e\n",i,gene[i][0]==1,i,xreal[i],u,RRUs[4][i]);
 		v=v+floor(xreal[i])*temp;
 		w=w+p_base*temp+p_rb*floor(xreal[i])*temp+p_off*(temp)?0:1;
-		if (average_distance[j,1]!=0)
+		if (RRUs[4][i]!=0)
 		{
-			num=pow(lamda/(2*PI**average_distance[j,1]),K);
-			dem=-174+10*log(12*15000*floor(xreal[i]));
+			num=pow(lamda/(2*PI*RRUs[4][i]),K);
+			dem=3.98107e-18*12*15000*floor(xreal[i]);
 			x=x+num/dem;
 		}
 	}
