@@ -48,9 +48,9 @@ void evaluate_ind (individual *ind, int psize)
         }
 	if (neqcon>0)
 	{
-		for (k=0; j<neqcon; k++)
+		for (k=0; k<neqcon; k++)
 		{
-		        ind->equality_constr_violation += abs(ind->equality_constr[j]);
+		        ind->equality_constr_violation += abs(ind->equality_constr[k]);
 		}
 	}
 	else
