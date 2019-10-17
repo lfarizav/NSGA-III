@@ -21,7 +21,7 @@ A Fast Nondominated Sorting Genetic RRU Extension to Solve Evolutionary Many-Obj
 /* # define zdt2 */
 /* # define zdt3 */
 /* # define zdt4*/
- # define energy_efficiency_optimization
+ # define dtlz1
 /*# define dtlz1*/
 /* # define zdt5 */
 /* # define zdt6  */
