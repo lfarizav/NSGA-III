@@ -453,3 +453,38 @@ int get_UE_data_from_file (int RRU)
    fclose(gp_UE);
    return j;
 }
+int get_traffic_from_file (int RRU)
+{
+    /*scenario=0->stadium,scenario=1->airport*/
+    FILE *gp_traffic;
+    char str_traffic[1500];
+    int i=0,j=0;
+    char *token_traffic;
+    const char s[2] = "\t";
+    gp_traffic=fopen("traffic_data.txt","rt");
+
+    if( gp_traffic == NULL )
+    {
+      perror("Error while opening the file.\n");
+      exit(EXIT_FAILURE);
+    }
+
+    while (fgets(str_traffic,1500, gp_traffic)!=NULL)
+    {
+	/*printf("test UE: %s\n",str_UE);*/
+   	token_traffic = strtok (str_traffic,"\t");
+	for (i=0;i<2;i++){
+		traffic[i][j]=atof(token_traffic);
+		token_traffic = strtok (NULL, "\t");
+	}
+    j++;
+    }
+    /*for(i=0;i<1440;i++)
+    {
+	for (j=0;j<2;j++)
+		printf("%e\t", traffic[j][i]);
+	printf("\n");
+    }*/
+   fclose(gp_traffic);
+   return j;
+}

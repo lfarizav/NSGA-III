@@ -1,6 +1,6 @@
 /* Data initializtion routines */
 /* The Copyright belongs to Luis Felipe Ariza Vesga (lfarizav@unal.edu.co). You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
-A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Many-Objective Problems. March, 2019. */
+A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. March, 2019. */
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -197,7 +197,7 @@ int recursive_for_adaptive (int nobj_for, double step, int count, int i)
 	
 	return count;
 }
-long fact (int x)
+int fact1 (int x)
 {
      long int f=1;
      int i;
@@ -205,6 +205,22 @@ long fact (int x)
        f=f*i;
      }
      return(f);
+}
+/*Code suggested by hwliu11*/
+int fact (int x)
+{
+    int k;
+    int factorial = 1;
+    for (k=1;k<nobj;++k)
+    {
+	factorial *= (x + k);
+    }
+    int factorial2 = 1;
+    for (k = 1; k < nobj; ++k)
+    {
+	factorial2 *= k;
+    }
+    return factorial / factorial2;
 }
 void square_refpoints()
 {

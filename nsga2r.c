@@ -112,6 +112,7 @@ int *sort_all_adaptive_refpoint_index;
 double **adaptive_refpoints;
 double **RRUs;
 double **UEs;
+double **traffic;
 int useless_refpoint_number;
 int usefull_refpoint_number;
 int adaptive_refpoint_number;
@@ -561,16 +562,16 @@ int main (int argc, char **argv)
     numberpointperdim_inside=numberpointperdim-1;
     /*popsize=nCn(3-1+12,12)=92(3d),nCn(3-1+6,6)=210(5d),nCn(3-1+8,8)=6435(8d)*/
     numberofdivisions=numberpointperdim-1;
-    factorial=fact(numberofdivisions+nobj-1)/(fact(numberofdivisions)*fact(nobj-1));
-    factorial_adaptive=fact(nobj)/(fact(1)*fact(nobj-1));
+    factorial=fact(numberofdivisions);
+    factorial_adaptive=nobj;
     if (nobj>5)
-    	factorial_inside=fact(numberofdivisions+nobj-2)/(fact(numberofdivisions-1)*fact(nobj-1));
+    	factorial_inside=fact(numberofdivisions-1);
     else 	
     	factorial_inside=0;
     last_gen_adaptive_refpoints_number=0;
     elegible_adaptive_ref_points_to_be_fixed_number=0;
     adaptive_ref_points_inserted=0;
-    /*printf("factorial %d, factorial_inside %d\n",factorial,factorial_inside);*/
+    printf("factorial %d, factorial_inside %d,factorial_adaptive %d\n",factorial,factorial_inside,factorial_adaptive);
     if (factorial>=popsize)
     {
 	printf("The reference points size must be less than the population size. Reduce the number of reference points per dimension! (%d)\n",factorial);
@@ -695,12 +696,17 @@ int main (int argc, char **argv)
     RRUs = (double **)malloc(5*sizeof(double *));
     for (i=0;i<5;i++)
     {
-	RRUs[i] = (double *)malloc(6*sizeof(double));
+	RRUs[i] = (double *)malloc(32*sizeof(double));
     }
     UEs = (double **)malloc(6*sizeof(double *));
     for (i=0;i<6;i++)
     {
-	UEs[i] = (double *)malloc(100*sizeof(double));
+	UEs[i] = (double *)malloc(192*sizeof(double));
+    }
+    traffic = (double **)malloc(2*sizeof(double *));
+    for (i=0;i<2;i++)
+    {
+	traffic[i] = (double *)malloc(1440*sizeof(double));
     }
     maximum_value = (double *)malloc((nobj)*sizeof(double));
     minimum_value = (double *)malloc((nobj)*sizeof(double));
@@ -813,8 +819,8 @@ int main (int argc, char **argv)
 			temp_IGD=IGD_value;
 			temp_gen=i;
 		}
+		convergence_value=convergence_metric();
 	}
-	convergence_value=convergence_metric();
 	if (dtlz<16)
         	printf("\n gen = %d, IGD %e, convergence metric %e\n",i,temp_IGD,convergence_value);
 	else
@@ -824,7 +830,7 @@ int main (int argc, char **argv)
 	/*sleep(1);*/
     	clock_t end = clock();
     	printf("Runtime %e s\n",(float)(end - start) / CLOCKS_PER_SEC);
-	sleep(1);
+	/*sleep(1);/*Please comment this line to run your simulations*/
     }
     /*printf("IGD metric\n");
     for (i=0;i<ngen;i++)
