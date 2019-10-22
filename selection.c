@@ -1,6 +1,6 @@
 /* Data initialization routines */
 /* The Copyright belongs to Luis Felipe Ariza Vesga (lfarizav@unal.edu.co). You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
-A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Many-Objective Problems. March, 2019. */
+A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. March, 2019. */
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -182,7 +182,7 @@ void obj_minus_zmin (individual *ind)
     }
     return;
 }
-void associate(individual *normalizedind,individual *new_ind, int l, int archieve_size, int start, int end)
+void associate(individual *normalizedind, int l, int archieve_size, int start, int end)
 {
     int i,j,k;
     int index_dmin;
@@ -206,22 +206,10 @@ void associate(individual *normalizedind,individual *new_ind, int l, int archiev
     if (l<archieve_size)
     {
 	rho_St[index_dmin]+=1;	
-	
-	/*The follow information is load from selection_pop to new_pop. Just for visualization purposes
-	new_ind->associatedref=index_dmin;
-    	new_ind->distancetoassociatedref=dmin;
-    	new_ind->w=num_div_den[index_dmin];
-	for (k=0;k<nobj;k++)
-	{
-		new_ind->obj_normalized[k]=normalizedind->obj_normalized[k];
-		new_ind->obj_minus_zmin[k]=normalizedind->obj_minus_zmin[k];
-	}
-	/**********************************************************************************************/
     }
     else
     {
 	rho_Fl[index_dmin]+=1;
-	/*printf("rho_Fl[%d] %d\n",index_dmin,rho_Fl[index_dmin]);*/
     }
 return;
 }

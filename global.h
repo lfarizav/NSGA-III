@@ -272,7 +272,7 @@ void normalized_objective_function (individual *ind);
 void normalized_objective_function_simple (individual *ind);
 int niching (population *selection_pop,population *new_pop, int front_size, int archieve_size, int start, int end);
 int associated_from_last_front(individual *normalizedind, int l, int index, int associatedfromlastfront_index);
-void associate(individual *normalizedind,individual *new_ind,int l, int archieve_size, int start, int end);
+void associate(individual *normalizedind,int l, int archieve_size, int start, int end);
 void get_scalarizing_vector(int j);
 double achievement_scalarization_function (individual *ind_minus_zmin, int i);
 void find_extreme_points(population *selection_pop_minus_zmin, int archieve_size);

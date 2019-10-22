@@ -547,7 +547,7 @@ int delete_adaptive_refpoints(int archieve_size, int front_size, population *sel
     	}
     	for (l=0; l<popsize; l++)
     	{
-		associate(&new_pop->ind[l],&selection_pop->ind[l],l,10*popsize,0,factorial+factorial_inside+adaptive_refpoint_number);
+		associate(&new_pop->ind[l],l,10*popsize,0,factorial+factorial_inside+adaptive_refpoint_number);
 	}
 	/*printf("Printing rho after adding adaptive refpoints and associate all refpoints with the population\n");*/
     	int temp_rho_St_total=0;

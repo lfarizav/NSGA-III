@@ -1,6 +1,6 @@
 /* Nond-domination based selection routines */
 /* The Copyright belongs to Luis Felipe Ariza Vesga (lfarizav@unal.edu.co). You are free to use this algorithm (https://github.com/lfarizav/NSGA-III) for research purposes. All publications which use this code should acknowledge the author. Luis Felipe Ariza Vesga. 
-A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Many-Objective Problems. March, 2019. */
+A Fast Nondominated Sorting Genetic Algorithm Extension to Solve Evolutionary Many-Objective Problems. March, 2019. */
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -322,7 +322,7 @@ void associated_reference_points_fill (population *selection_pop, population *mi
     /*Associate normalized solutions with reference points*/
     for (l=0; l<archieve_and_front_sizes; l++)
     {
-        associate(&selection_pop->ind[l],&new_pop->ind[l],l, archieve_size,0,factorial+factorial_inside+last_gen_adaptive_refpoints_number);
+        associate(&selection_pop->ind[l],l, archieve_size,0,factorial+factorial_inside+last_gen_adaptive_refpoints_number);
     }
     /*printf("Printing rho after asociation refpoints ((factorial %d-adaptive_ref_points_inserted %d=%d)+factorial_inside %d +last_gen_adaptive_refpoints_number %d)\n",factorial,adaptive_ref_points_inserted,factorial-adaptive_ref_points_inserted,factorial_inside,last_gen_adaptive_refpoints_number);*/
     temp_rho_St_total=0;
