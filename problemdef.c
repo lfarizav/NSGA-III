@@ -47,24 +47,40 @@ A Fast Nondominated Sorting Genetic RRU Extension to Solve Evolutionary Many-Obj
     # of objectives = 4
     # of constraints = 0
     */
-#ifdef energy_efficiency_optimization
+#ifdef energy_efficiency_optimization_free_space
 void test_problem (double *xreal, double *xbin, int **gene, double *obj, double *constr, double *equality_constr, int normalized)
 {
 	dtlz=30;
-	int static Number_of_RRUs=0;
-	int static Number_of_UEs=0;
-	int p_off=33.88;/*Watts*/
-	int p_base=48.65;/*Watts*/
-	int p_rb=0.384;/*Watts/RB*/
-	int light_speed=300000000;
-	int frequency_carrier=2600000000;
-	int lamda=light_speed/frequency_carrier;
-	int K=4;
-	int u=0;
-	int v=0;
+	time_t rawtime;
+    	struct tm * timeinfo;
+	static int Number_of_RRUs;
+	static int Number_of_UEs;
+	/*double p_pool=1;/*Watts*/
+	/*double p_sb=0.025;/*0.25;Watts*/
+	/*double p_sp=0.025;/*0.25;Watts/port*/
+	static double p_off;/*33.88e-3;Watts*/
+	static double p_base;/*48.65e-3;Watts*/
+	static double p_rb;/*0.384;Watts/RB->250mw-50mw/(25 PRBs)=200mW/25=0.2W/25PRBs=0.008W/RB*/
+	double light_speed=3e8;
+	double frequency_carrier=2.6e9;
+	double lamda=light_speed/frequency_carrier;
+	double pi=3.14159265358979;
+	static double GA/*3.54813*/;
+	static double P_t;/*Watts*/
+	/*double SINR=0;*/
+	double SNR;
+	double K=2;/*You need to change this value in matlab code al well*/
+	double Maximum_power=30;
+	static double Maximum_data_rate;/*17.5Mbps,MCS=28,downlink,maximum throughput*/
+	static int NOW;
+	int x_a=0;
+	int n_a=0;
+	int Number_of_RBs=25;
+	int Number_RBs_interference=4;
 	double w=0;
 	double x=0;
-	double num,dem;
+	double num,den;
+	double T_c;
 	int i,j;
 	int temp;
 	int static stop=1;
@@ -72,56 +88,285 @@ void test_problem (double *xreal, double *xbin, int **gene, double *obj, double 
 	{
 		Number_of_RRUs=get_RRU_data_from_file (10);
 		Number_of_UEs=get_UE_data_from_file (10);
+		get_traffic_from_file(10);
+		time ( &rawtime );
+    		timeinfo = localtime ( &rawtime );
+		NOW=timeinfo->tm_min+timeinfo->tm_hour*60-1;
+		T_c=traffic[1][NOW];
 		stop=0;
-	}
-	double average_distance[Number_of_RRUs][1];
-	/*printf("Number of RRUs = %d, Number of UEs = %d\n",Number_of_RRUs,Number_of_UEs);
-	for (i=0;i<Number_of_RRUs;i++)
-	{	
-		for (j=0;j<5;j++)
+		if (Number_of_RRUs<6)
 		{
-			printf("%e\t",RRUs[j][i]);
-			if (j==4)
+			p_off =0.0338;
+			p_base=0.05;
+			P_t=0.25;/*Femtocell*/
+			GA=3;
+			if (Number_of_RBs==25)
 			{
-				average_distance[i][1]=RRUs[j][i];
-				printf("RRU[%d][%d]=(%e, %e)\t",RRUs[j][i],j,i,average_distance[i][1]);
+				Maximum_data_rate=18.336e6;/*18.336/36.696/55.056/75.376*/
+				p_rb=0.006;
 			}
-				
+			else if (Number_of_RBs==50)
+			{
+				Maximum_data_rate=36.696e6;/*18.336/36.696/55.056/75.376*/
+				p_rb=0.003;
+			}
+			else if (Number_of_RBs==75)
+			{
+				Maximum_data_rate=55.056e6;/*18.336/36.696/55.056/75.376*/
+				p_rb=0.002;
+			}
+			else if (Number_of_RBs==100)
+			{
+				Maximum_data_rate=75.376e6;/*18.336/36.696/55.056/75.376*/	
+				p_rb=0.0015;
+			}
 		}
-		printf("\n");
-	}
-	for (i=0;i<Number_of_UEs;i++)
-	{	
-		for (j=0;j<6;j++)
+		else if (Number_of_RRUs>6)
 		{
-			printf("%e\t",UEs[j][i]);
+			p_off =0.0103;
+			p_base=0.0155;	
+			P_t=0.1;/*picocell*/
+			GA=2;
+			if (Number_of_RBs==25)
+			{
+				Maximum_data_rate=18.336e6;/*18.336/36.696/55.056/75.376*/
+				p_rb=0.00338;
+			}
+			else if (Number_of_RBs==50)
+			{
+				Maximum_data_rate=36.696e6;/*18.336/36.696/55.056/75.376*/
+				p_rb=0.00169;
+			}
+			else if (Number_of_RBs==75)
+			{
+				Maximum_data_rate=55.056e6;/*18.336/36.696/55.056/75.376*/
+				p_rb=0.00113;
+			}
+			else if (Number_of_RBs==100)
+			{
+				Maximum_data_rate=75.376e6;/*18.336/36.696/55.056/75.376*/	
+				p_rb=0.00084;
+			}
 		}
-		printf("\n");
-	}*/
-
+		printf("p_off=%e, p_base=%e, P_t=%e, p_rb=%e, GA=%e\n",p_off,p_base,P_t,p_rb,GA);
+		printf("[%d:%d:%d], in minutes is %d, traffic %e\n", timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec,timeinfo->tm_min+timeinfo->tm_hour*60,traffic[1][NOW]);
+		printf("RRUs = %d, UEs = %d, Maximum_data_rate=%e,Number_RBs_interference=%d\n",Number_of_RRUs,Number_of_UEs,Maximum_data_rate,Number_RBs_interference);
+	}
+	x_a=0;
 	for (i=0;i<Number_of_RRUs;i++)
 	{
-		temp=(gene[i][0] == 1)?1:0;;
+		temp=(gene[i][0] == 1)?1:0;
 		if (temp)
 		{
-		    	u++;
-		}
-		printf("gene %d = %d, xreal[%d] = %e, u = %d, average_distance_RRU-UE = %e\n",i,gene[i][0]==1,i,xreal[i],u,RRUs[4][i]);
-		v=v+floor(xreal[i])*temp;
-		w=w+p_base*temp+p_rb*floor(xreal[i])*temp+p_off*(temp)?0:1;
-		if (RRUs[4][i]!=0)
-		{
-			num=pow(lamda/(2*PI*RRUs[4][i]),K);
-			dem=3.98107e-18*12*15000*floor(xreal[i]);
-			x=x+num/dem;
+		    	x_a++;
 		}
 	}
-	obj[0]=u;
-	obj[1]=v;
-	obj[2]=w;
-	obj[3]=x;
-	constr[0]=25-u;
-	constr[1]=25-v;
+	/*printf("x_afor=%d, Number_of_RRUs = %d\n",x_a,Number_of_RRUs);*/
+	n_a=0;
+	w=0;
+	x=0;
+	for (i=0;i<Number_of_RRUs;i++)
+	{
+		if (!x_a)
+			break;
+		temp=(gene[i][0] == 1)?1:0;
+		/*printf("gene %d = %d, xreal[%d] = %e, u = %d, average_distance_RRU-UE = %e\n",i,gene[i][0]==1,i,xreal[i],u,RRUs[4][i]);*/
+		n_a=n_a+ceil(xreal[i]/x_a)*temp;
+		w=w+(/*p_sp+*/p_base+p_rb*ceil(xreal[i]/x_a))*temp+p_off*(!temp);/*There is a problem, is not logic the more RRUs the more power consumption, problem (minimizing power consumption)*/
+		if (RRUs[4][i]!=0 && ceil(xreal[i]/x_a)!=0)
+		{
+			num=GA*P_t*pow(lamda/(4*3.14159265358979*RRUs[4][i]),K);
+			/*num=pow(10/RRUs[4][i],K);*/
+			den=3.98107e-21*12*15000*ceil(xreal[i]/x_a)+(num*Number_RBs_interference/Number_of_RBs);/*51re we consider the interference for common channels*/
+			/*SNR=43.6516*pow(10,2.5/20)*pow(10,RRUs[4][i]/16.9)*P_t;*/
+			SNR=num/den;
+			x=x+12*15000*temp*ceil(xreal[i]/x_a)*log(1+SNR)/log(2);
+			/*printf("Num = %e, Den = %e, SNR = %e,x =%e, RRU_av_dist = %e, PI = %e, temp %d, x_a= %d, now %d, xreal %e, i %e\n",num,den,SNR,x,RRUs[4][i], pi,temp,x_a,NOW,xreal[i],num*Number_RBs_interference/Number_of_RBs);*/
+		}
+	}
+	/*w=w+p_pool+p_sb;*/
+	if (n_a>Number_of_RBs)
+		n_a=Number_of_RBs;
+	/*printf("----------------------\n");*/
+	/*if (x_a==Number_of_RRUs)
+		printf("x_a= %d\n",x_a);*/
+	obj[0]=x_a;/*Minimize the number of active cells*/
+	obj[1]=n_a;/*Minimize the number of Resource Blocks*/
+	obj[2]=w;/*Minimize the power consumption*/
+	obj[3]=-x;/*Maximize the data rate*/
+	constr[0]=Number_of_RRUs-x_a;
+	constr[1]=Number_of_RBs-n_a;
+	constr[2]=Maximum_power-w;
+	/*normalized traffic profile=0.09,0.13,0.3,0.415,0.525,0.88,0.98,0.71,0.51,0.41,0.28,0.11*/
+	constr[3]=x-/*traffic[1][NOW]*/0.525*Maximum_data_rate;/*Number_of_RRUs*12*15000*Number_of_RBs*log2(1+0.1*P_t/(1.99526e-9*12*15000*25))*/
+	/*printf("constr[3]= %e, traffic = %e, number_RRUs %d, x = %e, x_a = %d, n_a= %d,average_distance_RRU-UE = %e\n",constr[3],traffic[1][NOW],Number_of_RRUs,x,x_a,n_a,RRUs[4][0]);*/
+	/*printf("traffic = %e,^12, x_a=%d, n_a=%d, l0=%e,l1=%e,l2=%e,l3=%e,l4=%e,l5=%e\n",traffic[1][NOW],x_a,n_a,RRUs[4][0],RRUs[4][1],RRUs[4][2],RRUs[4][3],RRUs[4][4],RRUs[4][5]);*/ 
+ 
+	return;
+}
+#endif
+/*  Real problem energy_efficiency_optimization using the free space pathloss model
+    # of real variables = 6->n_a(# of allocated resource blocks per RRU)
+    # of bin variables = 6->RRUs
+    # of bits for bin variables = 1
+    # of objectives = 4
+    # of constraints = 0
+    */
+#ifdef energy_efficiency_optimization_3GPP_hotspot
+void test_problem (double *xreal, double *xbin, int **gene, double *obj, double *constr, double *equality_constr, int normalized)
+{
+	dtlz=30;
+	time_t rawtime;
+    	struct tm * timeinfo;
+	static int Number_of_RRUs;
+	static int Number_of_UEs;
+	/*double p_pool=1;/*Watts*/
+	/*double p_sb=0.025;/*0.25;Watts*/
+	/*double p_sp=0.025;/*0.25;Watts/port*/
+	static double p_off;/*33.88e-3;Watts*/
+	static double p_base;/*48.65e-3;Watts*/
+	static double p_rb;/*0.384;Watts/RB->250mw-50mw/(25 PRBs)=200mW/25=0.2W/25PRBs=0.008W/RB*/
+	double light_speed=3e8;
+	double frequency_carrier=2.6e9;
+	double lamda=light_speed/frequency_carrier;
+	double pi=3.14159265358979;
+	static double GA/*3.54813*/;
+	static double P_t;/*Watts*/
+	/*double SINR=0;*/
+	double SNR;
+	double K=2;/*You need to change this value in matlab code al well*/
+	double Maximum_power=30;
+	static double Maximum_data_rate;/*17.5Mbps,MCS=28,downlink,maximum throughput*/
+	static int NOW;
+	int x_a=0;
+	int n_a=0;
+	int Number_of_RBs=100;
+	int Number_RBs_interference=0;
+	double w=0;
+	double x=0;
+	double num,den;
+	double T_c;
+	int i,j;
+	int temp;
+	int static stop=1;
+	if (stop)
+	{
+		Number_of_RRUs=get_RRU_data_from_file (10);
+		Number_of_UEs=get_UE_data_from_file (10);
+		get_traffic_from_file(10);
+		time ( &rawtime );
+    		timeinfo = localtime ( &rawtime );
+		NOW=timeinfo->tm_min+timeinfo->tm_hour*60-1;
+		T_c=traffic[1][NOW];
+		stop=0;
+		if (Number_of_RRUs<6)
+		{
+			p_off =0.0338;
+			p_base=0.05;
+			P_t=0.25;/*Femtocell*/
+			GA=3;
+			if (Number_of_RBs==25)
+			{
+				Maximum_data_rate=18.336e6;/*18.336/36.696/55.056/75.376*/
+				p_rb=0.006;
+			}
+			else if (Number_of_RBs==50)
+			{
+				Maximum_data_rate=36.696e6;/*18.336/36.696/55.056/75.376*/
+				p_rb=0.003;
+			}
+			else if (Number_of_RBs==75)
+			{
+				Maximum_data_rate=55.056e6;/*18.336/36.696/55.056/75.376*/
+				p_rb=0.002;
+			}
+			else if (Number_of_RBs==100)
+			{
+				Maximum_data_rate=75.376e6;/*18.336/36.696/55.056/75.376*/	
+				p_rb=0.0015;
+			}
+		}
+		else if (Number_of_RRUs>6)
+		{
+			p_off =0.0103;
+			p_base=0.0155;	
+			P_t=0.1;/*picocell*/
+			GA=2;
+			if (Number_of_RBs==25)
+			{
+				Maximum_data_rate=18.336e6;/*18.336/36.696/55.056/75.376*/
+				p_rb=0.00338;
+			}
+			else if (Number_of_RBs==50)
+			{
+				Maximum_data_rate=36.696e6;/*18.336/36.696/55.056/75.376*/
+				p_rb=0.00169;
+			}
+			else if (Number_of_RBs==75)
+			{
+				Maximum_data_rate=55.056e6;/*18.336/36.696/55.056/75.376*/
+				p_rb=0.00113;
+			}
+			else if (Number_of_RBs==100)
+			{
+				Maximum_data_rate=75.376e6;/*18.336/36.696/55.056/75.376*/	
+				p_rb=0.00084;
+			}
+		}
+		printf("p_off=%e, p_base=%e, P_t=%e, p_rb=%e, GA=%e\n",p_off,p_base,P_t,p_rb,GA);
+		printf("[%d:%d:%d], in minutes is %d, traffic %e\n", timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec,timeinfo->tm_min+timeinfo->tm_hour*60,traffic[1][NOW]);
+		printf("RRUs = %d, UEs = %d, Maximum_data_rate=%e,Number_RBs_interference=%d, Number_of_RBs=%d\n",Number_of_RRUs,Number_of_UEs,Maximum_data_rate,Number_RBs_interference,Number_of_RBs);
+	}
+	x_a=0;
+	for (i=0;i<Number_of_RRUs;i++)
+	{
+		temp=(gene[i][0] == 1)?1:0;
+		if (temp)
+		{
+		    	x_a++;
+		}
+	}
+	/*printf("x_afor=%d, Number_of_RRUs = %d\n",x_a,Number_of_RRUs);*/
+	n_a=0;
+	w=0;
+	x=0;
+	for (i=0;i<Number_of_RRUs;i++)
+	{
+		if (!x_a)
+			break;
+		temp=(gene[i][0] == 1)?1:0;
+		/*printf("gene %d = %d, xreal[%d] = %e, u = %d, average_distance_RRU-UE = %e\n",i,gene[i][0]==1,i,xreal[i],u,RRUs[4][i]);*/
+		n_a=n_a+ceil(xreal[i]/x_a)*temp;
+		w=w+(/*p_sp+*/p_base+p_rb*ceil(xreal[i]/x_a))*temp+p_off*(!temp);/*There is a problem, is not logic the more RRUs the more power consumption, problem (minimizing power consumption)*/
+		if (RRUs[4][i]!=0 && ceil(xreal[i]/x_a)!=0)
+		{
+			num=GA*P_t*1/(pow(10,32.4/20)*pow(RRUs[4][i],17.3/20)*2.6);
+			/*num=pow(10/RRUs[4][i],K);*/
+			den=3.98107e-21*12*15000*ceil(xreal[i]/x_a)+(num*Number_RBs_interference/Number_of_RBs);/*Here we consider the interference for common channels*/
+			/*SNR=43.6516*pow(10,2.5/20)*pow(10,RRUs[4][i]/16.9)*P_t;*/
+			SNR=num/den;
+			x=x+12*15000*temp*ceil(xreal[i]/x_a)*log(1+SNR)/log(2);
+			/*printf("Num = %e, Den = %e, SNR = %e,x =%e, RRU_av_dist = %e, PI = %e, temp %d, x_a= %d, now %d\n",num,den,SNR,x,RRUs[4][i], pi,temp,x_a,NOW);*/
+		}
+	}
+	/*w=w+p_pool+p_sb;*/
+	if (n_a>Number_of_RBs)
+		n_a=Number_of_RBs;
+	/*printf("----------------------\n");*/
+	/*if (x_a==Number_of_RRUs)
+		printf("x_a= %d\n",x_a);*/
+	obj[0]=x_a;/*Minimize the number of active cells*/
+	obj[1]=n_a;/*Minimize the number of Resource Blocks*/
+	obj[2]=w;/*Minimize the power consumption*/
+	obj[3]=-x;/*Maximize the data rate*/
+	constr[0]=Number_of_RRUs-x_a;
+	constr[1]=Number_of_RBs-n_a;
+	constr[2]=Maximum_power-w;
+	/*normalized traffic profile=0.09,0.13,0.3,0.415,0.525,0.88,0.98,0.71,0.51,0.41,0.28,0.11*/
+	constr[3]=x-/*traffic[1][NOW]*/0.51*Maximum_data_rate;/*Number_of_RRUs*12*15000*Number_of_RBs*log2(1+0.1*P_t/(1.99526e-9*12*15000*25))*/
+	/*printf("constr[3]= %e, traffic = %e, number_RRUs %d, x = %e, x_a = %d, n_a= %d,average_distance_RRU-UE = %e\n",constr[3],traffic[1][NOW],Number_of_RRUs,x,x_a,n_a,RRUs[4][0]);*/
+	/*printf("traffic = %e,^12, x_a=%d, n_a=%d, l0=%e,l1=%e,l2=%e,l3=%e,l4=%e,l5=%e\n",traffic[1][NOW],x_a,n_a,RRUs[4][0],RRUs[4][1],RRUs[4][2],RRUs[4][3],RRUs[4][4],RRUs[4][5]);*/ 
+ 
 	return;
 }
 #endif
